@@ -77,9 +77,10 @@ public class AddNoteActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            File f = new File(currentPhotoPath);
-            uri = Uri.fromFile(f);
-            Log.d("upload picture", "The current picture path is: "+currentPhotoPath);
+            //go to set caption activity
+            Intent intent = new Intent(this, PhotoConfirmActivity.class);
+            intent.putExtra("photoPath", currentPhotoPath);
+            startActivity(intent);
         }
     }
 
