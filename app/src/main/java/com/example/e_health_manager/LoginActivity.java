@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailText;
     private EditText passwordText;
     private Button loginBtn;
+    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
@@ -47,10 +49,12 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
         loginBtn = findViewById(R.id.button_login);
+        progressBar = findViewById(R.id.progress_main);
     }
 
     public void onClick_trylogin(View view) {
         loginBtn.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
 
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
@@ -61,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Email or Password cannot be empty", Toast.LENGTH_LONG);
             toast.show();
             loginBtn.setEnabled(true);
+            progressBar.setVisibility(View.INVISIBLE);
         }
 
         else {
@@ -72,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 //go to profile page
                                 loginBtn.setEnabled(true);
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                                 startActivity(intent);
                             } else {
@@ -79,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                         "Email or Password is wrong", Toast.LENGTH_LONG);
                                 toast.show();
                                 loginBtn.setEnabled(true);
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
