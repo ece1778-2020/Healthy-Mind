@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +34,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText confirmpasswordText;
     private EditText usernameText;
     private Button signupBtn;
+    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
@@ -55,6 +57,7 @@ public class SignupActivity extends AppCompatActivity {
         confirmpasswordText = findViewById(R.id.confirmpassword_field_signup);
         usernameText = findViewById(R.id.username_field_signup);
         signupBtn = findViewById(R.id.button_signup);
+        progressBar = findViewById(R.id.progress_main);
     }
 
     public void store_user_info(String email, String username, String uid){
@@ -72,6 +75,7 @@ public class SignupActivity extends AppCompatActivity {
     public void onClick_trySignup(View view) {
 
         signupBtn.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
         final String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
         String confirm = confirmpasswordText.getText().toString();
@@ -85,26 +89,31 @@ public class SignupActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_LONG);
             toast.show();
             signupBtn.setEnabled(true);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(password.isEmpty()){
             Toast toast = Toast.makeText(this, "password cannot be empty", Toast.LENGTH_LONG);
             toast.show();
             signupBtn.setEnabled(true);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(confirm.isEmpty()){
             Toast toast = Toast.makeText(this, "please confirm password", Toast.LENGTH_LONG);
             toast.show();
             signupBtn.setEnabled(true);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(password.equals(confirm) == false){
             Toast toast = Toast.makeText(this, "password does not match", Toast.LENGTH_LONG);
             toast.show();
             signupBtn.setEnabled(true);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(username.isEmpty()){
             Toast toast = Toast.makeText(this, "username cannot be empty", Toast.LENGTH_LONG);
             toast.show();
             signupBtn.setEnabled(true);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         //all inputs are valid
         else{
@@ -132,6 +141,7 @@ public class SignupActivity extends AppCompatActivity {
                                 store_user_info(email, username, user.getUid());
                                 //redirect to the profile activity
                                 signupBtn.setEnabled(true);
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(SignupActivity.this, ProfileActivity.class);
                                 startActivity(intent);
                             }
@@ -140,6 +150,7 @@ public class SignupActivity extends AppCompatActivity {
                                         "This email has already belonged to another account", Toast.LENGTH_SHORT);
                                 toast.show();
                                 signupBtn.setEnabled(true);
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });

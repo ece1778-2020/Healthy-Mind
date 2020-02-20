@@ -90,6 +90,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_field_signup" />
 
+    <ProgressBar
+        android:id="@+id/progress_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_signup"
+        app:layout_constraintVertical_bias="0.3" />
+
     <ImageView
         android:id="@+id/cameraPic"
         android:layout_width="104dp"
@@ -100,4 +111,5 @@
         android:src="@android:drawable/ic_menu_camera"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
