@@ -32,6 +32,7 @@
         android:gravity="center"
         android:text="Go see doctor:"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -49,7 +50,6 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
 
-
     <TextView
         android:id="@+id/reason"
         android:layout_width="wrap_content"
@@ -60,6 +60,7 @@
         android:gravity="center"
         android:text="for:"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -77,7 +78,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ed1" />
 
 
-
     <TextView
         android:id="@+id/set_date1"
         android:layout_width="wrap_content"
@@ -88,6 +88,7 @@
         android:gravity="center"
         android:text="Appointment time:"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reason" />
 
@@ -115,6 +116,7 @@
         android:gravity="center"
         android:text=" At"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/pick_date"
         app:layout_constraintTop_toBottomOf="@+id/ed2" />
 
@@ -126,13 +128,12 @@
         android:layout_marginLeft="1dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="1dp"
-        android:inputType="time"
         android:gravity="center"
         android:hint="time"
+        android:inputType="time"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/at"
         app:layout_constraintTop_toBottomOf="@+id/ed2" />
-
 
 
     <TextView
@@ -145,6 +146,7 @@
         android:gravity="center"
         android:text="Location:"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set_date1" />
 
@@ -162,9 +164,6 @@
         app:layout_constraintTop_toBottomOf="@+id/set_date1" />
 
 
-
-
-
     <TextView
         android:id="@+id/phone"
         android:layout_width="wrap_content"
@@ -175,6 +174,7 @@
         android:gravity="center"
         android:text="Phone number:"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location" />
 
@@ -207,13 +207,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="155dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="1dp"
         app:layout_constraintTop_toBottomOf="@+id/add_btn" />
-
-
 
 
     <Button
