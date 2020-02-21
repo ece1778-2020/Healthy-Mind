@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PhotoConfirmActivity"></activity>
+        <activity android:name=".InputManual"></activity>
+        <activity android:name=".PhotoConfirmActivity" />
         <activity android:name=".AddNoteActivity" />
         <activity android:name=".NoteListActivity" />
         <activity android:name=".ProfileActivity" />
