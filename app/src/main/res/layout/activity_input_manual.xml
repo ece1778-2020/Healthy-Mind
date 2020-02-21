@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".InputManual">
 
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Personal Inforamtion"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -18,7 +35,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/info_title" />
 
     <TextView
         android:id="@+id/set_date1"
@@ -272,7 +289,7 @@
         android:id="@+id/add_m_btn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:text="Add medication"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -280,117 +297,15 @@
         app:layout_constraintTop_toBottomOf="@+id/c1" />
 
     <!--    the preview of items added.-->
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/recyclerView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="135dp"-->
-    <!--        android:layout_marginTop="5dp"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/add_m_btn" />-->
-
-
-    <TextView
-        android:id="@+id/feel_title"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="155dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="1dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:text="How I might feel and what to do"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_m_btn" />
 
-
-    <TextView
-        android:id="@+id/feel1"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="12dp"
-        android:gravity="center"
-        android:text="I might feel:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feel_title" />
-
-
-    <EditText
-        android:id="@+id/feel1_input"
-        android:layout_width="320dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="2dp"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/feel1"
-        app:layout_constraintTop_toBottomOf="@+id/feel_title" />
-
-    <TextView
-        android:id="@+id/feel2"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="12dp"
-        android:gravity="center"
-        android:text="What to do: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feel1" />
-
-
-    <EditText
-        android:id="@+id/feel2_input"
-        android:layout_width="320dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="2dp"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/feel2"
-        app:layout_constraintTop_toBottomOf="@+id/feel1_input" />
-
-
-    <TextView
-        android:id="@+id/feel3"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="12dp"
-        android:text="Go to Emergency if: "
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feel2" />
-
-
-    <EditText
-        android:id="@+id/feel3_input"
-        android:layout_width="255dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="2dp"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@id/feel3"
-        app:layout_constraintTop_toBottomOf="@+id/feel2_input" />
-
-    <Button
-        android:id="@+id/add_btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="Add item"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feel3" />
 
     <Button
         android:id="@+id/next"
@@ -398,8 +313,9 @@
         android:layout_height="40dp"
         android:layout_marginBottom="12dp"
         android:background="@color/commentTitle"
+        android:onClick="onClick_next_page"
         android:text="next"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
