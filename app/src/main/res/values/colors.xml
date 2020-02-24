@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="dark">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="commentTitle">#62AE90</color>
+    <color name="red">#EA5555</color>
+    <color name="grey">#DADADA</color>
+    <color name="light_green">#ABF4B1</color>
 </resources>

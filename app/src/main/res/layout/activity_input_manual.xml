@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InputManual">
+
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Personal Inforamtion"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:ems="10"
+        android:hint="Your Name"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_title" />
+
+    <TextView
+        android:id="@+id/set_date1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="6dp"
+        android:gravity="center"
+        android:text="I came to hospital on:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+
+    <EditText
+        android:id="@+id/pick_date_came"
+        android:layout_width="245dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:focusable="false"
+        android:gravity="center"
+        android:hint="Set your date"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/set_date1"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+
+    <TextView
+        android:id="@+id/set_date2"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="6dp"
+        android:gravity="center"
+        android:text="I left the hospital on:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_date1" />
+
+
+    <EditText
+        android:id="@+id/pick_date_left"
+        android:layout_width="255dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="5dp"
+        android:focusable="false"
+        android:gravity="center"
+        android:hint="Set your date"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/set_date2"
+        app:layout_constraintTop_toBottomOf="@+id/pick_date_came" />
+
+
+    <TextView
+        android:id="@+id/reason_title"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="6dp"
+        android:gravity="center"
+        android:text="I came in because I have:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_date2" />
+
+
+    <EditText
+        android:id="@+id/reason_input"
+        android:layout_width="220dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/reason_title"
+        app:layout_constraintTop_toBottomOf="@+id/pick_date_left" />
+
+    <TextView
+        android:id="@+id/medication_title"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Medications I need to take"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reason_title" />
+
+    <TextView
+        android:id="@+id/medication_name"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication_title" />
+
+
+    <EditText
+        android:id="@+id/medication_name_input"
+        android:layout_width="365dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication_name"
+        app:layout_constraintTop_toBottomOf="@+id/medication_title" />
+
+
+    <TextView
+        android:id="@+id/medication2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="What it is for:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication_name" />
+
+
+    <EditText
+        android:id="@+id/medication2_input"
+        android:layout_width="310dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication2"
+        app:layout_constraintTop_toBottomOf="@+id/medication_name_input" />
+
+
+    <TextView
+        android:id="@+id/c1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:text="morning"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c1_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c1"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <TextView
+        android:id="@+id/c2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="noon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c1_input"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c2_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c2"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <TextView
+        android:id="@+id/c3"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="afternoon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c2_input"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c3_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c3"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <TextView
+        android:id="@+id/c4"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="night"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c3_input"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c4_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c4"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+    <Button
+        android:id="@+id/add_m_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Add medication"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/c1" />
+
+    <!--    the preview of items added.-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/add_m_btn" />
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/commentTitle"
+        android:onClick="onClick_next_page"
+        android:text="next"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

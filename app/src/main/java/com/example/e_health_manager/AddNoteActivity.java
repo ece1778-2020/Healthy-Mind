@@ -125,6 +125,7 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public void onClick_chooseManually(View view) {
-
+        Intent intent = new Intent(this, InputManual.class);
+        startActivity(intent);
     }
 }
