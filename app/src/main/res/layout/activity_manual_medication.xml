@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManualMedication">
+
+
+    <TextView
+        android:id="@+id/medication_title"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Medications I need to take"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/add_m_btn"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Add medication"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication_title" />
+
+    <Button
+        android:id="@+id/del"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:text="Delete medication"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication_title" />
+
+    <View
+        android:id="@+id/hline0"
+        style="@style/Divider.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/add_m_btn" />
+
+
+    <TextView
+        android:id="@+id/medication_name"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline0" />
+
+
+    <EditText
+        android:id="@+id/medication_name_input"
+        android:layout_width="365dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication_name"
+        app:layout_constraintTop_toBottomOf="@+id/hline0" />
+
+
+    <TextView
+        android:id="@+id/medication2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="What it is for:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication_name" />
+
+
+    <EditText
+        android:id="@+id/medication2_input"
+        android:layout_width="310dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication2"
+        app:layout_constraintTop_toBottomOf="@+id/medication_name_input" />
+
+
+    <TextView
+        android:id="@+id/c1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:text="morning"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c1_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c1"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <TextView
+        android:id="@+id/c2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="noon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c1_input"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c2_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c2"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <TextView
+        android:id="@+id/c3"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="afternoon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c2_input"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c3_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c3"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <TextView
+        android:id="@+id/c4"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="night"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c3_input"
+        app:layout_constraintTop_toBottomOf="@+id/medication2" />
+
+
+    <CheckBox
+        android:id="@+id/c4_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c4"
+        app:layout_constraintTop_toBottomOf="@id/medication2" />
+
+
+    <View
+        android:id="@+id/hline"
+        style="@style/Divider.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/c1" />
+
+
+    <TextView
+        android:id="@+id/n1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline" />
+
+
+    <EditText
+        android:id="@+id/n1_input"
+        android:layout_width="365dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication_name"
+        app:layout_constraintTop_toBottomOf="@+id/hline" />
+
+
+    <TextView
+        android:id="@+id/m1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="What it is for:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/n1" />
+
+
+    <EditText
+        android:id="@+id/m1_input"
+        android:layout_width="310dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication2"
+        app:layout_constraintTop_toBottomOf="@+id/n1_input" />
+
+
+    <TextView
+        android:id="@+id/c5"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:text="morning"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m1" />
+
+
+    <CheckBox
+        android:id="@+id/c5_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c1"
+        app:layout_constraintTop_toBottomOf="@id/m1" />
+
+
+    <TextView
+        android:id="@+id/c6"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="noon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c1_input"
+        app:layout_constraintTop_toBottomOf="@+id/m1" />
+
+
+    <CheckBox
+        android:id="@+id/c6_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c2"
+        app:layout_constraintTop_toBottomOf="@id/m1" />
+
+
+    <TextView
+        android:id="@+id/c7"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="afternoon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c2_input"
+        app:layout_constraintTop_toBottomOf="@+id/m1" />
+
+
+    <CheckBox
+        android:id="@+id/c7_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c3"
+        app:layout_constraintTop_toBottomOf="@id/m1" />
+
+
+    <TextView
+        android:id="@+id/c8"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="night"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c3_input"
+        app:layout_constraintTop_toBottomOf="@+id/m1" />
+
+
+    <CheckBox
+        android:id="@+id/c8_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c4"
+        app:layout_constraintTop_toBottomOf="@id/m1" />
+
+
+    <View
+        android:id="@+id/hline2"
+        style="@style/Divider.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/c8" />
+
+
+    <TextView
+        android:id="@+id/n2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline2" />
+
+
+    <EditText
+        android:id="@+id/n2_input"
+        android:layout_width="365dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/medication_name"
+        app:layout_constraintTop_toBottomOf="@+id/hline2" />
+
+
+    <TextView
+        android:id="@+id/m2"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="What it is for:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/n2" />
+
+
+    <EditText
+        android:id="@+id/m2_input"
+        android:layout_width="310dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/m2"
+        app:layout_constraintTop_toBottomOf="@+id/n2_input" />
+
+
+    <TextView
+        android:id="@+id/c9"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:text="morning"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m2" />
+
+
+    <CheckBox
+        android:id="@+id/c9_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c1"
+        app:layout_constraintTop_toBottomOf="@id/m2" />
+
+
+    <TextView
+        android:id="@+id/c10"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="noon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c9_input"
+        app:layout_constraintTop_toBottomOf="@+id/m2" />
+
+
+    <CheckBox
+        android:id="@+id/c10_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c2"
+        app:layout_constraintTop_toBottomOf="@id/m2" />
+
+
+    <TextView
+        android:id="@+id/c11"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="afternoon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c2_input"
+        app:layout_constraintTop_toBottomOf="@+id/m2" />
+
+
+    <CheckBox
+        android:id="@+id/c11_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c3"
+        app:layout_constraintTop_toBottomOf="@id/m2" />
+
+
+    <TextView
+        android:id="@+id/c12"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="night"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c3_input"
+        app:layout_constraintTop_toBottomOf="@+id/m2" />
+
+
+    <CheckBox
+        android:id="@+id/c12_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c4"
+        app:layout_constraintTop_toBottomOf="@id/m2" />
+
+
+    <View
+        android:id="@+id/hline4"
+        style="@style/Divider.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/c12" />
+
+
+    <TextView
+        android:id="@+id/n3"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="Name:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline4" />
+
+
+    <EditText
+        android:id="@+id/n3_input"
+        android:layout_width="365dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/medication_name"
+        app:layout_constraintTop_toBottomOf="@+id/hline4" />
+
+
+    <TextView
+        android:id="@+id/m3"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:text="What it is for:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/n3" />
+
+
+    <EditText
+        android:id="@+id/m3_input"
+        android:layout_width="310dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/m2"
+        app:layout_constraintTop_toBottomOf="@+id/n3_input" />
+
+
+    <TextView
+        android:id="@+id/c13"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center_horizontal"
+        android:text="morning"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/m3" />
+
+
+    <CheckBox
+        android:id="@+id/c13_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c1"
+        app:layout_constraintTop_toBottomOf="@id/m3" />
+
+
+    <TextView
+        android:id="@+id/c14"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="noon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c9_input"
+        app:layout_constraintTop_toBottomOf="@+id/m3" />
+
+
+    <CheckBox
+        android:id="@+id/c14_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c2"
+        app:layout_constraintTop_toBottomOf="@id/m3" />
+
+
+    <TextView
+        android:id="@+id/c15"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="afternoon"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c2_input"
+        app:layout_constraintTop_toBottomOf="@+id/m3" />
+
+
+    <CheckBox
+        android:id="@+id/c15_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c3"
+        app:layout_constraintTop_toBottomOf="@id/m3" />
+
+
+    <TextView
+        android:id="@+id/c16"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:text="night"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/c3_input"
+        app:layout_constraintTop_toBottomOf="@+id/m3" />
+
+
+    <CheckBox
+        android:id="@+id/c16_input"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/c4"
+        app:layout_constraintTop_toBottomOf="@id/m3" />
+
+
+    <View
+        android:id="@+id/hline6"
+        style="@style/Divider.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/c16" />
+
+
+    <!--    &lt;!&ndash;    the preview of items added.&ndash;&gt;-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recyclerView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="155dp"-->
+    <!--        android:layout_marginLeft="1dp"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        android:layout_marginRight="1dp"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/c1" />-->
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/commentTitle"
+        android:onClick="onClick_next_page"
+        android:text="next"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.01" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
