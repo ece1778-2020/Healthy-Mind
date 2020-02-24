@@ -75,7 +75,7 @@ public class InputManual extends AppCompatActivity {
 
 
     public void onClick_next_page(View view) {
-        Intent intent = new Intent(this, ManualFeel.class);
+        Intent intent = new Intent(this, ManualMedication.class);
         startActivity(intent);
     }
 
