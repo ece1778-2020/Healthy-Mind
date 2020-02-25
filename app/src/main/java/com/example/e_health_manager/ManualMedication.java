@@ -1,10 +1,14 @@
 package com.example.e_health_manager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,7 +16,27 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ManualMedication extends AppCompatActivity {
+
+    ArrayList medicationList = new ArrayList();
+
+    FirebaseFirestore db;
+    FirebaseAuth mAuth;
+    String userID;
 
     Button addBtn, delBtn;
     Context context;
@@ -40,6 +64,13 @@ public class ManualMedication extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_medication);
+
+        db = FirebaseFirestore.getInstance();
+
+        mAuth = FirebaseAuth.getInstance();
+        // Current user.
+        userID = mAuth.getCurrentUser().getUid();
+
         addBtn = (Button) findViewById(R.id.add_m_btn);
         delBtn = (Button) findViewById(R.id.del);
 
@@ -197,6 +228,7 @@ public class ManualMedication extends AppCompatActivity {
                 if (medicationCount == 0) {
                     delBtn.setEnabled(false);
                     Toast.makeText(ManualMedication.this, "You haven't enter the medication.", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
                     medicationCount--;
                     if (medicationCount == 3) {
@@ -263,6 +295,27 @@ public class ManualMedication extends AppCompatActivity {
                         c2_input.setVisibility(View.INVISIBLE);
                         c3_input.setVisibility(View.INVISIBLE);
                         c4_input.setVisibility(View.INVISIBLE);
+
+                        // Remove the 'medications' field from the document.
+                        db.collection("users")
+                                .document(userID)
+                                .update("medications", FieldValue.delete());
+
+                        // get doctor_note_id.
+                        db.collection("users")
+                                .document(userID)
+                                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                                        String doctor_note_id = documentSnapshot.getString("doctor_note_id");
+                                        if (doctor_note_id != null) {
+                                            db.collection("doctor's note")
+                                                    .document(doctor_note_id)
+                                                    .update("medications", FieldValue.delete());
+                                        }
+                                    }
+                                });
+
                     }
                 }
                 addBtn.setEnabled(true);
@@ -274,7 +327,172 @@ public class ManualMedication extends AppCompatActivity {
     }
 
     public void onClick_next_page(View view) {
-        Intent intent = new Intent(this, ManualFeel.class);
-        startActivity(intent);
+        if (medicationCount > 0) {
+            medicationList.clear();
+
+            // check if empty.
+            if (TextUtils.isEmpty(m0_input.getText().toString())) {
+                m0_input.setError("medication name cannot be blank.");
+                return;
+            }
+
+            Map<String, Object> medication = new HashMap<>();
+            medication.put("name", m0_input.getText().toString());
+            medication.put("reason", n0_input.getText().toString());
+            ArrayList<String> timeList = new ArrayList<>();
+            if (c1_input.isChecked()) {
+                timeList.add("morning");
+            }
+            if (c2_input.isChecked()) {
+                timeList.add("noon");
+            }
+            if (c3_input.isChecked()) {
+                timeList.add("afternoon");
+            }
+            if (c4_input.isChecked()) {
+                timeList.add("night");
+            }
+            medication.put("time", timeList);
+            medicationList.add(medication);
+
+
+            if (medicationCount > 1) {
+
+                // check if empty.
+                if (TextUtils.isEmpty(n1_input.getText().toString())) {
+                    n1_input.setError("medication name cannot be blank.");
+                    return;
+                }
+
+                Map<String, Object> medication2 = new HashMap<>();
+                medication2.put("name", n1_input.getText().toString());
+                medication2.put("reason", m1_input.getText().toString());
+                ArrayList<String> timeList2 = new ArrayList<>();
+                if (c5_input.isChecked()) {
+                    timeList2.add("morning");
+                }
+                if (c6_input.isChecked()) {
+                    timeList2.add("noon");
+                }
+                if (c7_input.isChecked()) {
+                    timeList2.add("afternoon");
+                }
+                if (c8_input.isChecked()) {
+                    timeList2.add("night");
+                }
+                medication2.put("time", timeList2);
+                medicationList.add(medication2);
+
+
+                if (medicationCount > 2) {
+
+                    // check if empty.
+                    if (TextUtils.isEmpty(n2_input.getText().toString())) {
+                        n2_input.setError("medication name cannot be blank.");
+                        return;
+                    }
+
+                    Map<String, Object> medication3 = new HashMap<>();
+                    medication3.put("name", n2_input.getText().toString());
+                    medication3.put("reason", m2_input.getText().toString());
+                    ArrayList<String> timeList3 = new ArrayList<>();
+                    if (c9_input.isChecked()) {
+                        timeList3.add("morning");
+                    }
+                    if (c10_input.isChecked()) {
+                        timeList3.add("noon");
+                    }
+                    if (c11_input.isChecked()) {
+                        timeList3.add("afternoon");
+                    }
+                    if (c12_input.isChecked()) {
+                        timeList3.add("night");
+                    }
+                    medication3.put("time", timeList3);
+                    medicationList.add(medication3);
+
+                    if (medicationCount > 3) {
+
+                        // check if empty.
+                        if (TextUtils.isEmpty(n3_input.getText().toString())) {
+                            n3_input.setError("medication name cannot be blank.");
+                            return;
+                        }
+
+
+                        Map<String, Object> medication4 = new HashMap<>();
+                        medication4.put("name", n3_input.getText().toString());
+                        medication4.put("reason", m3_input.getText().toString());
+                        ArrayList<String> timeList4 = new ArrayList<>();
+                        if (c13_input.isChecked()) {
+                            timeList4.add("morning");
+                        }
+                        if (c14_input.isChecked()) {
+                            timeList4.add("noon");
+                        }
+                        if (c15_input.isChecked()) {
+                            timeList4.add("afternoon");
+                        }
+                        if (c16_input.isChecked()) {
+                            timeList4.add("night");
+                        }
+                        medication4.put("time", timeList4);
+                        medicationList.add(medication4);
+
+                    }
+
+                }
+
+            }
+        }
+
+        // TODO: it seems that we can use users collection for storing data (easier in terms of coding).
+        // add a document to doctor's note section
+        final Map<String, Object> medication_data = new HashMap<>();
+        medication_data.put("medications", medicationList);
+        medication_data.put("patient_id", userID);
+
+        // documentReference contains the reference to the user (collection) data in the database.
+        DocumentReference userDocumentRef = db.collection("users").document(userID);
+        // update field.
+        userDocumentRef.update("medications", medicationList);
+        // delete field.
+        // userDocumentRef.update("medications", FieldValue.delete());
+
+        userDocumentRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("add medication", "Error: " + e.getMessage());
+                } else {
+                    String doctor_note_id = documentSnapshot.getString("doctor_note_id");
+
+                    if (doctor_note_id != null) {
+                        db.collection("doctor's note")
+                                .document(doctor_note_id)
+                                .update(medication_data);
+                    } else {
+                        db.collection("doctor's note")
+                                .add(medication_data)
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        // update field.
+                                        db.collection("users")
+                                                .document(userID)
+                                                .update("doctor_note_id", documentReference.getId());
+
+                                        Log.d("medication", "Medication added with UID: " + documentReference.getId());
+                                    }
+                                });
+                    }
+                }
+            }
+        });
+
+        Log.d("test Dict", medicationList.toString());
+
+        // Intent intent = new Intent(this, ManualFeel.class);
+        // startActivity(intent);
     }
 }
