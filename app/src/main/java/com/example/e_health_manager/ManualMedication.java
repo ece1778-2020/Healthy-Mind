@@ -33,6 +33,7 @@ import java.util.Map;
 public class ManualMedication extends AppCompatActivity {
 
     ArrayList medicationList = new ArrayList();
+    String doctor_note_id;
 
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -140,6 +141,14 @@ public class ManualMedication extends AppCompatActivity {
         c14_input = findViewById(R.id.c14_input);
         c15_input = findViewById(R.id.c15_input);
         c16_input = findViewById(R.id.c16_input);
+
+        // handle the intent called from the previous page.
+        // callingActivityIntent is from the previous page.
+        Intent callingActivityIntent = getIntent();
+
+        if (callingActivityIntent != null) {
+            doctor_note_id = callingActivityIntent.getStringExtra("curr_doctor_note_id");
+        }
 
 
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -296,25 +305,15 @@ public class ManualMedication extends AppCompatActivity {
                         c3_input.setVisibility(View.INVISIBLE);
                         c4_input.setVisibility(View.INVISIBLE);
 
+                        // The following remove the whole 'medications' field.
+                        // when there is only one medication left, and delete is pressed.
                         // Remove the 'medications' field from the document.
-                        db.collection("users")
-                                .document(userID)
-                                .update("medications", FieldValue.delete());
+                        // db.collection("users").document(userID).update("medications", FieldValue.delete());
 
-                        // get doctor_note_id.
-                        db.collection("users")
-                                .document(userID)
-                                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                                        String doctor_note_id = documentSnapshot.getString("doctor_note_id");
-                                        if (doctor_note_id != null) {
-                                            db.collection("doctor's note")
-                                                    .document(doctor_note_id)
-                                                    .update("medications", FieldValue.delete());
-                                        }
-                                    }
-                                });
+                        // delete the doctor's note for doctor_note_id.
+                        db.collection("doctor's note")
+                                .document(doctor_note_id)
+                                .update("medications", FieldValue.delete());
 
                     }
                 }
@@ -446,53 +445,28 @@ public class ManualMedication extends AppCompatActivity {
             }
         }
 
-        // TODO: it seems that we can use users collection for storing data (easier in terms of coding).
-        // add a document to doctor's note section
-        final Map<String, Object> medication_data = new HashMap<>();
-        medication_data.put("medications", medicationList);
-        medication_data.put("patient_id", userID);
-
         // documentReference contains the reference to the user (collection) data in the database.
-        DocumentReference userDocumentRef = db.collection("users").document(userID);
-        // update field.
-        userDocumentRef.update("medications", medicationList);
+        // DocumentReference userDocumentRef = db.collection("users").document(userID);
+        // update medications field in user (don't need to store it in the users collection).
+        // userDocumentRef.update("medications", medicationList);
         // delete field.
         // userDocumentRef.update("medications", FieldValue.delete());
 
-        userDocumentRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w("add medication", "Error: " + e.getMessage());
-                } else {
-                    String doctor_note_id = documentSnapshot.getString("doctor_note_id");
 
-                    if (doctor_note_id != null) {
-                        db.collection("doctor's note")
-                                .document(doctor_note_id)
-                                .update(medication_data);
-                    } else {
-                        db.collection("doctor's note")
-                                .add(medication_data)
-                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        // update field.
-                                        db.collection("users")
-                                                .document(userID)
-                                                .update("doctor_note_id", documentReference.getId());
+        DocumentReference doctorNoteDocRef = db.collection("doctor's note").document(doctor_note_id);
+        // update medications field.
+        doctorNoteDocRef.update("medications", medicationList);
 
-                                        Log.d("medication", "Medication added with UID: " + documentReference.getId());
-                                    }
-                                });
-                    }
-                }
-            }
-        });
 
         Log.d("test Dict", medicationList.toString());
 
+        // go to next page intent.
         // Intent intent = new Intent(this, ManualFeel.class);
-        // startActivity(intent);
+        // go to final review page intent.
+        Intent intent = new Intent(this, ManualConfirm.class);
+        intent.putExtra("curr_doctor_note_id", doctor_note_id);
+        // or we could set the data (e.g. medicationList) directly by putExtra.
+        intent.putExtra("medications", medicationList);
+        startActivity(intent);
     }
 }

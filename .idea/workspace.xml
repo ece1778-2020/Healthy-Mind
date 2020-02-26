@@ -10,7 +10,7 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="327b53dc-6dda-42d3-a0cf-6b9b6ff84df3" name="Default Changelist" comment="">
@@ -21,9 +21,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/AddNoteActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/AddNoteActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMedication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMedication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_medication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_medication.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,17 +61,86 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMedication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="253" column="26" selection-start-line="253" selection-start-column="26" selection-end-line="253" selection-end-column="26" />
+            <state relative-caret-position="441">
+              <caret line="393" column="23" selection-start-line="393" selection-start-column="23" selection-end-line="393" selection-end-column="39" />
               <folding>
-                <element signature="e#3462#7199#0" expanded="true" />
-                <element signature="e#7198#7199#0" expanded="true" />
-                <element signature="e#7238#11040#0" expanded="true" />
-                <element signature="e#11039#11040#0" expanded="true" />
+                <element signature="e#4691#8677#0" expanded="true" />
+                <element signature="e#8676#8677#0" expanded="true" />
+                <element signature="e#8716#14049#0" expanded="true" />
+                <element signature="e#14048#14049#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_confirm.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_appointments.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="9" selection-start-line="9" selection-end-line="22" selection-end-column="52" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualConfirm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="67" column="21" lean-forward="true" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+              <folding>
+                <element signature="e#1663#1937#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="531">
+              <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="90" column="33" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1069#1922#0" expanded="true" />
+                <element signature="e#1253#1796#0" expanded="true" />
+                <element signature="e#1795#1796#0" expanded="true" />
+                <element signature="e#1921#1922#0" expanded="true" />
+                <element signature="e#1969#2822#0" expanded="true" />
+                <element signature="e#2821#2822#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,29 +149,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_medication.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="214" column="34" lean-forward="true" selection-start-line="214" selection-start-column="34" selection-end-line="214" selection-end-column="34" />
+            <state relative-caret-position="10928">
+              <caret line="683" column="4" selection-start-line="683" selection-start-column="4" selection-end-line="683" selection-end-column="4" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-            </state>
-          </provider>
         </entry>
       </file>
     </leaf>
@@ -115,11 +173,31 @@
       <find>40</find>
       <find>gone</find>
       <find>hline1</find>
+      <find>medication_name_input</find>
+      <find>medication2_input</find>
+      <find>c1_input</find>
+      <find>c3_input</find>
+      <find>n1_input</find>
+      <find>m0_input</find>
+      <find>m1_input</find>
+      <find>!= null</find>
+      <find>mFirestore</find>
+      <find>doctor_note_id</find>
+      <find>doctor's</find>
+      <find>medicationList</find>
+      <find>doctor_not</find>
+      <find>medication_data</find>
+      <find>collection</find>
+      <find>curr_do</find>
+      <find>call</find>
+      <find>userID</find>
+      <find>db =</find>
     </findStrings>
     <replaceStrings>
       <replace>39dp</replace>
       <replace>40</replace>
       <replace>42</replace>
+      <replace>db</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -148,28 +226,30 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_note.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/PhotoConfirmActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/AddNoteActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualFeel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ChangeRoutine.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_change_routine.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_feel.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualAppointments.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_appointments.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_input_manual.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_medication.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/AddNoteActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMedication.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_manual_confirm.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualConfirm.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
-    <option name="width" value="3442" />
-    <option name="height" value="2162" />
+    <option name="x" value="4" />
+    <option name="width" value="3584" />
+    <option name="height" value="2092" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -179,23 +259,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="E-Health-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Health-Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="E-Health-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Health-Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
@@ -224,7 +287,7 @@
               <item name="E-Health-Manager" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="E-Health-Manager" type="1abcf292:AndroidViewProjectNode" />
@@ -234,11 +297,28 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="E-Health-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="E-Health-Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="E-Health-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="E-Health-Manager" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_XL_API_29" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-20T19:04:39.992Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-02-26T07:12:48.624Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.recentlyUsedThemes" value="Theme.AppCompat.Light.DarkActionBar" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -349,8 +429,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="0" width="1721" height="1081" extended-state="0" />
-    <editor active="true" />
+    <frame x="2" y="0" width="1792" height="1046" extended-state="0" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" />
       <window_info id="Image Layers" order="1" />
@@ -359,31 +438,28 @@
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Resources Explorer" order="6" weight="0.3297568" />
-      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.19587629" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.17267442" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Logcat" order="0" weight="0.33890748" />
+      <window_info anchor="bottom" id="Logcat" order="0" weight="0.30337077" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Debug" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.1746988" />
       <window_info anchor="bottom" id="Version Control" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5007153" side_tool="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Build" order="6" visible="true" weight="0.1881081" />
+      <window_info anchor="bottom" id="Build" order="6" visible="true" weight="0.050561797" />
       <window_info anchor="bottom" id="Find" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49928468" weight="0.4939759" />
+      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.49928468" weight="0.49325842" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" weight="0.32993016" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Assistant" order="3" weight="0.3297568" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.31837478" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.31802326" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="right" id="Device File Explorer" order="6" side_tool="true" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/google-services.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -530,27 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/AddNoteActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="27" selection-start-line="27" selection-end-line="30" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1069#1922#0" expanded="true" />
-            <element signature="e#1921#1922#0" expanded="true" />
-            <element signature="e#1969#2822#0" expanded="true" />
-            <element signature="e#2821#2822#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualAppointments.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -571,13 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_photo_confirm.xml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
@@ -589,14 +637,6 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="91" column="36" lean-forward="true" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_feel.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -630,14 +670,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_appointments.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="216" selection-start-line="216" selection-end-line="216" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_input_manual.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -646,13 +678,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -660,23 +685,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_medication.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="214" column="34" lean-forward="true" selection-start-line="214" selection-start-column="34" selection-end-line="214" selection-end-column="34" />
+        <state relative-caret-position="10928">
+          <caret line="683" column="4" selection-start-line="683" selection-start-column="4" selection-end-line="683" selection-end-column="4" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/912ecefd11f07cc832063eb48b303e33/jetified-firebase-firestore-21.3.1/jars/classes.jar!/com/google/firebase/firestore/DocumentReference.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="766">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/AddNoteActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="698">
+          <caret line="143" column="23" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="36" />
+          <folding>
+            <element signature="e#5308#6233#0" expanded="true" />
+            <element signature="e#6232#6233#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMoreInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/InputManual.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="90" column="33" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1069#1922#0" expanded="true" />
+            <element signature="e#1253#1796#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
+            <element signature="e#1921#1922#0" expanded="true" />
+            <element signature="e#1969#2822#0" expanded="true" />
+            <element signature="e#2821#2822#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_more_info.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_appointments.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" selection-start-line="9" selection-end-line="22" selection-end-column="52" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualMedication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="253" column="26" selection-start-line="253" selection-start-column="26" selection-end-line="253" selection-end-column="26" />
+        <state relative-caret-position="441">
+          <caret line="393" column="23" selection-start-line="393" selection-start-column="23" selection-end-line="393" selection-end-column="39" />
           <folding>
-            <element signature="e#3462#7199#0" expanded="true" />
-            <element signature="e#7198#7199#0" expanded="true" />
-            <element signature="e#7238#11040#0" expanded="true" />
-            <element signature="e#11039#11040#0" expanded="true" />
+            <element signature="e#4691#8677#0" expanded="true" />
+            <element signature="e#8676#8677#0" expanded="true" />
+            <element signature="e#8716#14049#0" expanded="true" />
+            <element signature="e#14048#14049#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_manual_confirm.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/e_health_manager/ManualConfirm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="67" column="21" lean-forward="true" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+          <folding>
+            <element signature="e#1663#1937#0" expanded="true" />
           </folding>
         </state>
       </provider>

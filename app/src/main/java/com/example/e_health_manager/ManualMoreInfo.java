@@ -15,7 +15,7 @@ public class ManualMoreInfo extends AppCompatActivity {
     }
 
 
-    public void onClick_submit(View view) {
+    public void onClick_next_page(View view) {
 
     }
 }
