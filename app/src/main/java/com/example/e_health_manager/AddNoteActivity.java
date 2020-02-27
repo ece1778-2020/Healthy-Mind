@@ -133,7 +133,8 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public void onClick_chooseAudio(View view) {
-
+        Intent intent = new Intent(this, TakeAudioActivity.class);
+        startActivity(intent);
     }
 
     public void onClick_chooseManually(View view) {
