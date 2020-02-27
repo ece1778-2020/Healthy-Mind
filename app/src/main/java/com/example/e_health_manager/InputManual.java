@@ -10,12 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.lang.reflect.Type;
 import java.util.Calendar;
 
 public class InputManual extends AppCompatActivity {
 
+    String doctor_note_id;
     EditText pick_date_came, pick_date_left;
     Calendar calendar;
     int year, month, day;
@@ -70,12 +74,23 @@ public class InputManual extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        // handle the intent called from the previous page.
+        // callingActivityIntent is from the previous page.
+        Intent callingActivityIntent = getIntent();
+
+        if (callingActivityIntent != null) {
+            doctor_note_id = callingActivityIntent.getStringExtra("curr_doctor_note_id");
+        }
+
     }
 
 
 
+
     public void onClick_next_page(View view) {
-        Intent intent = new Intent(this, ManualFeel.class);
+        Intent intent = new Intent(this, ManualMedication.class);
+        intent.putExtra("curr_doctor_note_id", doctor_note_id);
         startActivity(intent);
     }
 

@@ -17,6 +17,8 @@
         <activity android:name=".AudioConfirmActivity"></activity>
         <activity android:name=".AudioResultActivity" />
         <activity android:name=".TakeAudioActivity" />
+        <activity android:name=".ManualConfirm"></activity>
+        <activity android:name=".ManualMedication" />
         <activity android:name=".ManualMoreInfo" />
         <activity android:name=".ManualAppointments" />
         <activity android:name=".ChangeRoutine" />

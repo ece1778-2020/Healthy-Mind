@@ -17,8 +17,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -26,9 +29,15 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddNoteActivity extends AppCompatActivity {
+
+    ArrayList medicationList = new ArrayList();
+    private String userID;
 
     private BottomNavigationView navbar;
 
@@ -36,7 +45,7 @@ public class AddNoteActivity extends AppCompatActivity {
     private Uri uri;
 
     private FirebaseAuth mAuth;
-    private FirebaseFirestore mFirestore;
+    private FirebaseFirestore db;
     private FirebaseStorage storage;
     private StorageReference storageRef;
 
@@ -46,9 +55,12 @@ public class AddNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
 
         mAuth = FirebaseAuth.getInstance();
-        mFirestore = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
+
+        // Current user.
+        userID = mAuth.getCurrentUser().getUid();
 
         navbar = findViewById(R.id.bottomNavigation);
 
@@ -126,7 +138,29 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public void onClick_chooseManually(View view) {
-        Intent intent = new Intent(this, InputManual.class);
-        startActivity(intent);
+        // each time user click on this button, and new doctor note is created.
+        final Map<String, Object> medication_data = new HashMap<>();
+        medication_data.put("medications", medicationList);
+        medication_data.put("patient_id", userID);
+        db.collection("doctor's note")
+                .add(medication_data)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        String doctor_note_id = documentReference.getId();
+                        // update field.
+                        db.collection("users")
+                                .document(userID)
+                                .update("doctor_note_id_list", FieldValue.arrayUnion(doctor_note_id));
+
+                        Log.d("medication", "Medication added with UID: " + documentReference.getId());
+
+
+                        Intent intent = new Intent(AddNoteActivity.this, InputManual.class);
+                        // put the current doctor's note id, send it to the next page.
+                        intent.putExtra("curr_doctor_note_id", doctor_note_id);
+                        startActivity(intent);
+                    }
+                });
     }
 }
