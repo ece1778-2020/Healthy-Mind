@@ -139,28 +139,37 @@ public class AddNoteActivity extends AppCompatActivity {
 
     public void onClick_chooseManually(View view) {
         // each time user click on this button, and new doctor note is created.
-        final Map<String, Object> medication_data = new HashMap<>();
-        medication_data.put("medications", medicationList);
-        medication_data.put("patient_id", userID);
-        db.collection("doctor's note")
-                .add(medication_data)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        String doctor_note_id = documentReference.getId();
-                        // update field.
-                        db.collection("users")
-                                .document(userID)
-                                .update("doctor_note_id_list", FieldValue.arrayUnion(doctor_note_id));
-
-                        Log.d("medication", "Medication added with UID: " + documentReference.getId());
+        HashMap<String, Object> doctor_note_data = new HashMap<>();
+        doctor_note_data.put("medications", medicationList);
+        doctor_note_data.put("patient_id", userID);
 
 
-                        Intent intent = new Intent(AddNoteActivity.this, InputManual.class);
-                        // put the current doctor's note id, send it to the next page.
-                        intent.putExtra("curr_doctor_note_id", doctor_note_id);
-                        startActivity(intent);
-                    }
-                });
+        // Put the following into ManualConfirm page.
+//        db.collection("doctor's note")
+//                .add(doctor_note_data)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        String doctor_note_id = documentReference.getId();
+//                        // update field.
+//                        db.collection("users")
+//                                .document(userID)
+//                                .update("doctor_note_id_list", FieldValue.arrayUnion(doctor_note_id));
+//
+//                        Log.d("medication", "Medication added with UID: " + documentReference.getId());
+//
+//
+//                        // Intent intent = new Intent(AddNoteActivity.this, InputManual.class);
+//                        // put the current doctor's note id, send it to the next page.
+//                        // intent.putExtra("curr_doctor_note_id", doctor_note_id);
+//                        // startActivity(intent);
+//                    }
+//                });
+
+
+        Intent intent = new Intent(AddNoteActivity.this, InputManual.class);
+        // put the current doctor's note id, send it to the next page.
+        intent.putExtra("curr_doctor_note_data", doctor_note_data);
+        startActivity(intent);
     }
 }
