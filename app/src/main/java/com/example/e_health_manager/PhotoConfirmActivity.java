@@ -92,11 +92,11 @@ public class PhotoConfirmActivity extends AppCompatActivity {
 
     public void onClick_yes(View view) {
         //use firebase MLKit to analysis the photo
-        StorageReference filepath = storageRef.child("assets").child("empty_PODs.png");
+        StorageReference filepath = storageRef.child("assets").child("filled_PODs.png");
         final Context ctx = this;
 
         try{
-            localFile = File.createTempFile("images", "jpg");
+            localFile = File.createTempFile("images", ".jpg");
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -114,14 +114,18 @@ public class PhotoConfirmActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 //start analysis
-                FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+                FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
 
-                Task<FirebaseVisionText> result = detector.processImage(cuimage)
+                final Task<FirebaseVisionText> result = detector.processImage(cuimage)
                         .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                             @Override
                             public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                                //text recognition is done, start analysis
                                 String resultText = firebaseVisionText.getText();
-                                Log.d("Photo Confirm Activity", "The result of PODs is done");
+                                for (FirebaseVisionText.TextBlock block: firebaseVisionText.getTextBlocks()) {
+                                    String blockText = block.getText();
+                                    Log.d("Photo Confirm Activity", "The result of block is: "+blockText);
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -129,7 +133,7 @@ public class PhotoConfirmActivity extends AppCompatActivity {
                             public void onFailure(@NonNull Exception e) {
                                 Log.d("Photo Confirm Activity", "The result of PODs text recognition is fail: "+e);
                             }
-                        });;
+                        });
             }
         });
     }

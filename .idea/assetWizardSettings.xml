@@ -30,12 +30,36 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_mic_off_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="theme" value="HOLO_DARK" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="outputName" value="ic_action_mic_off" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="018577" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -51,7 +75,18 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="000000" />
+                                                <entry key="color" value="ffffff" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="foregroundClipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_mic_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -72,8 +107,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="018577" />
+                                      <entry key="foregroundAssetType" value="CLIP_ART" />
                                       <entry key="foregroundImage" value="$APPLICATION_HOME_DIR$/plugins/android/lib/templates/gradle-projects/NewAndroidModule/root/res/ic_launcher-web.png" />
-                                      <entry key="outputName" value="ic_profilePic" />
+                                      <entry key="outputName" value="ic_mic_on" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -89,12 +127,30 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="000000" />
+                                                <entry key="color" value="018577" />
+                                                <entry key="paddingPercent" value="5" />
                                               </map>
                                             </option>
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_mic_off_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="outputName" value="ic_mic_off" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -146,7 +202,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_circle_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_play_arrow_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -157,7 +213,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="018577" />
-                            <entry key="outputName" value="ic_addbtn" />
+                            <entry key="outputName" value="ic_play_arrow" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
                         </option>
