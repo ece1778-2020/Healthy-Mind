@@ -58,13 +58,20 @@ public class ManualConfirm extends AppCompatActivity {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                         ArrayList<HashMap<String, Object>> medications = (ArrayList<HashMap<String, Object>>) documentSnapshot.get("medications");
-                        HashMap<String, Object> m1_item = medications.get(0);
-                        String m1_text = "take: " + m1_item.get("name").toString() + "for: " + m1_item.get("reason").toString() + "at time: " + m1_item.get("time").toString();
-                        m1.setText(m1_text);
 
-                        HashMap<String, Object> m2_item = medications.get(1);
-                        String m2_text = "take: " + m2_item.get("name").toString() + "for: " + m2_item.get("reason").toString() + "at time: " + m2_item.get("time").toString();
-                        m2.setText(m2_text);
+                        int medication_count = medications.size();
+
+                        if (medication_count > 0) {
+                            HashMap<String, Object> m1_item = medications.get(0);
+                            String m1_text = "take: " + m1_item.get("name").toString() + "for: " + m1_item.get("reason").toString() + "at time: " + m1_item.get("time").toString();
+                            m1.setText(m1_text);
+                        }
+
+                        if (medication_count > 1) {
+                            HashMap<String, Object> m2_item = medications.get(1);
+                            String m2_text = "take: " + m2_item.get("name").toString() + "for: " + m2_item.get("reason").toString() + "at time: " + m2_item.get("time").toString();
+                            m2.setText(m2_text);
+                        }
                     }
                 });
 
