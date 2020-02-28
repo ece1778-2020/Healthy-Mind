@@ -71,12 +71,12 @@ public class TakeAudioActivity extends AppCompatActivity {
         record_timer.start();
 
         String recordPath = getExternalFilesDir("/").getAbsolutePath();
-        fileName = (new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date())) + ".3gp";
+        fileName = (new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()));
         audioLoc = recordPath+"/"+fileName;
 
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
         mediaRecorder.setOutputFile(audioLoc);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 

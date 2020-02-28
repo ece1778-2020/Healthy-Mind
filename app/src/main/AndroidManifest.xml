@@ -14,10 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AudioConfirmActivity"></activity>
+        <activity android:name=".PhotoAnalysisResultActivity"></activity>
+        <activity android:name=".AudioConfirmActivity" />
         <activity android:name=".AudioResultActivity" />
-        <activity android:name=".TakeAudioActivity" />
-        <activity android:name=".ManualConfirm"></activity>
+        <activity
+            android:name=".TakeAudioActivity"
+            android:parentActivityName=".AddNoteActivity" />
+        <activity android:name=".ManualConfirm" />
         <activity android:name=".ManualMedication" />
         <activity android:name=".ManualMoreInfo" />
         <activity android:name=".ManualAppointments" />

@@ -1,5 +1,6 @@
 package com.example.e_health_manager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,8 +16,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AudioConfirmActivity extends AppCompatActivity {
 
@@ -33,10 +48,20 @@ public class AudioConfirmActivity extends AppCompatActivity {
     private Handler seekBarHandler;
     private Runnable updateSeekBar;
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore mFirestore;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_confirm);
+
+        mAuth = FirebaseAuth.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
 
         replayBtn = findViewById(R.id.replayBtn);
         seekBar = findViewById(R.id.seekBar);
@@ -160,7 +185,27 @@ public class AudioConfirmActivity extends AppCompatActivity {
     }
 
     public void onClick_analyzeAudio(View view) {
-        //start analyzing
+        //start analyzing and store audio into firebase storage
+        FirebaseUser user = mAuth.getCurrentUser();
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        StorageReference filepath = storageRef.child(user.getUid()).child(timeStamp);
+        Uri uri = Uri.fromFile(fileToPlay);
+        StorageTask uploadTask = filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d("upload picture", "*************it has been succeed*****************");
+            }
+        }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                Log.d("upload picture", "*************it has been completed*****************");
+            }
+        });
+        while(true){
+            if(uploadTask.isComplete() == true){
+                break;
+            }
+        }
 
     }
 

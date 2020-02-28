@@ -461,9 +461,9 @@ public class ManualMedication extends AppCompatActivity {
         Log.d("test Dict", medicationList.toString());
 
         // go to next page intent.
-        // Intent intent = new Intent(this, ManualFeel.class);
+        Intent intent = new Intent(this, ManualFeel.class);
         // go to final review page intent.
-        Intent intent = new Intent(this, ManualConfirm.class);
+        //Intent intent = new Intent(this, ManualConfirm.class);
         intent.putExtra("curr_doctor_note_id", doctor_note_id);
         // or we could set the data (e.g. medicationList) directly by putExtra.
         intent.putExtra("medications", medicationList);
