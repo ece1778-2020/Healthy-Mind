@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,13 +17,16 @@ import com.bumptech.glide.Glide;
 
 import java.lang.reflect.Type;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class InputManual extends AppCompatActivity {
 
     String doctor_note_id;
-    EditText pick_date_came, pick_date_left;
+    EditText pick_date_came, pick_date_left, reason;
     Calendar calendar;
     int year, month, day;
+
+    HashMap<String, Object> doctor_note_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class InputManual extends AppCompatActivity {
 
         pick_date_came = findViewById(R.id.pick_date_came);
         pick_date_left = findViewById(R.id.pick_date_left);
+        reason = findViewById(R.id.reason_input);
 
 
         pick_date_came.setOnClickListener(new View.OnClickListener() {
@@ -80,17 +85,21 @@ public class InputManual extends AppCompatActivity {
         Intent callingActivityIntent = getIntent();
 
         if (callingActivityIntent != null) {
-            doctor_note_id = callingActivityIntent.getStringExtra("curr_doctor_note_id");
+            doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+        } else {
+            Log.w("InputManualError", "callingActivityIntent from AddNoteActivity is empty");
         }
-
     }
 
 
-
-
     public void onClick_next_page(View view) {
+
+        doctor_note_data.put("came_date", pick_date_came.getText().toString());
+        doctor_note_data.put("left_date", pick_date_left.getText().toString());
+        doctor_note_data.put("reason_for_hospital", reason.getText().toString());
+
         Intent intent = new Intent(this, ManualMedication.class);
-        intent.putExtra("curr_doctor_note_id", doctor_note_id);
+        intent.putExtra("curr_doctor_note_data", doctor_note_data);
         startActivity(intent);
     }
 

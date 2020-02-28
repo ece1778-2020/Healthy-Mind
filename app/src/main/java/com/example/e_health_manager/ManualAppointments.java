@@ -6,13 +6,17 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class ManualAppointments extends AppCompatActivity {
+
+    HashMap<String, Object> doctor_note_data;
 
     EditText pick_date;
     Calendar calendar;
@@ -47,10 +51,21 @@ public class ManualAppointments extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        // handle the intent called from the previous page.
+        // callingActivityIntent is from the previous page.
+        Intent callingActivityIntent = getIntent();
+
+        if (callingActivityIntent != null) {
+            doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+        } else {
+            Log.w("ManualMedicationError", "callingActivityIntent is empty");
+        }
     }
 
     public void onClick_next_page(View view) {
         Intent intent = new Intent(this, ManualMoreInfo.class);
+        intent.putExtra("curr_doctor_note_data", doctor_note_data);
         startActivity(intent);
     }
 }

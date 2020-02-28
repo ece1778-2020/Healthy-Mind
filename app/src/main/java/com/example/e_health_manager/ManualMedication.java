@@ -35,6 +35,8 @@ public class ManualMedication extends AppCompatActivity {
     ArrayList medicationList = new ArrayList();
     String doctor_note_id;
 
+    HashMap<String, Object> doctor_note_data;
+
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     String userID;
@@ -147,7 +149,9 @@ public class ManualMedication extends AppCompatActivity {
         Intent callingActivityIntent = getIntent();
 
         if (callingActivityIntent != null) {
-            doctor_note_id = callingActivityIntent.getStringExtra("curr_doctor_note_id");
+            doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+        } else {
+            Log.w("ManualMedicationError", "callingActivityIntent is empty");
         }
 
 
@@ -158,7 +162,30 @@ public class ManualMedication extends AppCompatActivity {
                     addBtn.setEnabled(false);
                     Toast.makeText(ManualMedication.this, "You can only add four medications at one form.", Toast.LENGTH_SHORT).show();
                 } else {
+
+                    if (medicationCount == 1) {
+                        // check if empty.
+                        if (TextUtils.isEmpty(m0_input.getText().toString())) {
+                            m0_input.setError("medication name cannot be blank.");
+                            Toast.makeText(ManualMedication.this, "Please finish the current form before you add the next one.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } if (medicationCount == 2) {
+                        if (TextUtils.isEmpty(n1_input.getText().toString())) {
+                            n1_input.setError("medication name cannot be blank.");
+                            Toast.makeText(ManualMedication.this, "Please finish the current form before you add the next one.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } if (medicationCount == 3) {
+                        if (TextUtils.isEmpty(n2_input.getText().toString())) {
+                            n2_input.setError("medication name cannot be blank.");
+                            Toast.makeText(ManualMedication.this, "Please finish the current form before you add the next one.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+
                     medicationCount++;
+
                     if (medicationCount == 2) {
                         hline2.setVisibility(View.VISIBLE);
                         name2.setVisibility(View.VISIBLE);
@@ -229,6 +256,8 @@ public class ManualMedication extends AppCompatActivity {
                 // Toast.makeText(ManualMedication.this, Integer.toString(medicationCount) , Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
         delBtn.setOnClickListener(new View.OnClickListener() {
@@ -311,9 +340,9 @@ public class ManualMedication extends AppCompatActivity {
                         // db.collection("users").document(userID).update("medications", FieldValue.delete());
 
                         // delete the doctor's note for doctor_note_id.
-                        db.collection("doctor's note")
-                                .document(doctor_note_id)
-                                .update("medications", FieldValue.delete());
+//                        db.collection("doctor's note")
+//                                .document(doctor_note_id)
+//                                .update("medications", FieldValue.delete());
 
                     }
                 }
@@ -445,6 +474,8 @@ public class ManualMedication extends AppCompatActivity {
             }
         }
 
+        doctor_note_data.put("medications", medicationList);
+
         // documentReference contains the reference to the user (collection) data in the database.
         // DocumentReference userDocumentRef = db.collection("users").document(userID);
         // update medications field in user (don't need to store it in the users collection).
@@ -453,20 +484,20 @@ public class ManualMedication extends AppCompatActivity {
         // userDocumentRef.update("medications", FieldValue.delete());
 
 
-        DocumentReference doctorNoteDocRef = db.collection("doctor's note").document(doctor_note_id);
+        // DocumentReference doctorNoteDocRef = db.collection("doctor's note").document(doctor_note_id);
         // update medications field.
-        doctorNoteDocRef.update("medications", medicationList);
+        // doctorNoteDocRef.update("medications", medicationList);
 
 
         Log.d("test Dict", medicationList.toString());
 
         // go to next page intent.
         Intent intent = new Intent(this, ManualFeel.class);
-        // go to final review page intent.
-        //Intent intent = new Intent(this, ManualConfirm.class);
-        intent.putExtra("curr_doctor_note_id", doctor_note_id);
+        // go to the final confirmation page intent.
+        // Intent intent = new Intent(this, ManualConfirm.class);
+        intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // or we could set the data (e.g. medicationList) directly by putExtra.
-        intent.putExtra("medications", medicationList);
+        // intent.putExtra("medications", medicationList);
         startActivity(intent);
     }
 }

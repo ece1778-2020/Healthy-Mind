@@ -26,7 +26,7 @@
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="5dp"
@@ -114,14 +114,15 @@
 
     <EditText
         android:id="@+id/reason_input"
-        android:layout_width="220dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
         app:layout_constraintStart_toEndOf="@id/reason_title"
-        app:layout_constraintTop_toBottomOf="@+id/pick_date_left" />
+        app:layout_constraintTop_toBottomOf="@+id/reason_title" />
 
 
     <Button
@@ -134,8 +135,6 @@
         android:text="next"
         android:textSize="17sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.99"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
