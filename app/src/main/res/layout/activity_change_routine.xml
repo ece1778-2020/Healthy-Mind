@@ -79,19 +79,11 @@
         app:layout_constraintTop_toBottomOf="@+id/input2" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
-
     <Button
         android:id="@+id/next"
         android:layout_width="120dp"
         android:layout_height="40dp"
+        android:layout_marginBottom="12dp"
         android:background="@color/commentTitle"
         android:onClick="onClick_next_page"
         android:text="next"
@@ -99,6 +91,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.01" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

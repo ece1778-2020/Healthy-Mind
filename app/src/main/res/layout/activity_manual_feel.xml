@@ -81,15 +81,6 @@
         app:layout_constraintTop_toBottomOf="@+id/feel2_input" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
-
 
     <TextView
         android:id="@+id/tv"
@@ -102,7 +93,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
 
 
     <EditText
@@ -127,7 +118,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.01" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
