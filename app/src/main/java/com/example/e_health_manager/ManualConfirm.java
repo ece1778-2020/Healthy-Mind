@@ -136,6 +136,14 @@ public class ManualConfirm extends AppCompatActivity {
 
     public void onClick_submit(View view) {
 
+        ArrayList medicationList = (ArrayList) doctor_note_data.get("medications");
+        for (Object m : medicationList) {
+            db.collection("medications")
+                    .add(m);
+        }
+
+
+
         db.collection("doctor's note")
             .add(doctor_note_data)
             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

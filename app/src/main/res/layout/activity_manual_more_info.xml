@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/more_info1"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="6dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="6dp"
@@ -130,40 +130,13 @@
         app:layout_constraintTop_toBottomOf="@+id/ed5" />
 
 
-    <TextView
-        android:id="@+id/notes"
-        android:layout_width="match_parent"
-        android:layout_height="39dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="1dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:text="My own notes"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/for1" />
 
-
-    <EditText
-        android:id="@+id/ed10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="1dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Add your notes here"
-        android:inputType="textMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/notes" />
 
 
     <Button
         android:id="@+id/next"
         android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_height="39dp"
         android:layout_marginBottom="12dp"
         android:background="@color/commentTitle"
         android:onClick="onClick_next_page"

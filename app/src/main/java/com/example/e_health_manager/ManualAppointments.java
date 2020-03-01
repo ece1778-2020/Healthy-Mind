@@ -41,10 +41,16 @@ public class ManualAppointments extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //sets date in EditText
-                        String curr_date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        String curr_date;
+                        if (month + 1 < 10) {
+                            curr_date = year + "/" + "0" + (month + 1) + "/" + dayOfMonth;
+                        } else {
+                            curr_date = year + "/" + (month + 1) + "/" + dayOfMonth;
+                        }
+
                         pick_date.setText(curr_date);
                         // make it bold.
-                        pick_date.setTypeface(pick_date.getTypeface(), Typeface.BOLD);
+                        // pick_date.setTypeface(pick_date.getTypeface(), Typeface.BOLD);
                     }
                 }, year, month, day);
                 //shows DatePickerDialog

@@ -50,7 +50,13 @@ public class InputManual extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //sets date in EditText
-                        String curr_date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        String curr_date;
+                        if (month + 1 < 10) {
+                            curr_date = year + "/" + "0" + (month + 1) + "/" + dayOfMonth;
+                        } else {
+                            curr_date = year + "/" + (month + 1) + "/" + dayOfMonth;
+                        }
+
                         pick_date_came.setText(curr_date);
                         // make it bold.
                         pick_date_came.setTypeface(pick_date_came.getTypeface(), Typeface.BOLD);
@@ -69,7 +75,13 @@ public class InputManual extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         //sets date in EditText
-                        String curr_date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        String curr_date;
+                        if (month + 1 < 10) {
+                            curr_date = year + "/" + "0" + (month + 1) + "/" + dayOfMonth;
+                        } else {
+                            curr_date = year + "/" + (month + 1) + "/" + dayOfMonth;
+                        }
+
                         pick_date_left.setText(curr_date);
                         // make it bold.
                         pick_date_left.setTypeface(pick_date_left.getTypeface(), Typeface.BOLD);
