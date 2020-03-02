@@ -34,154 +34,190 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="388dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:gravity="center_vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-
-    <Button
-        android:id="@+id/edit1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/playlist_edit"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-
-    <Button
-        android:id="@+id/del1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/trash_can"
-        app:layout_constraintStart_toEndOf="@+id/edit1"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="388dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:gravity="center_vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-
-    <Button
-        android:id="@+id/edit2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/playlist_edit"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-
-    <Button
-        android:id="@+id/del2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/trash_can"
-        app:layout_constraintStart_toEndOf="@+id/edit2"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-
-
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="388dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:gravity="center_vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-
-    <Button
-        android:id="@+id/edit3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/playlist_edit"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-
-    <Button
-        android:id="@+id/del3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/trash_can"
-        app:layout_constraintStart_toEndOf="@+id/edit1"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="388dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:gravity="center_vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-
-    <Button
-        android:id="@+id/edit4"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/playlist_edit"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-
-    <Button
-        android:id="@+id/del4"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/trash_can"
-        app:layout_constraintStart_toEndOf="@+id/edit4"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-
-
     <View
         android:id="@+id/hline0"
         style="@style/Divider2.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="135dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hline0"/>
+        app:layout_constraintTop_toBottomOf="@+id/hline0" />
 
 
+    <TextView
+        android:id="@+id/feel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="How I might feel and what to do"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
 
+    <View
+        android:id="@+id/hline1"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/feel" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline1" />
+
+
+    <TextView
+        android:id="@+id/routine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Changes to my routine"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+
+
+    <View
+        android:id="@+id/hline2"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/routine" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline2" />
+
+
+    <TextView
+        android:id="@+id/appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Appointments I have to go"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView3" />
+
+
+    <View
+        android:id="@+id/hline3"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/appointment" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline3" />
+
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Where to go for more information"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+
+
+    <View
+        android:id="@+id/hline4"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/info" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline4" />
+
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="My own notes"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView5" />
+
+
+    <View
+        android:id="@+id/hline5"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+
+    <TextView
+        android:id="@+id/notes_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline5" />
 
 
     <Button
@@ -198,11 +234,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.995" />
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

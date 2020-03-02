@@ -21,6 +21,8 @@ public class ManualFeel extends AppCompatActivity {
 
     HashMap<String, String> feelings_and_instructions = new HashMap<>();
 
+    ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
+
     HashMap<String, Object> doctor_note_data;
 
     FirebaseFirestore db;
@@ -71,6 +73,7 @@ public class ManualFeel extends AppCompatActivity {
 
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+            medicationList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
         }
@@ -184,6 +187,8 @@ public class ManualFeel extends AppCompatActivity {
 
         Intent intent = new Intent(this, ChangeRoutine.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
+        // send list of medications.
+        intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }
 }

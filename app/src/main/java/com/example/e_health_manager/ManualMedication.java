@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class ManualMedication extends AppCompatActivity {
 
-    ArrayList medicationList = new ArrayList();
+    ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
 
     HashMap<String, Object> doctor_note_data;
 
@@ -408,7 +408,7 @@ public class ManualMedication extends AppCompatActivity {
                 return;
             }
 
-            Map<String, Object> medication = new HashMap<>();
+            HashMap<String, Object> medication = new HashMap<>();
             medication.put("name", m0_input.getText().toString());
             medication.put("reason", n0_input.getText().toString());
 
@@ -440,7 +440,7 @@ public class ManualMedication extends AppCompatActivity {
                     return;
                 }
 
-                Map<String, Object> medication2 = new HashMap<>();
+                HashMap<String, Object> medication2 = new HashMap<>();
                 medication2.put("name", n1_input.getText().toString());
                 medication2.put("reason", m1_input.getText().toString());
 
@@ -472,7 +472,7 @@ public class ManualMedication extends AppCompatActivity {
                         return;
                     }
 
-                    Map<String, Object> medication3 = new HashMap<>();
+                    HashMap<String, Object> medication3 = new HashMap<>();
                     medication3.put("name", n2_input.getText().toString());
                     medication3.put("reason", m2_input.getText().toString());
 
@@ -504,7 +504,7 @@ public class ManualMedication extends AppCompatActivity {
                         }
 
 
-                        Map<String, Object> medication4 = new HashMap<>();
+                        HashMap<String, Object> medication4 = new HashMap<>();
                         medication4.put("name", n3_input.getText().toString());
                         medication4.put("reason", m3_input.getText().toString());
 
@@ -554,11 +554,10 @@ public class ManualMedication extends AppCompatActivity {
 
         // go to next page intent.
         Intent intent = new Intent(this, ManualFeel.class);
-        // go to the final confirmation page intent.
-        // Intent intent = new Intent(this, ManualConfirm.class);
+
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
-        // or we could set the data (e.g. medicationList) directly by putExtra.
-        // intent.putExtra("medications", medicationList);
+        // send list of medications.
+        intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }
 }

@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class ChangeRoutine extends AppCompatActivity {
 
     ArrayList routine_changes = new ArrayList();
+    ArrayList medicationList = new ArrayList();
 
     HashMap<String, Object> doctor_note_data;
 
@@ -32,6 +33,7 @@ public class ChangeRoutine extends AppCompatActivity {
 
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+            medicationList = callingActivityIntent.getStringArrayListExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
         }
@@ -46,6 +48,8 @@ public class ChangeRoutine extends AppCompatActivity {
         doctor_note_data.put("routine_changes", routine_changes);
         Intent intent = new Intent(this, ManualAppointments.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
+        // send list of medications.
+        intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }
 }

@@ -11,12 +11,15 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class ManualAppointments extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
+
+    ArrayList<HashMap<String, Object>> medicationList = new ArrayList();
 
     EditText pick_date;
     Calendar calendar;
@@ -64,6 +67,7 @@ public class ManualAppointments extends AppCompatActivity {
 
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+            medicationList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
         }
@@ -72,6 +76,8 @@ public class ManualAppointments extends AppCompatActivity {
     public void onClick_next_page(View view) {
         Intent intent = new Intent(this, ManualMoreInfo.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
+        // send list of medications.
+        intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }
 }

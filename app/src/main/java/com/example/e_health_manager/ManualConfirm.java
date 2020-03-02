@@ -26,20 +26,19 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ManualConfirm extends AppCompatActivity {
 
-    String doctor_note_id;
-
     HashMap<String, Object> doctor_note_data;
 
-    ArrayList medicationList = new ArrayList();
+    ArrayList medicationTextList = new ArrayList();
+
+    ArrayList<HashMap<String, Object>> medicationMapList = new ArrayList<>();
 
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     String userID;
-
-    TextView m1, m2, m3, m4;
 
     RecyclerView recyclerView;
     GridLayoutManager gridLayoutManager;
@@ -55,10 +54,6 @@ public class ManualConfirm extends AppCompatActivity {
         // Current user.
         userID = mAuth.getCurrentUser().getUid();
 
-        m1 = findViewById(R.id.textView11);
-        m2 = findViewById(R.id.textView12);
-        m3 = findViewById(R.id.textView13);
-        m4 = findViewById(R.id.textView14);
 
         recyclerView = findViewById(R.id.recyclerView);
 
@@ -69,57 +64,34 @@ public class ManualConfirm extends AppCompatActivity {
         Intent callingActivityIntent = getIntent();
 
         if (callingActivityIntent != null) {
+
+//            String PARENT_ACTIVITY_REF = callingActivityIntent.getStringExtra("PARENT_ACTIVITY_REF");
+//
+//            if (PARENT_ACTIVITY_REF.equals("ManualOwnNotes")) {
+//                doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+//            }
+
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
-            if (callingActivityIntent.getStringArrayListExtra("medicationList") != null) {
-                medicationList = callingActivityIntent.getStringArrayListExtra("medicationList");
-            }
+
+            medicationMapList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
         }
 
 
-        ArrayList<HashMap<String, Object>> medications = (ArrayList<HashMap<String, Object>>) doctor_note_data.get("medications");
+        // ArrayList<HashMap<String, Object>> medications = (ArrayList<HashMap<String, Object>>) doctor_note_data.get("medications");
 
-        int medication_count = medications.size();
 
-        if (!medicationList.isEmpty()) {
-            // skip the following part.
-            medication_count = -1;
-        }
-
-        if (medication_count > 0) {
-            HashMap<String, Object> m1_item = medications.get(0);
-            String m1_text = "take: " + m1_item.get("name").toString() + ", for: " + m1_item.get("reason").toString() + ", at time: " + m1_item.get("time").toString();
-            medicationList.add(m1_text);
-            m1.setText(m1_text);
-        }
-
-        if (medication_count > 1) {
-            HashMap<String, Object> m2_item = medications.get(1);
-            String m2_text = "take: " + m2_item.get("name").toString() + ", for: " + m2_item.get("reason").toString() + ", at time: " + m2_item.get("time").toString();
-            medicationList.add(m2_text);
-            m2.setText(m2_text);
-        }
-
-        if (medication_count > 2) {
-            HashMap<String, Object> m3_item = medications.get(2);
-            String m3_text = "take: " + m3_item.get("name").toString() + ", for: " + m3_item.get("reason").toString() + ", at time: " + m3_item.get("time").toString();
-            medicationList.add(m3_text);
-            m3.setText(m3_text);
-        }
-
-        if (medication_count > 3) {
-            HashMap<String, Object> m4_item = medications.get(3);
-            String m4_text = "take: " + m4_item.get("name").toString() + ", for: " + m4_item.get("reason").toString() + ", at time: " + m4_item.get("time").toString();
-            medicationList.add(m4_text);
-            m4.setText(m4_text);
+        for (HashMap<String, Object> m : medicationMapList) {
+            String m_text = "Take: " + m.get("name").toString() + " with dose: " + m.get("dose") + ", for: " + m.get("reason").toString() + ", at time: " + m.get("time").toString();
+            medicationTextList.add(m_text);
         }
 
 
         // Show 1 medication in a row.
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
 
-        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(), medicationList);
+        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(), medicationTextList, medicationMapList, doctor_note_data);
         recyclerView.setAdapter(dataAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -166,8 +138,7 @@ public class ManualConfirm extends AppCompatActivity {
 
     public void onClick_submit(View view) {
 
-        ArrayList medicationList = (ArrayList) doctor_note_data.get("medications");
-        for (Object m : medicationList) {
+        for (Object m : medicationMapList) {
             db.collection("medications")
                     .add(m);
         }
