@@ -27,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class ManualConfirm extends AppCompatActivity {
 
@@ -143,6 +145,11 @@ public class ManualConfirm extends AppCompatActivity {
                     .add(m);
         }
 
+
+        doctor_note_data.put("hasAudio", false);
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        doctor_note_data.put("timeStamp", timeStamp);
 
 
         db.collection("doctor's note")
