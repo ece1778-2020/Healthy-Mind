@@ -185,7 +185,9 @@ public class AudioConfirmActivity extends AppCompatActivity {
     }
 
     public void onClick_analyzeAudio(View view) {
-        //start analyzing and store audio into firebase storage
+        //start analyzing
+
+        //store audio into firebase storage
         FirebaseUser user = mAuth.getCurrentUser();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         StorageReference filepath = storageRef.child(user.getUid()).child(timeStamp);
@@ -206,7 +208,6 @@ public class AudioConfirmActivity extends AppCompatActivity {
                 break;
             }
         }
-
     }
 
     public void onClick_takeAnotherAudio(View view) {
