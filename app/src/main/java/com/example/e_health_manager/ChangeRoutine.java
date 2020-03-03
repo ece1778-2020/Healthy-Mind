@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ChangeRoutine extends AppCompatActivity {
 
-    HashMap<String, String> routine_changes = new HashMap<>();
+    ArrayList routine_changes = new ArrayList();
+    ArrayList medicationList = new ArrayList();
 
     HashMap<String, Object> doctor_note_data;
 
@@ -31,6 +33,7 @@ public class ChangeRoutine extends AppCompatActivity {
 
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+            medicationList = callingActivityIntent.getStringArrayListExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
         }
@@ -38,11 +41,15 @@ public class ChangeRoutine extends AppCompatActivity {
 
 
     public void onClick_next_page(View view) {
-        routine_changes.put("Activity", "Instruction");
-        routine_changes.put(activity1.getText().toString(), instruction1.getText().toString());
+        HashMap<String, String> routine_change = new HashMap<>();
+        routine_change.put("activity", activity1.getText().toString());
+        routine_change.put("instruction", instruction1.getText().toString());
+        routine_changes.add(routine_change);
         doctor_note_data.put("routine_changes", routine_changes);
         Intent intent = new Intent(this, ManualAppointments.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
+        // send list of medications.
+        intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }
 }

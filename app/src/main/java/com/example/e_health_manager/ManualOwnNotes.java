@@ -10,16 +10,16 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ManualMoreInfo extends AppCompatActivity {
+public class ManualOwnNotes extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
 
-    ArrayList<HashMap<String, Object>> medicationList = new ArrayList();
+    ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manual_more_info);
+        setContentView(R.layout.activity_manual_own_notes);
 
         // handle the intent called from the previous page.
         // callingActivityIntent is from the previous page.
@@ -34,10 +34,11 @@ public class ManualMoreInfo extends AppCompatActivity {
     }
 
     public void onClick_next_page(View view) {
-        Intent intent = new Intent(this, ManualOwnNotes.class);
+        Intent intent = new Intent(this, ManualConfirm.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // send list of medications.
         intent.putExtra("medicationList", medicationList);
+        intent.putExtra("PARENT_ACTIVITY_REF", "ManualOwnNotes");
         startActivity(intent);
     }
 }

@@ -21,77 +21,195 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="12dp"
-        android:gravity="center"
-        android:text="Activity (i.e. dietary, physical): "
-        android:textSize="18sp"
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:text="Add item"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <Button
+        android:id="@+id/del"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:text="Delete item"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+
+    <View
+        android:id="@+id/hline0"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
 
 
     <EditText
         android:id="@+id/input1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv1" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Activity (i.e. dietary, physical)"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/hline0" />
 
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="12dp"
-        android:gravity="center"
-        android:text="Instruction:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input1" />
 
     <EditText
         android:id="@+id/input2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv2" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Instruction"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/input1" />
 
-    <Button
-        android:id="@+id/add_btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Add item"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <View
+        android:id="@+id/hline1"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/input2" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+
+    <EditText
+        android:id="@+id/i3a"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Activity (i.e. dietary, physical)"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/hline1" />
+
+
+    <EditText
+        android:id="@+id/i3b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Instruction"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/i3a" />
+
+
+    <View
+        android:id="@+id/hline2"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/i3b" />
+
+
+
+    <EditText
+        android:id="@+id/i4a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Activity (i.e. dietary, physical)"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/hline2" />
+
+
+    <EditText
+        android:id="@+id/i4b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Instruction"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/i4a" />
+
+
+    <View
+        android:id="@+id/hline3"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/i4b" />
+
+
+
+    <EditText
+        android:id="@+id/i5a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Activity (i.e. dietary, physical)"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/hline3" />
+
+
+    <EditText
+        android:id="@+id/i5b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textSize="14sp"
+        android:hint="Instruction"
+        android:inputType="textMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/i5a" />
+
+
+    <View
+        android:id="@+id/hline4"
+        style="@style/Divider2.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/i5b" />
+
+
+
+
 
     <Button
         android:id="@+id/next"
         android:layout_width="120dp"
-        android:layout_height="40dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="12dp"
         android:background="@color/commentTitle"
         android:onClick="onClick_next_page"
         android:text="next"
@@ -99,6 +217,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.01" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

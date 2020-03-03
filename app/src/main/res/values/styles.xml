@@ -13,6 +13,10 @@
         <item name="android:background">@color/red</item>
     </style>
 
+    <style name="Divider2">
+        <item name="android:background">@color/grey</item>
+    </style>
+
     <style name="Divider.Horizontal" parent="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">2dp</item>
@@ -21,6 +25,11 @@
     <style name="Divider.Vertical" parent="Divider">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Divider2.Horizontal" parent="Divider2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">5dp</item>
     </style>
 
 </resources>

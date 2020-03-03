@@ -32,8 +32,7 @@ import java.util.Map;
 
 public class ManualMedication extends AppCompatActivity {
 
-    ArrayList medicationList = new ArrayList();
-    String doctor_note_id;
+    ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
 
     HashMap<String, Object> doctor_note_data;
 
@@ -53,8 +52,12 @@ public class ManualMedication extends AppCompatActivity {
     TextView c9, c10, c11, c12;
     TextView c13, c14, c15, c16;
 
+    TextView d1, d2, d3, d4;
+
     EditText n1_input, n2_input, n3_input, n0_input;
     EditText m1_input, m2_input, m3_input, m0_input;
+
+    EditText d1_input, d2_input, d3_input, d4_input;
 
     CheckBox c1_input, c2_input, c3_input, c4_input;
     CheckBox c5_input, c6_input, c7_input, c8_input;
@@ -99,6 +102,11 @@ public class ManualMedication extends AppCompatActivity {
         m2_input = findViewById(R.id.m2_input);
         m3_input = findViewById(R.id.m3_input);
 
+        d1_input = findViewById(R.id.d_i1);
+        d2_input = findViewById(R.id.d_i2);
+        d3_input = findViewById(R.id.d_i3);
+        d4_input = findViewById(R.id.d_i4);
+
         m0 = findViewById(R.id.medication2);
         m1 = findViewById(R.id.m1);
         m2 = findViewById(R.id.m2);
@@ -123,6 +131,11 @@ public class ManualMedication extends AppCompatActivity {
         c14 = findViewById(R.id.c14);
         c15 = findViewById(R.id.c15);
         c16 = findViewById(R.id.c16);
+
+        d1 = findViewById(R.id.d1);
+        d2 = findViewById(R.id.d2);
+        d3 = findViewById(R.id.d3);
+        d4 = findViewById(R.id.d4);
 
         c1_input = findViewById(R.id.c1_input);
         c2_input = findViewById(R.id.c2_input);
@@ -197,10 +210,14 @@ public class ManualMedication extends AppCompatActivity {
                         c7.setVisibility(View.VISIBLE);
                         c8.setVisibility(View.VISIBLE);
 
+                        d2.setVisibility(View.VISIBLE);
+
                         c5_input.setVisibility(View.VISIBLE);
                         c6_input.setVisibility(View.VISIBLE);
                         c7_input.setVisibility(View.VISIBLE);
                         c8_input.setVisibility(View.VISIBLE);
+
+                        d2_input.setVisibility(View.VISIBLE);
 
                     } else if (medicationCount == 3) {
                         hline3.setVisibility(View.VISIBLE);
@@ -213,10 +230,14 @@ public class ManualMedication extends AppCompatActivity {
                         c11.setVisibility(View.VISIBLE);
                         c12.setVisibility(View.VISIBLE);
 
+                        d3.setVisibility(View.VISIBLE);
+
                         c9_input.setVisibility(View.VISIBLE);
                         c10_input.setVisibility(View.VISIBLE);
                         c11_input.setVisibility(View.VISIBLE);
                         c12_input.setVisibility(View.VISIBLE);
+
+                        d3_input.setVisibility(View.VISIBLE);
 
                     } else if (medicationCount == 4) {
                         hline4.setVisibility(View.VISIBLE);
@@ -229,10 +250,15 @@ public class ManualMedication extends AppCompatActivity {
                         c15.setVisibility(View.VISIBLE);
                         c16.setVisibility(View.VISIBLE);
 
+                        d4.setVisibility(View.VISIBLE);
+
                         c13_input.setVisibility(View.VISIBLE);
                         c14_input.setVisibility(View.VISIBLE);
                         c15_input.setVisibility(View.VISIBLE);
                         c16_input.setVisibility(View.VISIBLE);
+
+                        d4_input.setVisibility(View.VISIBLE);
+
                     } else if (medicationCount == 1) {
                         hline0.setVisibility(View.VISIBLE);
                         hline1.setVisibility(View.VISIBLE);
@@ -246,10 +272,15 @@ public class ManualMedication extends AppCompatActivity {
                         c3.setVisibility(View.VISIBLE);
                         c4.setVisibility(View.VISIBLE);
 
+                        d1.setVisibility(View.VISIBLE);
+
                         c1_input.setVisibility(View.VISIBLE);
                         c2_input.setVisibility(View.VISIBLE);
                         c3_input.setVisibility(View.VISIBLE);
                         c4_input.setVisibility(View.VISIBLE);
+
+                        d1_input.setVisibility(View.VISIBLE);
+
                     }
                 }
                 delBtn.setEnabled(true);
@@ -284,6 +315,10 @@ public class ManualMedication extends AppCompatActivity {
                         c14_input.setVisibility(View.INVISIBLE);
                         c15_input.setVisibility(View.INVISIBLE);
                         c16_input.setVisibility(View.INVISIBLE);
+
+                        d4_input.setVisibility(View.INVISIBLE);
+                        d4.setVisibility(View.INVISIBLE);
+
                     } else if (medicationCount == 2) {
                         hline3.setVisibility(View.INVISIBLE);
                         name3.setVisibility(View.INVISIBLE);
@@ -300,6 +335,9 @@ public class ManualMedication extends AppCompatActivity {
                         c11_input.setVisibility(View.INVISIBLE);
                         c12_input.setVisibility(View.INVISIBLE);
 
+                        d3_input.setVisibility(View.INVISIBLE);
+                        d3.setVisibility(View.INVISIBLE);
+
                     } else if (medicationCount == 1) {
                         hline2.setVisibility(View.INVISIBLE);
                         name2.setVisibility(View.INVISIBLE);
@@ -315,6 +353,9 @@ public class ManualMedication extends AppCompatActivity {
                         c6_input.setVisibility(View.INVISIBLE);
                         c7_input.setVisibility(View.INVISIBLE);
                         c8_input.setVisibility(View.INVISIBLE);
+
+                        d2_input.setVisibility(View.INVISIBLE);
+                        d2.setVisibility(View.INVISIBLE);
 
                     } else if (medicationCount == 0) {
                         hline0.setVisibility(View.INVISIBLE);
@@ -333,6 +374,9 @@ public class ManualMedication extends AppCompatActivity {
                         c2_input.setVisibility(View.INVISIBLE);
                         c3_input.setVisibility(View.INVISIBLE);
                         c4_input.setVisibility(View.INVISIBLE);
+
+                        d1_input.setVisibility(View.INVISIBLE);
+                        d1.setVisibility(View.INVISIBLE);
 
                         // The following remove the whole 'medications' field.
                         // when there is only one medication left, and delete is pressed.
@@ -364,9 +408,12 @@ public class ManualMedication extends AppCompatActivity {
                 return;
             }
 
-            Map<String, Object> medication = new HashMap<>();
+            HashMap<String, Object> medication = new HashMap<>();
             medication.put("name", m0_input.getText().toString());
             medication.put("reason", n0_input.getText().toString());
+
+            medication.put("dose", d1_input.getText().toString());
+
             ArrayList<String> timeList = new ArrayList<>();
             if (c1_input.isChecked()) {
                 timeList.add("morning");
@@ -381,6 +428,7 @@ public class ManualMedication extends AppCompatActivity {
                 timeList.add("night");
             }
             medication.put("time", timeList);
+            medication.put("user_id", userID);
             medicationList.add(medication);
 
 
@@ -392,9 +440,12 @@ public class ManualMedication extends AppCompatActivity {
                     return;
                 }
 
-                Map<String, Object> medication2 = new HashMap<>();
+                HashMap<String, Object> medication2 = new HashMap<>();
                 medication2.put("name", n1_input.getText().toString());
                 medication2.put("reason", m1_input.getText().toString());
+
+                medication2.put("dose", d2_input.getText().toString());
+
                 ArrayList<String> timeList2 = new ArrayList<>();
                 if (c5_input.isChecked()) {
                     timeList2.add("morning");
@@ -409,6 +460,7 @@ public class ManualMedication extends AppCompatActivity {
                     timeList2.add("night");
                 }
                 medication2.put("time", timeList2);
+                medication2.put("user_id", userID);
                 medicationList.add(medication2);
 
 
@@ -420,9 +472,12 @@ public class ManualMedication extends AppCompatActivity {
                         return;
                     }
 
-                    Map<String, Object> medication3 = new HashMap<>();
+                    HashMap<String, Object> medication3 = new HashMap<>();
                     medication3.put("name", n2_input.getText().toString());
                     medication3.put("reason", m2_input.getText().toString());
+
+                    medication3.put("dose", d3_input.getText().toString());
+
                     ArrayList<String> timeList3 = new ArrayList<>();
                     if (c9_input.isChecked()) {
                         timeList3.add("morning");
@@ -437,6 +492,7 @@ public class ManualMedication extends AppCompatActivity {
                         timeList3.add("night");
                     }
                     medication3.put("time", timeList3);
+                    medication3.put("user_id", userID);
                     medicationList.add(medication3);
 
                     if (medicationCount > 3) {
@@ -448,9 +504,12 @@ public class ManualMedication extends AppCompatActivity {
                         }
 
 
-                        Map<String, Object> medication4 = new HashMap<>();
+                        HashMap<String, Object> medication4 = new HashMap<>();
                         medication4.put("name", n3_input.getText().toString());
                         medication4.put("reason", m3_input.getText().toString());
+
+                        medication4.put("dose", d4_input.getText().toString());
+
                         ArrayList<String> timeList4 = new ArrayList<>();
                         if (c13_input.isChecked()) {
                             timeList4.add("morning");
@@ -465,6 +524,7 @@ public class ManualMedication extends AppCompatActivity {
                             timeList4.add("night");
                         }
                         medication4.put("time", timeList4);
+                        medication4.put("user_id", userID);
                         medicationList.add(medication4);
 
                     }
@@ -474,6 +534,7 @@ public class ManualMedication extends AppCompatActivity {
             }
         }
 
+        // medicationList is a list of medication HashMap.
         doctor_note_data.put("medications", medicationList);
 
         // documentReference contains the reference to the user (collection) data in the database.
@@ -493,11 +554,10 @@ public class ManualMedication extends AppCompatActivity {
 
         // go to next page intent.
         Intent intent = new Intent(this, ManualFeel.class);
-        // go to the final confirmation page intent.
-        // Intent intent = new Intent(this, ManualConfirm.class);
+
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
-        // or we could set the data (e.g. medicationList) directly by putExtra.
-        // intent.putExtra("medications", medicationList);
+        // send list of medications.
+        intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }
 }
