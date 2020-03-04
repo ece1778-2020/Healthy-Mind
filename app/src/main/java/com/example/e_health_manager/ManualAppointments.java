@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,11 +22,16 @@ public class ManualAppointments extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
 
+    HashMap<String, Object> appointment = new HashMap<>();
+
     ArrayList<HashMap<String, Object>> medicationList = new ArrayList();
 
     EditText pick_date;
     Calendar calendar;
     int year, month, day;
+
+    EditText doc_name, for1, app_time, location, phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,13 @@ public class ManualAppointments extends AppCompatActivity {
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
         pick_date = findViewById(R.id.pick_date);
+
+        doc_name = findViewById(R.id.ed1);
+        for1 = findViewById(R.id.ed2);
+        app_time = findViewById(R.id.pick_time);
+        location = findViewById(R.id.ed3);
+        phone = findViewById(R.id.ed4);
+
 
         pick_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +93,16 @@ public class ManualAppointments extends AppCompatActivity {
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // send list of medications.
         intent.putExtra("medicationList", medicationList);
+
+        appointment.put("doctor", doc_name.getText().toString());
+        appointment.put("date", pick_date.getText().toString());
+        appointment.put("location", location.getText().toString());
+        appointment.put("phone", phone.getText().toString());
+        appointment.put("reason", for1.getText().toString());
+        appointment.put("time", app_time.getText().toString());
+        appointment.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
 }

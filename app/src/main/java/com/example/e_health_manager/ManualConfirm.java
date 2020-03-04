@@ -34,6 +34,8 @@ public class ManualConfirm extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
 
+    HashMap<String, Object> appointment;
+
     ArrayList medicationTextList = new ArrayList();
 
     ArrayList<HashMap<String, Object>> medicationMapList = new ArrayList<>();
@@ -74,7 +76,7 @@ public class ManualConfirm extends AppCompatActivity {
 //            }
 
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
-
+            appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationMapList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
@@ -144,6 +146,8 @@ public class ManualConfirm extends AppCompatActivity {
             db.collection("medications")
                     .add(m);
         }
+
+        db.collection("appointments").add(appointment);
 
 
         doctor_note_data.put("hasAudio", false);

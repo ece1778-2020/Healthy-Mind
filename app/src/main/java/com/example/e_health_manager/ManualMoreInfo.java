@@ -19,6 +19,8 @@ public class ManualMoreInfo extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
 
+    HashMap<String, Object> appointment;
+
     ArrayList<HashMap<String, Object>> medicationList = new ArrayList();
 
     EditText m1, where1, phone1;
@@ -90,6 +92,7 @@ public class ManualMoreInfo extends AppCompatActivity {
 
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+            appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
@@ -181,6 +184,8 @@ public class ManualMoreInfo extends AppCompatActivity {
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // send list of medications.
         intent.putExtra("medicationList", medicationList);
+
+        intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
 }

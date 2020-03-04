@@ -141,7 +141,7 @@ public class AddNoteActivity extends AppCompatActivity {
         // each time user click on this button, and new doctor note is created.
         HashMap<String, Object> doctor_note_data = new HashMap<>();
         doctor_note_data.put("medications", medicationList);
-        doctor_note_data.put("patient_id", userID);
+        doctor_note_data.put("user_id", userID);
 
 
         // Put the following into ManualConfirm page.
