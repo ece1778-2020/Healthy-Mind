@@ -52,6 +52,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="5dp"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/add_btn" />
 
 
@@ -65,6 +66,7 @@
         android:textSize="14sp"
         android:hint="Activity (i.e. dietary, physical)"
         android:inputType="textMultiLine"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/hline0" />
 
 
@@ -77,6 +79,7 @@
         android:textSize="14sp"
         android:hint="Instruction"
         android:inputType="textMultiLine"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/input1" />
 
 
@@ -88,6 +91,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="5dp"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/input2" />
 
 
@@ -99,6 +103,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="2dp"
+        android:visibility="invisible"
         android:textSize="14sp"
         android:hint="Activity (i.e. dietary, physical)"
         android:inputType="textMultiLine"
@@ -112,6 +117,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:textSize="14sp"
+        android:visibility="invisible"
         android:hint="Instruction"
         android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/i3a" />
@@ -125,6 +131,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="5dp"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/i3b" />
 
 
@@ -135,6 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         android:layout_marginRight="2dp"
         android:textSize="14sp"
         android:hint="Activity (i.e. dietary, physical)"
@@ -148,6 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
+        android:visibility="invisible"
         android:textSize="14sp"
         android:hint="Instruction"
         android:inputType="textMultiLine"
@@ -160,6 +169,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="5dp"
+        android:visibility="invisible"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/i4b" />
@@ -173,6 +183,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="2dp"
+        android:visibility="invisible"
         android:textSize="14sp"
         android:hint="Activity (i.e. dietary, physical)"
         android:inputType="textMultiLine"
@@ -184,6 +195,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dp"
+        android:visibility="invisible"
         android:layout_marginRight="2dp"
         android:textSize="14sp"
         android:hint="Instruction"
@@ -197,6 +209,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="5dp"
+        android:visibility="invisible"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/i5b" />
