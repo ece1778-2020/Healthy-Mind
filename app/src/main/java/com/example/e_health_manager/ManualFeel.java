@@ -23,6 +23,8 @@ public class ManualFeel extends AppCompatActivity {
 
     ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
 
+    ArrayList<HashMap<String, Object>> feelingList = new ArrayList<>();
+
     HashMap<String, Object> doctor_note_data;
 
     FirebaseFirestore db;
@@ -180,10 +182,88 @@ public class ManualFeel extends AppCompatActivity {
 
 
     public void onClick_next_page(View view) {
-        feelings_and_instructions.put("My Feeling", "What to do");
-        feelings_and_instructions.put(my_feeling1.getText().toString(), instruction1.getText().toString());
-        doctor_note_data.put("feelings_and_instructions", feelings_and_instructions);
+
+        if (itemCount > 0) {
+            feelingList.clear();
+
+            // check if empty.
+            if (TextUtils.isEmpty(my_feeling1.getText().toString())) {
+                instruction1.setError("cannot be blank.");
+                return;
+            }
+
+            HashMap<String, Object> f_i1 = new HashMap<>();
+            f_i1.put("feeling", my_feeling1.getText().toString());
+            f_i1.put("instruction", instruction1.getText().toString());
+
+            feelingList.add(f_i1);
+
+
+            if (itemCount > 1) {
+
+                // check if empty.
+                if (TextUtils.isEmpty(my_feeling2.getText().toString())) {
+                    my_feeling2.setError("cannot be blank.");
+                    return;
+                }
+
+                HashMap<String, Object> f_i2 = new HashMap<>();
+                f_i2.put("feeling", my_feeling2.getText().toString());
+                f_i2.put("instruction", instruction2.getText().toString());
+
+
+                feelingList.add(f_i2);
+
+
+                if (itemCount > 2) {
+
+                    // check if empty.
+                    if (TextUtils.isEmpty(my_feeling3.getText().toString())) {
+                        my_feeling3.setError("cannot be blank.");
+                        return;
+                    }
+
+                    HashMap<String, Object> f_i3 = new HashMap<>();
+                    f_i3.put("feeling", my_feeling3.getText().toString());
+                    f_i3.put("instruction", instruction3.getText().toString());
+
+                    
+                    feelingList.add(f_i3);
+
+                    if (itemCount > 3) {
+
+                        // check if empty.
+                        if (TextUtils.isEmpty(my_feeling4.getText().toString())) {
+                            my_feeling4.setError("cannot be blank.");
+                            return;
+                        }
+
+
+                        HashMap<String, Object> f_i4 = new HashMap<>();
+                        f_i4.put("feeling", my_feeling4.getText().toString());
+                        f_i4.put("instruction", instruction4.getText().toString());
+
+                        
+                        feelingList.add(f_i4);
+
+                    }
+
+                }
+
+            }
+        }
+
+
+
+        // feelings_and_instructions.put("My Feeling", "What to do");
+        // feelings_and_instructions.put(my_feeling1.getText().toString(), instruction1.getText().toString());
+        // doctor_note_data.put("feelings_and_instructions", feelings_and_instructions);
         doctor_note_data.put("go_to_emergency_if", go_to_emergency_if.getText().toString());
+
+
+        // feelingList is a list of feelingList HashMap.
+        doctor_note_data.put("feelings_and_instructions", feelingList);
+
 
         Intent intent = new Intent(this, ChangeRoutine.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);

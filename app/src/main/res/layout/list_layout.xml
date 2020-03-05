@@ -3,35 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="1dp"
-    android:paddingBottom="1dp"
+    android:layout_marginStart="1dp"
     android:orientation="horizontal">
-
-    <TextView
-        android:id="@+id/my_text_view"
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/comment_textview_border"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginTop="1dp"
-        android:text="medications info"
-        android:gravity="center_vertical"
-        android:textSize="17sp" />
 
 
     <Button
         android:id="@+id/edit0"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="2dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="1dp"
         android:background="@drawable/playlist_edit" />
+
+
+    <TextView
+        android:id="@+id/my_text_view"
+        android:layout_width="372dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/comment_textview_border"
+        android:layout_marginTop="1dp"
+        android:text="medications info"
+        android:gravity="center_vertical"
+        android:textSize="16sp" />
 
 
     <Button
         android:id="@+id/del0"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="2dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="1dp"
         android:background="@drawable/trash_can"/>
 
 </LinearLayout>
