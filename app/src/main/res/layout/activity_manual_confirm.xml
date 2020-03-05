@@ -144,14 +144,14 @@
         app:layout_constraintTop_toBottomOf="@+id/appointment" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView4"
+    <TextView
+        android:id="@+id/tv4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hline3" />
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/hline3"/>
 
 
     <TextView
@@ -163,7 +163,7 @@
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView4" />
+        app:layout_constraintTop_toBottomOf="@+id/tv4" />
 
 
     <View
@@ -212,8 +212,8 @@
 
     <TextView
         android:id="@+id/notes_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="11dp"
+        android:layout_height="34dp"
         android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
