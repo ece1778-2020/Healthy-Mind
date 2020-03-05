@@ -59,6 +59,7 @@ public class PhotoConfirmActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         photoPath = intent.getStringExtra("photoPath");
+        Log.d("photoconfirmactivity", "onCreate: photopath is in"+photoPath);
         photo = findViewById(R.id.currentPhoto);
 
         File f = new File(photoPath);
@@ -83,9 +84,10 @@ public class PhotoConfirmActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
+            photoPath = newPhotoPath;
+            Log.d("photoconfirmactivity", "onCreate: new photopath is in"+photoPath);
             File f = new File(newPhotoPath);
             Uri uri = Uri.fromFile(f);
-
             photo.setImageURI(uri);
         }
     }
@@ -93,6 +95,7 @@ public class PhotoConfirmActivity extends AppCompatActivity {
     public void onClick_yes(View view) {
         //go to PhotoAnalysisResultActivity
         Intent intent = new Intent(this, PhotoAnalysisResultActivity.class);
+        intent.putExtra("photoPath", photoPath);
         startActivity(intent);
     }
 
