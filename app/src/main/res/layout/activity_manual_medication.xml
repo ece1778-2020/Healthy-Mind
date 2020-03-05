@@ -45,6 +45,7 @@
         android:layout_marginRight="5dp"
         android:text="Delete medication"
         android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/add_m_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medication_title" />
 
