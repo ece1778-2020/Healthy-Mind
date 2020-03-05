@@ -21,7 +21,6 @@ import java.util.HashMap;
 
 public class InputManual extends AppCompatActivity {
 
-    String doctor_note_id;
     EditText pick_date_came, pick_date_left, reason;
     Calendar calendar;
     int year, month, day;

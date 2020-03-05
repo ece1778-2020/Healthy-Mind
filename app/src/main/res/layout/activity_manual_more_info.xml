@@ -67,6 +67,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:gravity="center_vertical"
+        android:visibility="invisible"
         android:text="For"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -75,11 +76,12 @@
 
     <EditText
         android:id="@+id/input1"
-        android:layout_width="381dp"
+        android:layout_width="382dp"
         android:layout_height="39dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="4dp"
+        android:visibility="invisible"
         android:gravity="center_vertical"
         android:textSize="15sp"
         android:hint="e.g. medication instructions"
@@ -93,6 +95,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:gravity="center_vertical"
+        android:visibility="invisible"
         android:text="go to"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -102,12 +105,13 @@
 
     <EditText
         android:id="@+id/input1b"
-        android:layout_width="185dp"
+        android:layout_width="186dp"
         android:layout_height="39dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:gravity="center_vertical"
         android:textSize="15sp"
+        android:visibility="invisible"
         android:hint="e.g. pharmacist"
         app:layout_constraintLeft_toRightOf="@id/go_to1"
         app:layout_constraintTop_toBottomOf="@+id/for1" />
@@ -123,6 +127,7 @@
         android:text="call"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@id/input1b"
         app:layout_constraintTop_toBottomOf="@+id/for1" />
 
@@ -134,6 +139,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:gravity="center_vertical"
+        android:visibility="invisible"
         android:textSize="15sp"
         app:layout_constraintLeft_toRightOf="@id/call1"
         app:layout_constraintTop_toBottomOf="@+id/input1" />
@@ -147,6 +153,7 @@
         style="@style/Divider2.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:visibility="invisible"
         android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="5dp"
@@ -162,6 +169,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
+        android:visibility="invisible"
         android:gravity="center_vertical"
         android:text="For"
         android:textSize="15sp"
@@ -171,9 +179,10 @@
 
     <EditText
         android:id="@+id/input2"
-        android:layout_width="381dp"
+        android:layout_width="382dp"
         android:layout_height="39dp"
         android:layout_marginLeft="4dp"
+        android:visibility="invisible"
         android:layout_marginTop="5dp"
         android:layout_marginRight="4dp"
         android:gravity="center_vertical"
@@ -189,6 +198,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:gravity="center_vertical"
+        android:visibility="invisible"
         android:text="go to"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -198,8 +208,9 @@
 
     <EditText
         android:id="@+id/input2b"
-        android:layout_width="185dp"
+        android:layout_width="186dp"
         android:layout_height="39dp"
+        android:visibility="invisible"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:gravity="center_vertical"
@@ -218,6 +229,7 @@
         android:gravity="center"
         android:text="call"
         android:textSize="15sp"
+        android:visibility="invisible"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/input2b"
         app:layout_constraintTop_toBottomOf="@+id/for2" />
@@ -228,6 +240,7 @@
         android:layout_width="155dp"
         android:layout_height="39dp"
         android:layout_marginLeft="3dp"
+        android:visibility="invisible"
         android:layout_marginRight="3dp"
         android:gravity="center_vertical"
         android:textSize="15sp"
@@ -244,6 +257,7 @@
         android:layout_height="1dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
+        android:visibility="invisible"
         android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/go_to2" />
 
@@ -256,6 +270,7 @@
         android:layout_height="39dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         android:layout_marginRight="5dp"
         android:gravity="center_vertical"
         android:text="For"
@@ -267,10 +282,11 @@
 
     <EditText
         android:id="@+id/input3"
-        android:layout_width="381dp"
+        android:layout_width="382dp"
         android:layout_height="39dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         android:layout_marginRight="4dp"
         android:gravity="center_vertical"
         android:textSize="15sp"
@@ -288,16 +304,18 @@
         android:text="go to"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/for3" />
 
 
     <EditText
         android:id="@+id/input3b"
-        android:layout_width="185dp"
+        android:layout_width="186dp"
         android:layout_height="39dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
+        android:visibility="invisible"
         android:gravity="center_vertical"
         android:textSize="15sp"
         android:hint="e.g. pharmacist"
@@ -314,6 +332,7 @@
         android:gravity="center"
         android:text="call"
         android:textSize="15sp"
+        android:visibility="invisible"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/input3b"
         app:layout_constraintTop_toBottomOf="@+id/for3" />
@@ -327,6 +346,7 @@
         android:layout_marginRight="3dp"
         android:gravity="center_vertical"
         android:textSize="15sp"
+        android:visibility="invisible"
         app:layout_constraintLeft_toRightOf="@id/call3"
         app:layout_constraintTop_toBottomOf="@+id/input3" />
 
@@ -337,6 +357,7 @@
         android:id="@+id/hline3"
         style="@style/Divider2.Horizontal"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="1dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
@@ -353,6 +374,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
+        android:visibility="invisible"
         android:gravity="center_vertical"
         android:text="For"
         android:textSize="15sp"
@@ -363,10 +385,11 @@
 
     <EditText
         android:id="@+id/input4"
-        android:layout_width="381dp"
+        android:layout_width="382dp"
         android:layout_height="39dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="5dp"
+        android:visibility="invisible"
         android:layout_marginRight="4dp"
         android:gravity="center_vertical"
         android:textSize="15sp"
@@ -382,6 +405,7 @@
         android:layout_marginRight="5dp"
         android:gravity="center_vertical"
         android:text="go to"
+        android:visibility="invisible"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -390,10 +414,11 @@
 
     <EditText
         android:id="@+id/input4b"
-        android:layout_width="185dp"
+        android:layout_width="186dp"
         android:layout_height="39dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
+        android:visibility="invisible"
         android:gravity="center_vertical"
         android:textSize="15sp"
         android:hint="e.g. pharmacist"
@@ -407,6 +432,7 @@
         android:layout_height="39dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:visibility="invisible"
         android:gravity="center"
         android:text="call"
         android:textSize="15sp"
@@ -421,6 +447,7 @@
         android:layout_height="39dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
+        android:visibility="invisible"
         android:gravity="center_vertical"
         android:textSize="15sp"
         app:layout_constraintLeft_toRightOf="@id/call4"
@@ -434,6 +461,7 @@
         style="@style/Divider2.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:visibility="invisible"
         android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="5dp"

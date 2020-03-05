@@ -34,6 +34,8 @@ public class ManualConfirm extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
 
+    HashMap<String, Object> appointment;
+
     ArrayList medicationTextList = new ArrayList();
 
     ArrayList<HashMap<String, Object>> medicationMapList = new ArrayList<>();
@@ -74,7 +76,7 @@ public class ManualConfirm extends AppCompatActivity {
 //            }
 
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
-
+            appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationMapList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
@@ -140,13 +142,23 @@ public class ManualConfirm extends AppCompatActivity {
 
     public void onClick_submit(View view) {
 
+        // list of medication id.
+        ArrayList<String> medication_ids = new ArrayList<>();
+
         for (Object m : medicationMapList) {
-            db.collection("medications")
-                    .add(m);
+            // reference to each medication.
+            DocumentReference medicationRef = db.collection("medications").document();
+            medicationRef.set(m);
+            medication_ids.add(medicationRef.getId());
         }
 
+        DocumentReference appointmentRef = db.collection("appointments").document();
+        appointmentRef.set(appointment);
+        String appointment_id = appointmentRef.getId();
 
+        doctor_note_data.put("medication_ids", medication_ids);
         doctor_note_data.put("hasAudio", false);
+        doctor_note_data.put("appointment_id", appointment_id);
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         doctor_note_data.put("timeStamp", timeStamp);

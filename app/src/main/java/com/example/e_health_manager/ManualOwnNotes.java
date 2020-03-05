@@ -14,6 +14,8 @@ public class ManualOwnNotes extends AppCompatActivity {
 
     HashMap<String, Object> doctor_note_data;
 
+    HashMap<String, Object> appointment;
+
     ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
 
     @Override
@@ -27,6 +29,7 @@ public class ManualOwnNotes extends AppCompatActivity {
 
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+            appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
             Log.w("ManualMedicationError", "callingActivityIntent is empty");
@@ -39,6 +42,7 @@ public class ManualOwnNotes extends AppCompatActivity {
         // send list of medications.
         intent.putExtra("medicationList", medicationList);
         intent.putExtra("PARENT_ACTIVITY_REF", "ManualOwnNotes");
+        intent.putExtra("appointment", appointment);
         startActivity(intent);
     }
 }
