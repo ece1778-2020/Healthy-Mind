@@ -140,7 +140,7 @@ public class AddNoteActivity extends AppCompatActivity {
     public void onClick_chooseManually(View view) {
         // each time user click on this button, and new doctor note is created.
         HashMap<String, Object> doctor_note_data = new HashMap<>();
-        doctor_note_data.put("medications", medicationList);
+        // doctor_note_data.put("medications", medicationList);
         doctor_note_data.put("user_id", userID);
 
 
