@@ -53,11 +53,11 @@
 
     <EditText
         android:id="@+id/ed1"
-        android:layout_width="360dp"
+        android:layout_width="366dp"
         android:layout_height="36dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:textSize="15dp"
         android:hint="doctor' name"
         app:layout_constraintStart_toEndOf="@id/name"
@@ -80,7 +80,7 @@
 
     <EditText
         android:id="@+id/ed2"
-        android:layout_width="386dp"
+        android:layout_width="393dp"
         android:layout_height="36dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
@@ -106,7 +106,7 @@
 
     <EditText
         android:id="@+id/pick_date"
-        android:layout_width="133dp"
+        android:layout_width="135dp"
         android:layout_height="36dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
@@ -132,7 +132,7 @@
 
     <EditText
         android:id="@+id/pick_time"
-        android:layout_width="132dp"
+        android:layout_width="133dp"
         android:layout_height="36dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
@@ -159,7 +159,7 @@
 
     <EditText
         android:id="@+id/ed3"
-        android:layout_width="349dp"
+        android:layout_width="354dp"
         android:layout_height="36dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
@@ -184,19 +184,14 @@
 
     <EditText
         android:id="@+id/ed4"
-        android:layout_width="310dp"
+        android:layout_width="316dp"
         android:layout_height="36dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@id/phone"
         app:layout_constraintTop_toBottomOf="@+id/ed3" />
-
-
-
-
-
-
+    
 
 
     <Button

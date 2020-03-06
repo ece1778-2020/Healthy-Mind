@@ -46,7 +46,7 @@ public class ManualConfirm extends AppCompatActivity {
 
     TextView appointmentTextView;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recyclerView_feel, recyclerView_routine, recyclerView_info;
     GridLayoutManager gridLayoutManager;
 
     @Override
@@ -62,6 +62,9 @@ public class ManualConfirm extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerView_feel = findViewById(R.id.recyclerView2);
+        recyclerView_routine = findViewById(R.id.recyclerView3);
+        recyclerView_info = findViewById(R.id.recyclerView5);
 
         appointmentTextView = findViewById(R.id.tv4);
 
@@ -71,13 +74,11 @@ public class ManualConfirm extends AppCompatActivity {
         Intent callingActivityIntent = getIntent();
 
         if (callingActivityIntent != null) {
-
 //            String PARENT_ACTIVITY_REF = callingActivityIntent.getStringExtra("PARENT_ACTIVITY_REF");
 //
 //            if (PARENT_ACTIVITY_REF.equals("ManualOwnNotes")) {
 //                doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
 //            }
-
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
             appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationMapList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
@@ -98,10 +99,44 @@ public class ManualConfirm extends AppCompatActivity {
         // Show 1 medication in a row.
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
 
-        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(), medicationTextList, medicationMapList, doctor_note_data, appointment);
+
+        // medications
+        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(),
+                                                                medicationTextList,
+                                                                medicationMapList,
+                                                                doctor_note_data,
+                                                                appointment);
+
         recyclerView.setAdapter(dataAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
+        // feeling
+        ArrayList<HashMap<String, Object>> feelingList = (ArrayList<HashMap<String, Object>>) doctor_note_data.get("feelings_and_instructions");
+
+        DataAdapterFeel dataAdapterFeel = new DataAdapterFeel(getApplicationContext(),
+                                                                medicationMapList,
+                                                                doctor_note_data,
+                                                                appointment);
+
+        recyclerView_feel.setAdapter(dataAdapterFeel);
+
+        recyclerView_feel.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
+        // routine_changes
+        ArrayList<HashMap<String, Object>> routine_changes = (ArrayList<HashMap<String, Object>>) doctor_note_data.get("routine_changes");
+
+        DataAdapterRoutine dataAdapterRoutine = new DataAdapterRoutine(getApplicationContext(),
+                                                                        medicationMapList,
+                                                                        doctor_note_data,
+                                                                        appointment);
+
+        recyclerView_routine.setAdapter(dataAdapterRoutine);
+
+        recyclerView_routine.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
         String appointment_text;
 
@@ -124,43 +159,6 @@ public class ManualConfirm extends AppCompatActivity {
         }
 
         appointmentTextView.setText(appointment_text);
-
-
-//        db.collection("doctor's note")
-//                .document(doctor_note_id)
-//                .addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                        ArrayList<HashMap<String, Object>> medications = (ArrayList<HashMap<String, Object>>) documentSnapshot.get("medications");
-//
-//                        int medication_count = medications.size();
-//
-//                        if (medication_count > 0) {
-//                            HashMap<String, Object> m1_item = medications.get(0);
-//                            String m1_text = "take: " + m1_item.get("name").toString() + ", for: " + m1_item.get("reason").toString() + ", at time: " + m1_item.get("time").toString();
-//                            m1.setText(m1_text);
-//                        }
-//
-//                        if (medication_count > 1) {
-//                            HashMap<String, Object> m2_item = medications.get(1);
-//                            String m2_text = "take: " + m2_item.get("name").toString() + ", for: " + m2_item.get("reason").toString() + ", at time: " + m2_item.get("time").toString();
-//                            m2.setText(m2_text);
-//                        }
-//
-//                        if (medication_count > 2) {
-//                            HashMap<String, Object> m3_item = medications.get(2);
-//                            String m3_text = "take: " + m3_item.get("name").toString() + ", for: " + m3_item.get("reason").toString() + ", at time: " + m3_item.get("time").toString();
-//                            m3.setText(m3_text);
-//                        }
-//
-//                        if (medication_count > 3) {
-//                            HashMap<String, Object> m4_item = medications.get(3);
-//                            String m4_text = "take: " + m4_item.get("name").toString() + ", for: " + m4_item.get("reason").toString() + ", at time: " + m4_item.get("time").toString();
-//                            m4.setText(m4_text);
-//                        }
-//                    }
-//                });
-
 
     }
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,8 @@ public class ManualOwnNotes extends AppCompatActivity {
 
     ArrayList<HashMap<String, Object>> medicationList = new ArrayList<>();
 
+    EditText ownNotes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +30,17 @@ public class ManualOwnNotes extends AppCompatActivity {
         // callingActivityIntent is from the previous page.
         Intent callingActivityIntent = getIntent();
 
+        ownNotes = findViewById(R.id.ed10);
+
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
+
+            if (ownNotes.getText().toString().isEmpty()) {
+                doctor_note_data.put("notes", "");
+            } else {
+                doctor_note_data.put("notes", ownNotes.getText().toString());
+            }
+
             appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {

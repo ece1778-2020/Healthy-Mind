@@ -16,7 +16,8 @@ import java.util.HashMap;
 
 public class ChangeRoutine extends AppCompatActivity {
 
-    ArrayList routine_changes = new ArrayList();
+    ArrayList<HashMap<String, Object>> routine_changes = new ArrayList<>();
+
     ArrayList medicationList = new ArrayList();
 
     HashMap<String, Object> doctor_note_data;
@@ -168,14 +169,90 @@ public class ChangeRoutine extends AppCompatActivity {
     }
 
 
-
-
+    
     public void onClick_next_page(View view) {
-        // HashMap<String, String> routine_change = new HashMap<>();
-        // routine_change.put("activity", activity1.getText().toString());
-        // routine_change.put("instruction", instruction1.getText().toString());
-        // routine_changes.add(routine_change);
-        // doctor_note_data.put("routine_changes", routine_changes);
+
+        if (itemCount > 0) {
+            routine_changes.clear();
+
+            // check if empty.
+            if (TextUtils.isEmpty(activity1.getText().toString())) {
+                activity1.setError("cannot be blank.");
+                return;
+            }
+
+            if (TextUtils.isEmpty(instruction1.getText().toString())) {
+                instruction1.setError("cannot be blank.");
+                return;
+            }
+
+            HashMap<String, Object> f_i1 = new HashMap<>();
+            f_i1.put("activity", activity1.getText().toString());
+            f_i1.put("instruction", instruction1.getText().toString());
+
+            routine_changes.add(f_i1);
+
+            if (itemCount > 1) {
+                // check if empty.
+                if (TextUtils.isEmpty(activity2.getText().toString())) {
+                    activity2.setError("cannot be blank.");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(instruction2.getText().toString())) {
+                    instruction2.setError("cannot be blank.");
+                    return;
+                }
+
+                HashMap<String, Object> f_i2 = new HashMap<>();
+                f_i2.put("activity", activity2.getText().toString());
+                f_i2.put("instruction", instruction2.getText().toString());
+
+                routine_changes.add(f_i2);
+
+                if (itemCount > 2) {
+                    // check if empty.
+                    if (TextUtils.isEmpty(activity3.getText().toString())) {
+                        activity3.setError("cannot be blank.");
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(instruction3.getText().toString())) {
+                        instruction3.setError("cannot be blank.");
+                        return;
+                    }
+
+                    HashMap<String, Object> f_i3 = new HashMap<>();
+                    f_i3.put("activity", activity3.getText().toString());
+                    f_i3.put("instruction", instruction3.getText().toString());
+
+                    routine_changes.add(f_i3);
+
+                    if (itemCount > 3) {
+                        // check if empty.
+                        if (TextUtils.isEmpty(activity4.getText().toString())) {
+                            activity4.setError("cannot be blank.");
+                            return;
+                        }
+
+                        if (TextUtils.isEmpty(instruction4.getText().toString())) {
+                            instruction4.setError("cannot be blank.");
+                            return;
+                        }
+
+                        HashMap<String, Object> f_i4 = new HashMap<>();
+                        f_i4.put("activity", activity4.getText().toString());
+                        f_i4.put("instruction", instruction4.getText().toString());
+
+                        routine_changes.add(f_i4);
+                    }
+                }
+            }
+        }
+
+
+        // routine_changes is a list of HashMap.
+        doctor_note_data.put("routine_changes", routine_changes);
 
         Intent intent = new Intent(this, ManualAppointments.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);

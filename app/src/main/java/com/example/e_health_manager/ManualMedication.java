@@ -558,7 +558,7 @@ public class ManualMedication extends AppCompatActivity {
         Intent intent = new Intent(this, ManualFeel.class);
 
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
-        // send list of medications.
+        // send list of medications HashMap.
         intent.putExtra("medicationList", medicationList);
         startActivity(intent);
     }

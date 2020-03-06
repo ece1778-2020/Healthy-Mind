@@ -97,8 +97,19 @@ public class ManualAppointments extends AppCompatActivity {
         appointment.put("doctor", doc_name.getText().toString());
         appointment.put("date", pick_date.getText().toString());
         appointment.put("location", location.getText().toString());
-        appointment.put("phone", phone.getText().toString());
-        appointment.put("reason", for1.getText().toString());
+
+        if (phone.getText().toString().isEmpty()) {
+            appointment.put("phone", "");
+        } else {
+            appointment.put("phone", phone.getText().toString());
+        }
+
+        if (for1.getText().toString().isEmpty()) {
+            appointment.put("reason", "");
+        } else {
+            appointment.put("reason", for1.getText().toString());
+        }
+
         appointment.put("time", app_time.getText().toString());
         appointment.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
 

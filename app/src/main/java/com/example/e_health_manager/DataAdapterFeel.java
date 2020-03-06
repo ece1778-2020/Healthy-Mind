@@ -29,29 +29,31 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHolder> {
+public class DataAdapterFeel extends RecyclerView.Adapter<DataAdapterFeel.ViewHolder> {
     // Adapter class is used to render and handle the data collection and bind it to the view.
-    private ArrayList<String> medicationTextList;
     private ArrayList<HashMap<String, Object>> medicationMapList;
+    private ArrayList<HashMap<String, Object>> feelingList;
     private Context context;
 
     private HashMap<String, Object> doctor_note_data;
     private HashMap<String, Object> appointment;
 
-    public DataAdapterList(Context context, ArrayList<String> medicationTextList,
+    public DataAdapterFeel(Context context,
                            ArrayList<HashMap<String, Object>> medicationMapList,
                            HashMap<String, Object> doctor_note_data,
                            HashMap<String, Object> appointment) {
         this.context = context;
-        this.medicationTextList = medicationTextList;
         this.medicationMapList = medicationMapList;
         this.doctor_note_data = doctor_note_data;
         this.appointment = appointment;
+
+        this.feelingList = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("feelings_and_instructions");
 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        // NOTE: the medication here is refer to feeling.
         public TextView medication;
         public Button editBtn, delBtn;
 
@@ -83,16 +85,20 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
             }
 
             if (v.getId() == R.id.del0) {
-                Toast.makeText(context, "Delete medication number " + position, Toast.LENGTH_SHORT).show();
-                medicationMapList.remove(position);
+                Toast.makeText(context, "Delete item number " + position, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ManualConfirm.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                // update doctor_note_data and send it back.
+                feelingList.remove(position);
+                doctor_note_data.put("feelings_and_instructions", feelingList);
+
                 intent.putExtra("curr_doctor_note_data", doctor_note_data);
+
                 intent.putExtra("medicationList", medicationMapList);
                 intent.putExtra("appointment", appointment);
-                intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
+                intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterFeel");
                 context.startActivity(intent);
-
             }
 
         }
@@ -115,15 +121,20 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
 
-        String display_text = medicationTextList.get(i);
+        ArrayList<HashMap<String, Object>> feelingList = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("feelings_and_instructions");
+        String display_text =
+                "I might feel: " +
+                    feelingList.get(i).get("feeling").toString() +
+                    ". What to do: " +
+                    feelingList.get(i).get("instruction").toString() + ".";
 
+        // NOTE: the medication here is refer to feeling.
         viewHolder.medication.setText(display_text);
-
     }
 
     @Override
     public int getItemCount() {
-        return medicationTextList.size();
+        return this.feelingList.size();
     }
 
 }

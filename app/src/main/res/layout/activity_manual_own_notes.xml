@@ -31,7 +31,7 @@
         android:layout_marginRight="1dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Add additional notes here"
+        android:hint="Add additional notes here."
         android:inputType="textMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/notes" />
 
