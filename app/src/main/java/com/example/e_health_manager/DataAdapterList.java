@@ -36,12 +36,18 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
     private Context context;
 
     private HashMap<String, Object> doctor_note_data;
+    private HashMap<String, Object> appointment;
 
-    public DataAdapterList(Context context, ArrayList<String> medicationTextList, ArrayList<HashMap<String, Object>> medicationMapList, HashMap<String, Object> doctor_note_data) {
+    public DataAdapterList(Context context, ArrayList<String> medicationTextList,
+                           ArrayList<HashMap<String, Object>> medicationMapList,
+                           HashMap<String, Object> doctor_note_data,
+                           HashMap<String, Object> appointment) {
         this.context = context;
         this.medicationTextList = medicationTextList;
         this.medicationMapList = medicationMapList;
         this.doctor_note_data = doctor_note_data;
+        this.appointment = appointment;
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,6 +88,7 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("curr_doctor_note_data", doctor_note_data);
                 intent.putExtra("medicationList", medicationMapList);
+                intent.putExtra("appointment", appointment);
                 intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
                 context.startActivity(intent);
 

@@ -98,27 +98,32 @@ public class ManualConfirm extends AppCompatActivity {
         // Show 1 medication in a row.
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
 
-        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(), medicationTextList, medicationMapList, doctor_note_data);
+        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(), medicationTextList, medicationMapList, doctor_note_data, appointment);
         recyclerView.setAdapter(dataAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        String appointment_text = "Meet with: "
-                + appointment.get("doctor").toString()
-                + ", on: "
-                + appointment.get("date").toString()
-                + " at: "
-                + appointment.get("location").toString()
-                + " "
-                + appointment.get("time").toString()
-                + " for "
-                + appointment.get("reason").toString()
-                + ". (call: "
-                + appointment.get("phone").toString()
-                + ")";
+        String appointment_text;
+
+        if (appointment.get("doctor").toString().isEmpty()) {
+            appointment_text = "";
+        } else {
+            appointment_text = "Meet with: "
+                    + appointment.get("doctor").toString()
+                    + ", on: "
+                    + appointment.get("date").toString()
+                    + " at: "
+                    + appointment.get("location").toString()
+                    + " "
+                    + appointment.get("time").toString()
+                    + " for "
+                    + appointment.get("reason").toString()
+                    + ". (call: "
+                    + appointment.get("phone").toString()
+                    + ")";
+        }
 
         appointmentTextView.setText(appointment_text);
-
 
 
 //        db.collection("doctor's note")

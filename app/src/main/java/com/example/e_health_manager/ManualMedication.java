@@ -535,8 +535,9 @@ public class ManualMedication extends AppCompatActivity {
         }
 
         // medicationList is a list of medication HashMap.
-        // just comment it out
         // doctor_note_data.put("medications", medicationList);
+
+
 
         // documentReference contains the reference to the user (collection) data in the database.
         // DocumentReference userDocumentRef = db.collection("users").document(userID);
