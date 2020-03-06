@@ -44,7 +44,7 @@ public class ManualConfirm extends AppCompatActivity {
     FirebaseAuth mAuth;
     String userID;
 
-    TextView appointmentTextView;
+    TextView appointmentTextView, date_came, date_left, reason1;
 
     RecyclerView recyclerView, recyclerView_feel, recyclerView_routine, recyclerView_info;
     GridLayoutManager gridLayoutManager;
@@ -67,6 +67,9 @@ public class ManualConfirm extends AppCompatActivity {
         recyclerView_info = findViewById(R.id.recyclerView5);
 
         appointmentTextView = findViewById(R.id.tv4);
+        date_came = findViewById(R.id.date_came_ed);
+        date_left = findViewById(R.id.date_left_ed);
+        reason1 = findViewById(R.id.reason10_ed);
 
         // handle the intent called from the previous page.
         // callingActivityIntent is from the previous page.
@@ -159,6 +162,10 @@ public class ManualConfirm extends AppCompatActivity {
         }
 
         appointmentTextView.setText(appointment_text);
+
+        date_came.setText(doctor_note_data.get("came_date").toString());
+        date_left.setText(doctor_note_data.get("left_date").toString());
+        reason1.setText(doctor_note_data.get("reason_for_hospital").toString());
 
     }
 
