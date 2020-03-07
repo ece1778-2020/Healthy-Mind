@@ -67,6 +67,14 @@
         app:layout_constraintTop_toBottomOf="@id/title" />
 
 
+    <TextView
+        android:id="@+id/reason10_ed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/reason10"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+
     <Button
         android:id="@+id/edit80"
         android:layout_width="30dp"
@@ -74,14 +82,6 @@
         android:background="@drawable/playlist_edit"
         app:layout_constraintStart_toEndOf="@+id/tv4"
         app:layout_constraintTop_toBottomOf="@+id/title" />
-
-
-    <TextView
-        android:id="@+id/reason10_ed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/reason10"
-        app:layout_constraintTop_toBottomOf="@id/title" />
 
 
     <View
@@ -209,7 +209,7 @@
         android:id="@+id/recyclerView3"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hline2" />
@@ -257,7 +257,6 @@
         android:layout_marginEnd="1dp"
         android:background="@drawable/comment_textview_border"
         android:gravity="center"
-        android:paddingLeft="6dp"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/edit0"
         app:layout_constraintStart_toStartOf="parent"

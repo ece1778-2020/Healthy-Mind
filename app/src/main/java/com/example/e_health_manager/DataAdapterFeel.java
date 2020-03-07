@@ -1,6 +1,8 @@
 package com.example.e_health_manager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -84,21 +86,34 @@ public class DataAdapterFeel extends RecyclerView.Adapter<DataAdapterFeel.ViewHo
 
             }
 
+            // delete button
             if (v.getId() == R.id.del0) {
-                Toast.makeText(context, "Delete item number " + position, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, ManualConfirm.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                // update doctor_note_data and send it back.
-                feelingList.remove(position);
-                doctor_note_data.put("feelings_and_instructions", feelingList);
+                // Dialog to make user confirm.
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure you want to delete the medication?");
+                builder.setTitle("Alert");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(context, "Delete item number " + position, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(context, ManualConfirm.class);
+                        // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                intent.putExtra("curr_doctor_note_data", doctor_note_data);
+                        // update doctor_note_data and send it back.
+                        feelingList.remove(position);
+                        doctor_note_data.put("feelings_and_instructions", feelingList);
 
-                intent.putExtra("medicationList", medicationMapList);
-                intent.putExtra("appointment", appointment);
-                intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterFeel");
-                context.startActivity(intent);
+                        intent.putExtra("curr_doctor_note_data", doctor_note_data);
+
+                        intent.putExtra("medicationList", medicationMapList);
+                        intent.putExtra("appointment", appointment);
+                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterFeel");
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, null);
+                builder.show();
             }
 
         }

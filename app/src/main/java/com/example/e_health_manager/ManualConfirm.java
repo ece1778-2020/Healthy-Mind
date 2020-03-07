@@ -104,7 +104,7 @@ public class ManualConfirm extends AppCompatActivity {
 
 
         // medications
-        DataAdapterList dataAdapter = new DataAdapterList(getApplicationContext(),
+        DataAdapterList dataAdapter = new DataAdapterList(ManualConfirm.this,
                                                                 medicationTextList,
                                                                 medicationMapList,
                                                                 doctor_note_data,
@@ -118,7 +118,7 @@ public class ManualConfirm extends AppCompatActivity {
         // feeling
         ArrayList<HashMap<String, Object>> feelingList = (ArrayList<HashMap<String, Object>>) doctor_note_data.get("feelings_and_instructions");
 
-        DataAdapterFeel dataAdapterFeel = new DataAdapterFeel(getApplicationContext(),
+        DataAdapterFeel dataAdapterFeel = new DataAdapterFeel(ManualConfirm.this,
                                                                 medicationMapList,
                                                                 doctor_note_data,
                                                                 appointment);
@@ -131,7 +131,7 @@ public class ManualConfirm extends AppCompatActivity {
         // routine_changes
         ArrayList<HashMap<String, Object>> routine_changes = (ArrayList<HashMap<String, Object>>) doctor_note_data.get("routine_changes");
 
-        DataAdapterRoutine dataAdapterRoutine = new DataAdapterRoutine(getApplicationContext(),
+        DataAdapterRoutine dataAdapterRoutine = new DataAdapterRoutine(ManualConfirm.this,
                                                                         medicationMapList,
                                                                         doctor_note_data,
                                                                         appointment);
@@ -139,6 +139,17 @@ public class ManualConfirm extends AppCompatActivity {
         recyclerView_routine.setAdapter(dataAdapterRoutine);
 
         recyclerView_routine.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
+        // more info
+        DataAdapterInfo dataAdapterInfo = new DataAdapterInfo(ManualConfirm.this,
+                                                                        medicationMapList,
+                                                                        doctor_note_data,
+                                                                        appointment);
+
+        recyclerView_info.setAdapter(dataAdapterInfo);
+
+        recyclerView_info.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 
         String appointment_text;

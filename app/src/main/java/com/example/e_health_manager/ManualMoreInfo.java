@@ -23,6 +23,8 @@ public class ManualMoreInfo extends AppCompatActivity {
 
     ArrayList<HashMap<String, Object>> medicationList = new ArrayList();
 
+    ArrayList<HashMap<String, Object>> infoList = new ArrayList<>();
+
     EditText m1, where1, phone1;
     EditText m2, where2, phone2;
     EditText m3, where3, phone3;
@@ -177,13 +179,197 @@ public class ManualMoreInfo extends AppCompatActivity {
                 // Toast.makeText(ManualMedication.this, Integer.toString(itemCount) , Toast.LENGTH_SHORT).show();
             }
         });
+
+        delBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemCount == 0) {
+                    delBtn.setEnabled(false);
+                    Toast.makeText(ManualMoreInfo.this, "You haven't enter the medication.", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    itemCount--;
+                    if (itemCount == 3) {
+                        hline4.setVisibility(View.INVISIBLE);
+                        m4.setVisibility(View.INVISIBLE);
+                        where4.setVisibility(View.INVISIBLE);
+                        phone4.setVisibility(View.INVISIBLE);
+                        c10.setVisibility(View.INVISIBLE);
+                        c11.setVisibility(View.INVISIBLE);
+                        c12.setVisibility(View.INVISIBLE);
+
+                    } else if (itemCount == 2) {
+                        hline3.setVisibility(View.INVISIBLE);
+                        m3.setVisibility(View.INVISIBLE);
+                        where3.setVisibility(View.INVISIBLE);
+                        phone3.setVisibility(View.INVISIBLE);
+                        c7.setVisibility(View.INVISIBLE);
+                        c8.setVisibility(View.INVISIBLE);
+                        c9.setVisibility(View.INVISIBLE);
+
+                    } else if (itemCount == 1) {
+                        hline2.setVisibility(View.INVISIBLE);
+                        m2.setVisibility(View.INVISIBLE);
+                        where2.setVisibility(View.INVISIBLE);
+                        phone2.setVisibility(View.INVISIBLE);
+                        c4.setVisibility(View.INVISIBLE);
+                        c5.setVisibility(View.INVISIBLE);
+                        c6.setVisibility(View.INVISIBLE);
+
+                    } else if (itemCount == 0) {
+                        hline0.setVisibility(View.INVISIBLE);
+                        hline1.setVisibility(View.INVISIBLE);
+                        m1.setVisibility(View.INVISIBLE);
+                        where1.setVisibility(View.INVISIBLE);
+                        phone1.setVisibility(View.INVISIBLE);
+                        c1.setVisibility(View.INVISIBLE);
+                        c2.setVisibility(View.INVISIBLE);
+                        c3.setVisibility(View.INVISIBLE);
+
+                    }
+                }
+                addBtn.setEnabled(true);
+            }
+        });
     }
 
     public void onClick_next_page(View view) {
+
+        if (itemCount > 0) {
+            infoList.clear();
+
+            // check if empty.
+            if (TextUtils.isEmpty(m1.getText().toString())) {
+                m1.setError("cannot be blank.");
+                return;
+            }
+
+            if (TextUtils.isEmpty(where1.getText().toString()) && TextUtils.isEmpty(phone1.getText().toString())) {
+                where1.setError("go to and phone sections cannot both be blank.");
+                return;
+            }
+
+            HashMap<String, Object> f_i1 = new HashMap<>();
+            f_i1.put("purpose", m1.getText().toString());
+
+            if (TextUtils.isEmpty(where1.getText().toString())) {
+                f_i1.put("who", "");
+            } else {
+                f_i1.put("who", where1.getText().toString());
+            }
+
+
+            if (TextUtils.isEmpty(phone1.getText().toString())) {
+                f_i1.put("phone", "");
+            } else {
+                f_i1.put("phone", phone1.getText().toString());
+            }
+
+            infoList.add(f_i1);
+
+            if (itemCount > 1) {
+                // check if empty.
+                if (TextUtils.isEmpty(m2.getText().toString())) {
+                    m2.setError("cannot be blank.");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(where2.getText().toString()) && TextUtils.isEmpty(phone2.getText().toString())) {
+                    where2.setError("go to and phone sections cannot both be blank.");
+                    return;
+                }
+
+                HashMap<String, Object> f_i2 = new HashMap<>();
+                f_i2.put("purpose", m2.getText().toString());
+
+                if (TextUtils.isEmpty(where2.getText().toString())) {
+                    f_i2.put("who", "");
+                } else {
+                    f_i2.put("who", where2.getText().toString());
+                }
+
+
+                if (TextUtils.isEmpty(phone2.getText().toString())) {
+                    f_i2.put("phone", "");
+                } else {
+                    f_i2.put("phone", phone2.getText().toString());
+                }
+
+                infoList.add(f_i2);
+
+                if (itemCount > 2) {
+                    // check if empty.
+                    if (TextUtils.isEmpty(m3.getText().toString())) {
+                        m3.setError("cannot be blank.");
+                        return;
+                    }
+
+                    if (TextUtils.isEmpty(where3.getText().toString()) && TextUtils.isEmpty(phone3.getText().toString())) {
+                        where3.setError("go to and phone sections cannot both be blank.");
+                        return;
+                    }
+
+                    HashMap<String, Object> f_i3 = new HashMap<>();
+                    f_i3.put("purpose", m3.getText().toString());
+
+                    if (TextUtils.isEmpty(where3.getText().toString())) {
+                        f_i3.put("who", "");
+                    } else {
+                        f_i3.put("who", where3.getText().toString());
+                    }
+
+
+                    if (TextUtils.isEmpty(phone3.getText().toString())) {
+                        f_i3.put("phone", "");
+                    } else {
+                        f_i3.put("phone", phone3.getText().toString());
+                    }
+
+                    infoList.add(f_i3);
+
+                    if (itemCount > 3) {
+                        // check if empty.
+                        if (TextUtils.isEmpty(m4.getText().toString())) {
+                            m4.setError("cannot be blank.");
+                            return;
+                        }
+
+                        if (TextUtils.isEmpty(where4.getText().toString()) && TextUtils.isEmpty(phone4.getText().toString())) {
+                            where4.setError("go to and phone sections cannot both be blank.");
+                            return;
+                        }
+
+                        HashMap<String, Object> f_i4 = new HashMap<>();
+                        f_i4.put("purpose", m4.getText().toString());
+
+                        if (TextUtils.isEmpty(where4.getText().toString())) {
+                            f_i4.put("who", "");
+                        } else {
+                            f_i4.put("who", where4.getText().toString());
+                        }
+
+
+                        if (TextUtils.isEmpty(phone4.getText().toString())) {
+                            f_i4.put("phone", "");
+                        } else {
+                            f_i4.put("phone", phone4.getText().toString());
+                        }
+
+                        infoList.add(f_i4);
+                    }
+                }
+            }
+        }
+        
+        
+        
         Intent intent = new Intent(this, ManualOwnNotes.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // send list of medications.
         intent.putExtra("medicationList", medicationList);
+
+        // feelingList is a list of feeling and instruction HashMap.
+        doctor_note_data.put("more_info", infoList);
 
         intent.putExtra("appointment", appointment);
         startActivity(intent);

@@ -16,29 +16,31 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DataAdapterRoutine extends RecyclerView.Adapter<DataAdapterRoutine.ViewHolder> {
+public class DataAdapterInfo extends RecyclerView.Adapter<DataAdapterInfo.ViewHolder> {
     // Adapter class is used to render and handle the data collection and bind it to the view.
     private ArrayList<HashMap<String, Object>> medicationMapList;
-    private ArrayList<HashMap<String, Object>> routine_changes;
+    private ArrayList<HashMap<String, Object>> infoList;
     private Context context;
 
     private HashMap<String, Object> doctor_note_data;
     private HashMap<String, Object> appointment;
 
-    public DataAdapterRoutine(Context context,
-                              ArrayList<HashMap<String, Object>> medicationMapList,
-                              HashMap<String, Object> doctor_note_data,
-                              HashMap<String, Object> appointment) {
+    public DataAdapterInfo(Context context,
+                           ArrayList<HashMap<String, Object>> medicationMapList,
+                           HashMap<String, Object> doctor_note_data,
+                           HashMap<String, Object> appointment) {
         this.context = context;
         this.medicationMapList = medicationMapList;
         this.doctor_note_data = doctor_note_data;
         this.appointment = appointment;
-        this.routine_changes = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("routine_changes");
+
+        this.infoList = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("more_info");
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        // NOTE: the medication here is refer to routine_changes.
+        // NOTE: the medication here is refer to feeling.
         public TextView medication;
         public Button editBtn, delBtn;
 
@@ -69,7 +71,6 @@ public class DataAdapterRoutine extends RecyclerView.Adapter<DataAdapterRoutine.
 
             }
 
-
             // delete button
             if (v.getId() == R.id.del0) {
 
@@ -85,21 +86,19 @@ public class DataAdapterRoutine extends RecyclerView.Adapter<DataAdapterRoutine.
                         // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         // update doctor_note_data and send it back.
-                        routine_changes.remove(position);
-                        doctor_note_data.put("routine_changes", routine_changes);
+                        infoList.remove(position);
+                        doctor_note_data.put("more_info", infoList);
 
                         intent.putExtra("curr_doctor_note_data", doctor_note_data);
 
                         intent.putExtra("medicationList", medicationMapList);
                         intent.putExtra("appointment", appointment);
-                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterRoutine");
+                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterInfo");
                         context.startActivity(intent);
                     }
                 });
                 builder.setNegativeButton(android.R.string.no, null);
                 builder.show();
-
-
             }
 
         }
@@ -122,20 +121,22 @@ public class DataAdapterRoutine extends RecyclerView.Adapter<DataAdapterRoutine.
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, final int i) {
 
-        ArrayList<HashMap<String, Object>> routine_changes = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("routine_changes");
+        ArrayList<HashMap<String, Object>> infoList = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("more_info");
         String display_text =
-                "Activity: " +
-                    routine_changes.get(i).get("activity").toString() +
-                    ". Instruction: " +
-                    routine_changes.get(i).get("instruction").toString() + ".";
+                "For: " +
+                    infoList.get(i).get("purpose").toString() +
+                    ", go to: " +
+                    infoList.get(i).get("who").toString() +
+                        "call: " +
+                        infoList.get(i).get("phone").toString();
 
-        // NOTE: the medication here is refer to routine_changes.
+        // NOTE: the medication here is refer to feeling.
         viewHolder.medication.setText(display_text);
     }
 
     @Override
     public int getItemCount() {
-        return this.routine_changes.size();
+        return this.infoList.size();
     }
 
 }

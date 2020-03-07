@@ -6,22 +6,24 @@
     android:orientation="horizontal">
 
 
-    <Button
-        android:id="@+id/edit0"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/playlist_edit" />
 
 
     <TextView
         android:id="@+id/my_text_view"
         android:layout_width="372dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
         android:background="@drawable/comment_textview_border"
         android:text="medications info"
         android:gravity="center_vertical"
         android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/edit0"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/playlist_edit" />
 
 
     <Button

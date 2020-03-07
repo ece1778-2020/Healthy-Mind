@@ -1,6 +1,8 @@
 package com.example.e_health_manager;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -47,7 +49,6 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
         this.medicationMapList = medicationMapList;
         this.doctor_note_data = doctor_note_data;
         this.appointment = appointment;
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,17 +83,28 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
 
             }
 
+            // delete button
             if (v.getId() == R.id.del0) {
-                Toast.makeText(context, "Delete medication number " + position, Toast.LENGTH_SHORT).show();
-                medicationMapList.remove(position);
-                Intent intent = new Intent(context, ManualConfirm.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("curr_doctor_note_data", doctor_note_data);
-                intent.putExtra("medicationList", medicationMapList);
-                intent.putExtra("appointment", appointment);
-                intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
-                context.startActivity(intent);
-
+                // Dialog to make user confirm.
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure you want to delete the medication?");
+                builder.setTitle("Alert");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(context, "Delete medication number " + position, Toast.LENGTH_SHORT).show();
+                        medicationMapList.remove(position);
+                        Intent intent = new Intent(context, ManualConfirm.class);
+                        // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("curr_doctor_note_data", doctor_note_data);
+                        intent.putExtra("medicationList", medicationMapList);
+                        intent.putExtra("appointment", appointment);
+                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, null);
+                builder.show();
             }
 
         }
