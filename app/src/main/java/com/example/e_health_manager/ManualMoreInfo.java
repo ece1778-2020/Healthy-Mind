@@ -361,8 +361,6 @@ public class ManualMoreInfo extends AppCompatActivity {
             }
         }
         
-        
-        
         Intent intent = new Intent(this, ManualOwnNotes.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // send list of medications.
