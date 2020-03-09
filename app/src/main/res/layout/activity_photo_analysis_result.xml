@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/keywordList"
-        android:layout_width="398dp"
-        android:layout_height="20dp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -92,7 +92,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText35" />
+                app:layout_constraintTop_toBottomOf="@+id/appointLocationText" />
 
             <TextView
                 android:id="@+id/textView31"
@@ -103,11 +103,11 @@
                 android:text="Dose"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText11"
+                app:layout_constraintStart_toEndOf="@+id/mediNameText3"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
             <EditText
-                android:id="@+id/editText12"
+                android:id="@+id/mediDoseText3"
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
@@ -125,25 +125,25 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText11" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText3" />
 
             <EditText
-                android:id="@+id/editText13"
+                android:id="@+id/mediForText3"
                 android:layout_width="275dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView32"
-                app:layout_constraintTop_toBottomOf="@+id/editText11" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText3" />
 
             <Switch
-                android:id="@+id/switch9"
+                android:id="@+id/mediMornSwitch3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MORN"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText13" />
+                app:layout_constraintTop_toBottomOf="@+id/mediForText3" />
 
             <TextView
                 android:id="@+id/textView39"
@@ -174,7 +174,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText15" />
+                app:layout_constraintTop_toBottomOf="@+id/emergencyText" />
 
             <TextView
                 android:id="@+id/textView36"
@@ -184,7 +184,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText14" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText1" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -194,7 +194,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText17" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText2" />
 
             <TextView
                 android:id="@+id/textView43"
@@ -204,7 +204,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText19" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText3" />
 
             <TextView
                 android:id="@+id/textView48"
@@ -230,7 +230,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
             <EditText
-                android:id="@+id/editText34"
+                android:id="@+id/appointSeeText"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -241,47 +241,47 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
             <EditText
-                android:id="@+id/editText35"
+                android:id="@+id/appointLocationText"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView52"
-                app:layout_constraintTop_toBottomOf="@+id/editText37" />
+                app:layout_constraintTop_toBottomOf="@+id/appointPhoneText" />
 
             <EditText
-                android:id="@+id/editText36"
+                android:id="@+id/appointTimeText"
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView51"
-                app:layout_constraintTop_toBottomOf="@+id/editText39" />
+                app:layout_constraintTop_toBottomOf="@+id/appointReasonText" />
 
             <EditText
-                android:id="@+id/editText37"
+                android:id="@+id/appointPhoneText"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView53"
-                app:layout_constraintTop_toBottomOf="@+id/editText38" />
+                app:layout_constraintTop_toBottomOf="@+id/appointDateText" />
 
             <EditText
-                android:id="@+id/editText38"
+                android:id="@+id/appointDateText"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView50"
-                app:layout_constraintTop_toBottomOf="@+id/editText34" />
+                app:layout_constraintTop_toBottomOf="@+id/appointSeeText" />
 
             <EditText
-                android:id="@+id/editText39"
+                android:id="@+id/appointReasonText"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -299,7 +299,7 @@
                 android:text="Reason:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText34"
+                app:layout_constraintStart_toEndOf="@+id/appointSeeText"
                 app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
             <TextView
@@ -310,7 +310,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText34" />
+                app:layout_constraintTop_toBottomOf="@+id/appointSeeText" />
 
             <TextView
                 android:id="@+id/textView51"
@@ -319,8 +319,8 @@
                 android:text="Time:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText38"
-                app:layout_constraintTop_toBottomOf="@+id/editText39" />
+                app:layout_constraintStart_toEndOf="@+id/appointDateText"
+                app:layout_constraintTop_toBottomOf="@+id/appointReasonText" />
 
             <TextView
                 android:id="@+id/textView52"
@@ -330,7 +330,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText37" />
+                app:layout_constraintTop_toBottomOf="@+id/appointPhoneText" />
 
             <TextView
                 android:id="@+id/textView53"
@@ -340,7 +340,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText38" />
+                app:layout_constraintTop_toBottomOf="@+id/appointDateText" />
 
             <TextView
                 android:id="@+id/textView49"
@@ -355,7 +355,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
             <EditText
-                android:id="@+id/editText29"
+                android:id="@+id/routineInstructionText1"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -367,7 +367,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView49" />
 
             <EditText
-                android:id="@+id/editText28"
+                android:id="@+id/routineActivityText1"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -379,7 +379,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView48" />
 
             <EditText
-                android:id="@+id/editText32"
+                android:id="@+id/routineActivityText4"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -388,10 +388,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText30" />
+                app:layout_constraintTop_toBottomOf="@+id/routineActivityText3" />
 
             <EditText
-                android:id="@+id/editText33"
+                android:id="@+id/routineInstructionText4"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -400,10 +400,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText31" />
+                app:layout_constraintTop_toBottomOf="@+id/routineInstructionText3" />
 
             <EditText
-                android:id="@+id/editText26"
+                android:id="@+id/routineActivityText2"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -412,10 +412,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText28" />
+                app:layout_constraintTop_toBottomOf="@+id/routineActivityText1" />
 
             <EditText
-                android:id="@+id/editText30"
+                android:id="@+id/routineActivityText3"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -424,10 +424,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText26" />
+                app:layout_constraintTop_toBottomOf="@+id/routineActivityText2" />
 
             <EditText
-                android:id="@+id/editText31"
+                android:id="@+id/routineInstructionText3"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -436,10 +436,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText27" />
+                app:layout_constraintTop_toBottomOf="@+id/routineInstructionText2" />
 
             <EditText
-                android:id="@+id/editText27"
+                android:id="@+id/routineInstructionText2"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -448,7 +448,7 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText29" />
+                app:layout_constraintTop_toBottomOf="@+id/routineInstructionText1" />
 
             <TextView
                 android:id="@+id/textView44"
@@ -458,28 +458,28 @@
                 android:text="Do:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText24"
-                app:layout_constraintTop_toBottomOf="@+id/editText23" />
+                app:layout_constraintStart_toEndOf="@+id/feelText4"
+                app:layout_constraintTop_toBottomOf="@+id/feelDoText3" />
 
             <EditText
-                android:id="@+id/editText25"
+                android:id="@+id/feelDoText4"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView44"
-                app:layout_constraintTop_toBottomOf="@+id/editText23" />
+                app:layout_constraintTop_toBottomOf="@+id/feelDoText3" />
 
             <EditText
-                android:id="@+id/editText24"
+                android:id="@+id/feelText4"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView43"
-                app:layout_constraintTop_toBottomOf="@+id/editText19" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText3" />
 
             <TextView
                 android:id="@+id/textView42"
@@ -489,28 +489,28 @@
                 android:text="Do:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText19"
-                app:layout_constraintTop_toBottomOf="@+id/editText18" />
+                app:layout_constraintStart_toEndOf="@+id/feelText3"
+                app:layout_constraintTop_toBottomOf="@+id/feelDoText2" />
 
             <EditText
-                android:id="@+id/editText23"
+                android:id="@+id/feelDoText3"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView42"
-                app:layout_constraintTop_toBottomOf="@+id/editText18" />
+                app:layout_constraintTop_toBottomOf="@+id/feelDoText2" />
 
             <EditText
-                android:id="@+id/editText19"
+                android:id="@+id/feelText3"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView38"
-                app:layout_constraintTop_toBottomOf="@+id/editText17" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText2" />
 
             <TextView
                 android:id="@+id/textView37"
@@ -520,28 +520,28 @@
                 android:text="Do:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText17"
-                app:layout_constraintTop_toBottomOf="@+id/editText16" />
+                app:layout_constraintStart_toEndOf="@+id/feelText2"
+                app:layout_constraintTop_toBottomOf="@+id/feelDoText1" />
 
             <EditText
-                android:id="@+id/editText18"
+                android:id="@+id/feelDoText2"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView37"
-                app:layout_constraintTop_toBottomOf="@+id/editText16" />
+                app:layout_constraintTop_toBottomOf="@+id/feelDoText1" />
 
             <EditText
-                android:id="@+id/editText17"
+                android:id="@+id/feelText2"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView34"
-                app:layout_constraintTop_toBottomOf="@+id/editText14" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText1" />
 
             <TextView
                 android:id="@+id/textView35"
@@ -551,8 +551,8 @@
                 android:text="Do:"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText14"
-                app:layout_constraintTop_toBottomOf="@+id/editText15" />
+                app:layout_constraintStart_toEndOf="@+id/feelText1"
+                app:layout_constraintTop_toBottomOf="@+id/emergencyText" />
 
             <TextView
                 android:id="@+id/textView40"
@@ -561,11 +561,11 @@
                 android:text="Dose"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText20"
+                app:layout_constraintStart_toEndOf="@+id/mediNameText4"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
             <EditText
-                android:id="@+id/editText21"
+                android:id="@+id/mediDoseText4"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -582,53 +582,53 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText20" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText4" />
 
             <EditText
-                android:id="@+id/editText22"
+                android:id="@+id/mediForText4"
                 android:layout_width="275dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView41"
-                app:layout_constraintTop_toBottomOf="@+id/editText20" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText4" />
 
             <Switch
-                android:id="@+id/switch21"
+                android:id="@+id/mediMornSwitch4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MORN"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
+                app:layout_constraintTop_toBottomOf="@+id/mediForText4" />
 
             <Switch
-                android:id="@+id/switch22"
+                android:id="@+id/mediNoonSwitch4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Noon"
-                app:layout_constraintStart_toEndOf="@+id/switch21"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
+                app:layout_constraintStart_toEndOf="@+id/mediMornSwitch4"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText4" />
 
             <Switch
-                android:id="@+id/switch23"
+                android:id="@+id/mediAftSwitch4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AFT"
-                app:layout_constraintStart_toEndOf="@+id/switch22"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
+                app:layout_constraintStart_toEndOf="@+id/mediNoonSwitch4"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText4" />
 
             <Switch
-                android:id="@+id/switch24"
+                android:id="@+id/mediNightSwitch4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="Night"
-                app:layout_constraintStart_toEndOf="@+id/switch23"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
+                app:layout_constraintStart_toEndOf="@+id/mediAftSwitch4"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText4" />
 
             <EditText
-                android:id="@+id/editText20"
+                android:id="@+id/mediNameText4"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -639,31 +639,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
             <Switch
-                android:id="@+id/switch10"
+                android:id="@+id/mediNoonSwitch3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Noon"
-                app:layout_constraintStart_toEndOf="@+id/switch9"
-                app:layout_constraintTop_toBottomOf="@+id/editText13" />
+                app:layout_constraintStart_toEndOf="@+id/mediMornSwitch3"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText3" />
 
             <Switch
-                android:id="@+id/switch11"
+                android:id="@+id/mediAftSwitch3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AFT"
-                app:layout_constraintStart_toEndOf="@+id/switch10"
-                app:layout_constraintTop_toBottomOf="@+id/editText13" />
+                app:layout_constraintStart_toEndOf="@+id/mediNoonSwitch3"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText3" />
 
             <Switch
-                android:id="@+id/switch12"
+                android:id="@+id/mediNightSwitch3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Night"
-                app:layout_constraintStart_toEndOf="@+id/switch11"
-                app:layout_constraintTop_toBottomOf="@+id/editText13" />
+                app:layout_constraintStart_toEndOf="@+id/mediAftSwitch3"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText3" />
 
             <EditText
-                android:id="@+id/editText11"
+                android:id="@+id/mediNameText3"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -683,11 +683,11 @@
                 android:text="Dose"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText8"
+                app:layout_constraintStart_toEndOf="@+id/mediNameText2"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             <EditText
-                android:id="@+id/editText9"
+                android:id="@+id/mediDoseText2"
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
@@ -706,10 +706,10 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText8" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText2" />
 
             <EditText
-                android:id="@+id/editText10"
+                android:id="@+id/mediForText2"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
@@ -718,46 +718,46 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView28"
-                app:layout_constraintTop_toBottomOf="@+id/editText8" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText2" />
 
             <Switch
-                android:id="@+id/switch5"
+                android:id="@+id/mediMornSwitch2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="MORN"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText10" />
+                app:layout_constraintTop_toBottomOf="@+id/mediForText2" />
 
             <Switch
-                android:id="@+id/switch6"
+                android:id="@+id/mediNoonSwitch2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="Noon"
-                app:layout_constraintStart_toEndOf="@+id/switch5"
-                app:layout_constraintTop_toBottomOf="@+id/editText10" />
+                app:layout_constraintStart_toEndOf="@+id/mediMornSwitch2"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText2" />
 
             <Switch
-                android:id="@+id/switch7"
+                android:id="@+id/mediAftSwitch2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="AFT"
-                app:layout_constraintStart_toEndOf="@+id/switch6"
-                app:layout_constraintTop_toBottomOf="@+id/editText10" />
+                app:layout_constraintStart_toEndOf="@+id/mediNoonSwitch2"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText2" />
 
             <Switch
-                android:id="@+id/switch8"
+                android:id="@+id/mediNightSwitch2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="Night"
-                app:layout_constraintStart_toEndOf="@+id/switch7"
-                app:layout_constraintTop_toBottomOf="@+id/editText10" />
+                app:layout_constraintStart_toEndOf="@+id/mediAftSwitch2"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText2" />
 
             <EditText
-                android:id="@+id/editText8"
+                android:id="@+id/mediNameText2"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
@@ -776,7 +776,7 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText5" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText1" />
 
             <TextView
                 android:id="@+id/textView17"
@@ -787,7 +787,7 @@
                 android:text="Dose"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText5"
+                app:layout_constraintStart_toEndOf="@+id/mediNameText1"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <TextView
@@ -803,7 +803,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText4" />
+                app:layout_constraintTop_toBottomOf="@+id/cameDateText" />
 
             <TextView
                 android:id="@+id/textView29"
@@ -818,7 +818,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.238"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch23" />
+                app:layout_constraintTop_toBottomOf="@+id/mediAftSwitch4" />
 
             <TextView
                 android:id="@+id/textView45"
@@ -833,7 +833,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.238"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText24" />
+                app:layout_constraintTop_toBottomOf="@+id/feelText4" />
 
             <TextView
                 android:id="@+id/textView46"
@@ -848,7 +848,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText32" />
+                app:layout_constraintTop_toBottomOf="@+id/routineActivityText4" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -893,8 +893,8 @@
                 android:text="Leave Date"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/editText4"
-                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+                app:layout_constraintStart_toEndOf="@+id/cameDateText"
+                app:layout_constraintTop_toBottomOf="@+id/reasonHosText" />
 
             <TextView
                 android:id="@+id/textView24"
@@ -907,10 +907,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/nameText"
                 android:layout_width="152dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="4dp"
@@ -921,7 +921,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/reasonHosText"
                 android:layout_width="210dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="1dp"
@@ -929,10 +929,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView24"
-                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/leaveDateText"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="2dp"
@@ -941,10 +941,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView23"
-                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+                app:layout_constraintTop_toBottomOf="@+id/reasonHosText" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/cameDateText"
                 android:layout_width="90dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="14dp"
@@ -955,7 +955,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/mediNameText1"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -966,7 +966,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/mediForText1"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -975,10 +975,10 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView16"
-                app:layout_constraintTop_toBottomOf="@+id/editText5" />
+                app:layout_constraintTop_toBottomOf="@+id/mediNameText1" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/mediDoseText1"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
@@ -990,40 +990,40 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/mediMornSwitch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="MORN"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintTop_toBottomOf="@+id/mediForText1" />
 
             <Switch
-                android:id="@+id/switch4"
+                android:id="@+id/mediNightSwitch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Night"
-                app:layout_constraintStart_toEndOf="@+id/switch3"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintStart_toEndOf="@+id/mediAftSwitch1"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText1" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/mediNoonSwitch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Noon"
-                app:layout_constraintStart_toEndOf="@+id/switch1"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintStart_toEndOf="@+id/mediMornSwitch1"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText1" />
 
             <Switch
-                android:id="@+id/switch3"
+                android:id="@+id/mediAftSwitch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="AFT"
-                app:layout_constraintStart_toEndOf="@+id/switch2"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintStart_toEndOf="@+id/mediNoonSwitch1"
+                app:layout_constraintTop_toBottomOf="@+id/mediForText1" />
 
             <View
                 android:id="@+id/divider"
@@ -1033,7 +1033,7 @@
                 android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch3" />
+                app:layout_constraintTop_toBottomOf="@+id/mediAftSwitch1" />
 
             <View
                 android:id="@+id/divider2"
@@ -1044,7 +1044,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch7" />
+                app:layout_constraintTop_toBottomOf="@+id/mediAftSwitch2" />
 
             <View
                 android:id="@+id/divider3"
@@ -1055,10 +1055,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch9" />
+                app:layout_constraintTop_toBottomOf="@+id/mediMornSwitch3" />
 
             <EditText
-                android:id="@+id/editText15"
+                android:id="@+id/emergencyText"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
@@ -1070,24 +1070,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
             <EditText
-                android:id="@+id/editText14"
+                android:id="@+id/feelText1"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView34"
-                app:layout_constraintTop_toBottomOf="@+id/editText15" />
+                app:layout_constraintTop_toBottomOf="@+id/emergencyText" />
 
             <EditText
-                android:id="@+id/editText16"
+                android:id="@+id/feelDoText1"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView35"
-                app:layout_constraintTop_toBottomOf="@+id/editText15" />
+                app:layout_constraintTop_toBottomOf="@+id/emergencyText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

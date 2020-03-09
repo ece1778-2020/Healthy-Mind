@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.Switch;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,12 +21,11 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,13 +34,101 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
 
     private RecyclerView keywordListView;
     GridLayoutManager gridLayoutManager;
+    private ArrayList keywordList;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
     private FirebaseStorage storage;
     private StorageReference storageRef;
 
-    private ArrayList keywordList;
+    //for confirmation form
+    //for personal information
+    private EditText nameText, reasonHosText, cameDateText, leaveDateText;
+    //for medication section
+    private EditText mediNameText1, mediDoseText1, mediForText1;
+    private Switch mediMornSwitch1, mediNoonSwitch1, mediAftSwitch1, mediNightSwitch1;
+    private EditText mediNameText2, mediDoseText2, mediForText2;
+    private Switch mediMornSwitch2, mediNoonSwitch2, mediAftSwitch2, mediNightSwitch2;
+    private EditText mediNameText3, mediDoseText3, mediForText3;
+    private Switch mediMornSwitch3, mediNoonSwitch3, mediAftSwitch3, mediNightSwitch3;
+    private EditText mediNameText4, mediDoseText4, mediForText4;
+    private Switch mediMornSwitch4, mediNoonSwitch4, mediAftSwitch4, mediNightSwitch4;
+    //for feeling section
+    private EditText emergencyText;
+    private EditText feelText1, feelText2, feelText3, feelText4;
+    private EditText feelDoText1, feelDoText2, feelDoText3, feelDoText4;
+    //for routine section
+    private EditText routineActivityText1, routineActivityText2, routineActivityText3, routineActivityText4;
+    private EditText routineInstructionText1, routineInstructionText2, routineInstructionText3, routineInstructionText4;
+    //for appointment section
+    private EditText appointSeeText, appointReasonText, appointDateText, appointTimeText, appointLocationText, appointPhoneText;
+
+    void initializeForm(){
+        //for personal information
+        nameText = findViewById(R.id.nameText);
+        reasonHosText = findViewById(R.id.reasonHosText);
+        cameDateText = findViewById(R.id.cameDateText);
+        leaveDateText = findViewById(R.id.leaveDateText);
+        //for medication section
+        //1
+        mediNameText1 = findViewById(R.id.mediNameText1);
+        mediDoseText1 = findViewById(R.id.mediDoseText1);
+        mediForText1 = findViewById(R.id.mediForText1);
+        mediMornSwitch1 = findViewById(R.id.mediMornSwitch1);
+        mediNoonSwitch1 = findViewById(R.id.mediNoonSwitch1);
+        mediAftSwitch1 = findViewById(R.id.mediAftSwitch1);
+        mediNightSwitch1 = findViewById(R.id.mediNightSwitch1);
+        //2
+        mediNameText2 = findViewById(R.id.mediNameText2);
+        mediDoseText2 = findViewById(R.id.mediDoseText2);
+        mediForText2 = findViewById(R.id.mediForText2);
+        mediMornSwitch2 = findViewById(R.id.mediMornSwitch2);
+        mediNoonSwitch2 = findViewById(R.id.mediNoonSwitch2);
+        mediAftSwitch2 = findViewById(R.id.mediAftSwitch2);
+        mediNightSwitch2 = findViewById(R.id.mediNightSwitch2);
+        //3
+        mediNameText3 = findViewById(R.id.mediNameText3);
+        mediDoseText3 = findViewById(R.id.mediDoseText3);
+        mediForText3 = findViewById(R.id.mediForText3);
+        mediMornSwitch3 = findViewById(R.id.mediMornSwitch3);
+        mediNoonSwitch3 = findViewById(R.id.mediNoonSwitch3);
+        mediAftSwitch3 = findViewById(R.id.mediAftSwitch3);
+        mediNightSwitch3 = findViewById(R.id.mediNightSwitch3);
+        //4
+        mediNameText4 = findViewById(R.id.mediNameText4);
+        mediDoseText4 = findViewById(R.id.mediDoseText4);
+        mediForText4 = findViewById(R.id.mediForText4);
+        mediMornSwitch4 = findViewById(R.id.mediMornSwitch4);
+        mediNoonSwitch4 = findViewById(R.id.mediNoonSwitch4);
+        mediAftSwitch4 = findViewById(R.id.mediAftSwitch4);
+        mediNightSwitch4 = findViewById(R.id.mediNightSwitch4);
+        //for feeling section
+        emergencyText = findViewById(R.id.emergencyText);
+        feelText1 = findViewById(R.id.feelText1);
+        feelText2 = findViewById(R.id.feelText2);
+        feelText3 = findViewById(R.id.feelText3);
+        feelText4 = findViewById(R.id.feelText4);
+        feelDoText1 = findViewById(R.id.feelDoText1);
+        feelDoText2 = findViewById(R.id.feelDoText2);
+        feelDoText3 = findViewById(R.id.feelDoText3);
+        feelDoText4 = findViewById(R.id.feelDoText4);
+        //for routine section
+        routineActivityText1 = findViewById(R.id.routineActivityText1);
+        routineActivityText2 = findViewById(R.id.routineActivityText2);
+        routineActivityText3 = findViewById(R.id.routineActivityText3);
+        routineActivityText4 = findViewById(R.id.routineActivityText4);
+        routineInstructionText1 = findViewById(R.id.routineInstructionText1);
+        routineInstructionText2 = findViewById(R.id.routineInstructionText2);
+        routineInstructionText3 = findViewById(R.id.routineInstructionText3);
+        routineInstructionText4 = findViewById(R.id.routineInstructionText4);
+        //for appointment section
+        appointSeeText = findViewById(R.id.appointSeeText);
+        appointReasonText = findViewById(R.id.appointReasonText);
+        appointDateText = findViewById(R.id.appointDateText);
+        appointTimeText = findViewById(R.id.appointTimeText);
+        appointLocationText = findViewById(R.id.appointLocationText);
+        appointPhoneText = findViewById(R.id.appointPhoneText);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +136,7 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo_analysis_result);
 
         keywordListView = findViewById(R.id.keywordList);
+        initializeForm();
 
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
@@ -55,48 +144,46 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         storageRef = storage.getReference();
 
         keywordList = new ArrayList<String>();
+        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
+        keywordListView.setLayoutManager(gridLayoutManager);
+        //use real photo
+        Intent intent = getIntent();
+        String photoPath = intent.getStringExtra("photoPath");
+        File f = new File(photoPath);
+        Uri uri = Uri.fromFile(f);
 
-//        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-//        keywordListView.setLayoutManager(gridLayoutManager);
-//
-//        //use real photo
-//        Intent intent = getIntent();
-//        String photoPath = intent.getStringExtra("photoPath");
-//        File f = new File(photoPath);
-//        Uri uri = Uri.fromFile(f);
-//
-//        FirebaseVisionImage cuimage = null;
-//        try {
-//            cuimage = FirebaseVisionImage.fromFilePath(this, uri);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        //start analysis
-//        FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
-//
-//        final Task<FirebaseVisionText> result = detector.processImage(cuimage)
-//                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-//                    @Override
-//                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
-//                        //text recognition is done, start analysis
-//                        for (FirebaseVisionText.TextBlock block: firebaseVisionText.getTextBlocks()) {
-//                            String blockText = block.getText();
-//                            blockText = blockText.substring(0, blockText.length() - 1);
-//                            Log.d("Photo Confirm Activity", "This POD is: "+blockText);
-//                            keywordList.add(blockText);
-//                        }
-//                        //analyze result
-//                        analyzeResult(keywordList);
-//                        PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
-//                        keywordListView.setAdapter(newAdapter);
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d("Photo Confirm Activity", "The result of PODs text recognition is fail: "+e);
-//                    }
-//                });
+        FirebaseVisionImage cuimage = null;
+        try {
+            cuimage = FirebaseVisionImage.fromFilePath(this, uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //start analysis
+        FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
+
+        final Task<FirebaseVisionText> result = detector.processImage(cuimage)
+                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                    @Override
+                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                        //text recognition is done, start analysis
+                        for (FirebaseVisionText.TextBlock block: firebaseVisionText.getTextBlocks()) {
+                            String blockText = block.getText();
+                            blockText = blockText.substring(0, blockText.length() - 1);
+                            Log.d("Photo Confirm Activity", "This POD is: "+blockText);
+                            keywordList.add(blockText);
+                        }
+                        //analyze result
+                        analyzeResult(keywordList);
+                        PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
+                        keywordListView.setAdapter(newAdapter);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Photo Confirm Activity", "The result of PODs text recognition is fail: "+e);
+                    }
+                });
     }
 
     void analyzeResult(ArrayList<String> keywordList){
@@ -127,19 +214,23 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         String reasonToHospital = keywordList.get(3).substring(keywordList.get(3).lastIndexOf("have") + 5);
         Log.d("analyzeResult", "The reason to hospital on POD is: "+reasonToHospital);
 
+        //set personal information
+        nameText.setText(name);
+        reasonHosText.setText(reasonToHospital);
+        cameDateText.setText(comeDate);
+        leaveDateText.setText(leaveDate);
+
         //get feelings
         String emergency = null;
         ArrayList feelings = new ArrayList<String>();
         ArrayList feelToDo = new ArrayList<String>();
         if(feelPos-routinePos == 4){
             Log.d("analyzeResult", "The feeling section of this POD is empty");
-        }
-        else if (routinePos-feelPos == 5){
+        } else if (routinePos-feelPos == 5){
             Log.d("analyzeResult", "The feeling section of this POD has only emergency part");
             //find emergency part
             emergency = keywordList.get(feelPos+4);
-        }
-        else{
+        } else{
             Log.d("analyzeResult", "The feeling part of this POD is not empty");
             int numFeelingSet = 0;
             //based on how many items in between startPos and endPos
@@ -156,14 +247,12 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                     if(i == 0){
                         feelings.add(keywordList.get(feelPos+4));
                         feelToDo.add(keywordList.get(feelPos+5));
-                    }
-                    else{
+                    } else{
                         feelings.add(keywordList.get(feelPos+7+(i-1)*2));
                         feelToDo.add(keywordList.get(feelPos+8+(i-1)*2));
                     }
                 }
-            }
-            else{
+            } else{
                 //find feeling part. Firstly, determine how many feelings
                 numFeelingSet = (routinePos - feelPos - 3 - 1)/2;
                 for(int i = 0; i<numFeelingSet; i++){
@@ -205,8 +294,7 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         ArrayList introRoutines = new ArrayList<String>();
         if(appointmentPos-routinePos < 5){
             Log.d("analyzeResult", "The routine section of this POD is empty");
-        }
-        else{
+        } else{
             int numRoutines = (appointmentPos - routinePos - 1 - 2)/2;
             for(int i = 0; i<numRoutines; i++){
                 activityRoutines.add(keywordList.get(routinePos + 3 + i*2));
@@ -251,6 +339,14 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         Log.d("analyzeResult", "The time of appointment of this POD is: "+appointTime);
         Log.d("analyzeResult", "The location of appointment of this POD is: "+appointLoc);
         Log.d("analyzeResult", "The phone of appointment of this POD is: "+appointPhone);
+
+        //set appointment
+        appointSeeText.setText(appointDoc);
+        appointReasonText.setText(appointReason);
+        appointDateText.setText(appointDate);
+        appointTimeText.setText(appointTime);
+        appointLocationText.setText(appointLoc);
+        appointPhoneText.setText(appointPhone);
 
         //Find more info
 
