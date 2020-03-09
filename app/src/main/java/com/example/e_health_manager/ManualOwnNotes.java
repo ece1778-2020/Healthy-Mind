@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,17 +31,8 @@ public class ManualOwnNotes extends AppCompatActivity {
         // callingActivityIntent is from the previous page.
         Intent callingActivityIntent = getIntent();
 
-        ownNotes = findViewById(R.id.ed10);
-
         if (callingActivityIntent != null) {
             doctor_note_data = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("curr_doctor_note_data");
-
-            if (ownNotes.getText().toString().isEmpty()) {
-                doctor_note_data.put("notes", "");
-            } else {
-                doctor_note_data.put("notes", ownNotes.getText().toString());
-            }
-
             appointment = (HashMap<String, Object>) callingActivityIntent.getSerializableExtra("appointment");
             medicationList = (ArrayList<HashMap<String, Object>>) callingActivityIntent.getSerializableExtra("medicationList");
         } else {
@@ -49,6 +41,15 @@ public class ManualOwnNotes extends AppCompatActivity {
     }
 
     public void onClick_next_page(View view) {
+
+        ownNotes = findViewById(R.id.ed10);
+        String notes = ownNotes.getText().toString();
+        if (notes.isEmpty()) {
+            doctor_note_data.put("notes", "");
+        } else {
+            doctor_note_data.put("notes", notes);
+        }
+
         Intent intent = new Intent(this, ManualConfirm.class);
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         // send list of medications.

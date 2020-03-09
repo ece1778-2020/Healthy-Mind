@@ -16,13 +16,11 @@
         android:layout_marginRight="1dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
-        android:text="Appointments I have to go"
+        android:text="Appointment I have to go"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
     <View
@@ -41,8 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:gravity="center"
         android:text="Go see:"
         android:textSize="15dp"
@@ -56,10 +54,10 @@
         android:layout_width="366dp"
         android:layout_height="36dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
         android:layout_marginTop="5dp"
-        android:textSize="15dp"
+        android:layout_marginRight="4dp"
         android:hint="doctor' name"
+        android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@id/name"
         app:layout_constraintTop_toBottomOf="@+id/hline0" />
 
@@ -138,6 +136,7 @@
         android:layout_marginRight="1dp"
         android:gravity="center"
         android:hint="time"
+        android:inputType="time"
         android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@id/at"
         app:layout_constraintTop_toBottomOf="@+id/ed2" />
@@ -188,10 +187,10 @@
         android:layout_height="36dp"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
+        android:inputType="phone"
         android:textSize="15dp"
         app:layout_constraintStart_toEndOf="@id/phone"
         app:layout_constraintTop_toBottomOf="@+id/ed3" />
-    
 
 
     <Button
@@ -209,8 +208,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.01" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

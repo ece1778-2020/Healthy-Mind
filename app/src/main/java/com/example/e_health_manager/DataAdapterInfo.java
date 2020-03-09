@@ -74,7 +74,7 @@ public class DataAdapterInfo extends RecyclerView.Adapter<DataAdapterInfo.ViewHo
             // delete button
             if (v.getId() == R.id.del0) {
 
-                // Dialog to make user confirm.
+                // Dialog to make user confirm delete.
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Are you sure you want to delete the medication?");
                 builder.setTitle("Alert");

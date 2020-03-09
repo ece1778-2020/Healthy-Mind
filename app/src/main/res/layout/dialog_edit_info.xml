@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/date_came_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="5dp"
+        android:focusable="false"
+        android:gravity="start|top"
+        android:hint="Date came to the hospital" />
+
+    <EditText
+        android:id="@+id/date_left_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:focusable="false"
+        android:gravity="start|top"
+        android:hint="Date left the hospital" />
+
+
+    <EditText
+        android:id="@+id/reason_ed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="start|top"
+        android:hint="Reason"
+        android:inputType="textMultiLine" />
+
+
+</LinearLayout>
