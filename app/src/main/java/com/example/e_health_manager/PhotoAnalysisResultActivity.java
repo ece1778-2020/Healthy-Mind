@@ -203,22 +203,20 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         //get name
         String name = keywordList.get(0).split("'")[0];
         Log.d("analyzeResult", "The owner of POD is: "+name);
-
         //get come date and leave date
         String comeDate = keywordList.get(1).split(" ")[5];
         String leaveDate = keywordList.get(1).split(" ")[9];
         Log.d("analyzeResult", "The come date of POD is: "+comeDate);
         Log.d("analyzeResult", "The leave date of POD is: "+leaveDate);
-
         //get why come to hospital
         String reasonToHospital = keywordList.get(3).substring(keywordList.get(3).lastIndexOf("have") + 5);
         Log.d("analyzeResult", "The reason to hospital on POD is: "+reasonToHospital);
-
         //set personal information
         nameText.setText(name);
         reasonHosText.setText(reasonToHospital);
         cameDateText.setText(comeDate);
         leaveDateText.setText(leaveDate);
+
 
         //get feelings
         String emergency = null;
@@ -271,6 +269,9 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                 Log.d("analyzeResult", "The solution to feeling of this POD is: "+feelToDo.get(i));
             }
         }
+        //set feeling section
+        setFeelSection(emergency, feelings, feelToDo);
+
 
         //Find medication
         int numMedication = (feelPos-mediPos-4)/3;
@@ -279,15 +280,18 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         ArrayList mediIntros = new ArrayList<String>();
         Log.d("testing", "analyzeResult: the number of medication is: "+numMedication);
         for(int i = 0; i<numMedication; i++){
-            mediNames.add(keywordList.get(mediPos+4));
-            mediFors.add(keywordList.get(mediPos+5));
-            mediIntros.add(keywordList.get(mediPos+6));
+            mediNames.add(keywordList.get(mediPos+4+i*3));
+            mediFors.add(keywordList.get(mediPos+5+i*3));
+            mediIntros.add(keywordList.get(mediPos+6+i*3));
         }
         for(int i = 0; i<mediNames.size(); i++){
             Log.d("analyzeResult", "The name of medication of this POD is: "+mediNames.get(i));
             Log.d("analyzeResult", "The for of medication of this POD is: "+mediFors.get(i));
             Log.d("analyzeResult", "The intro of medication of this POD is: "+mediIntros.get(i));
         }
+        //set medication section
+        setMedicationSection(mediNames, mediFors, mediIntros);
+
 
         //Find changes to routine
         ArrayList activityRoutines = new ArrayList<String>();
@@ -305,14 +309,11 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                 Log.d("analyzeResult", "The intro of this activity of this POD is: "+introRoutines.get(i));
             }
         }
+        setRoutineSection(activityRoutines, introRoutines);
+
 
         //Find appointment to go
-        String appointDoc = null;
-        String appointReason = null;
-        String appointDate = null;
-        String appointTime = null;
-        String appointLoc = null;
-        String appointPhone = null;
+        String appointDoc = null, appointReason = null, appointDate = null, appointTime = null, appointLoc = null, appointPhone = null;
         for(int i = 1; i<6; i++){
             if(keywordList.get(appointmentPos+i).contains("see") && (keywordList.get(appointmentPos+i).contains("Location") == false)){
                 appointDoc = keywordList.get(appointmentPos + i).substring(keywordList.get(appointmentPos + i).lastIndexOf("see") + 4);
@@ -339,7 +340,6 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         Log.d("analyzeResult", "The time of appointment of this POD is: "+appointTime);
         Log.d("analyzeResult", "The location of appointment of this POD is: "+appointLoc);
         Log.d("analyzeResult", "The phone of appointment of this POD is: "+appointPhone);
-
         //set appointment
         appointSeeText.setText(appointDoc);
         appointReasonText.setText(appointReason);
@@ -348,8 +348,100 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         appointLocationText.setText(appointLoc);
         appointPhoneText.setText(appointPhone);
 
-        //Find more info
 
+        //Find more info
+    }
+
+    void setMedicationSection(ArrayList<String>mediNames, ArrayList<String>mediFors, ArrayList<String>mediIntros){
+        int mediSize = mediNames.size();
+        if(mediNames.size() == 0){
+            mediNameText1.setText("N/A");
+        }
+        else{
+            for(int i = 0; i<mediSize; i++){
+                if(i == 0){
+                    mediNameText1.setText(mediNames.get(i));
+                    mediForText1.setText(mediFors.get(i));
+                    mediDoseText1.setText(mediIntros.get(i));
+                }
+                else if(i == 1){
+                    mediNameText2.setText(mediNames.get(i));
+                    mediForText2.setText(mediFors.get(i));
+                    mediDoseText2.setText(mediIntros.get(i));
+                }
+                else if(i == 2){
+                    mediNameText3.setText(mediNames.get(i));
+                    mediForText3.setText(mediFors.get(i));
+                    mediDoseText3.setText(mediIntros.get(i));
+                }
+                else if(i == 3){
+                    mediNameText4.setText(mediNames.get(i));
+                    mediForText4.setText(mediFors.get(i));
+                    mediDoseText4.setText(mediIntros.get(i));
+                }
+            }
+        }
+    }
+
+    void setFeelSection(String emergency, ArrayList<String> feelings, ArrayList<String> feelToDo){
+        if(emergency == null){
+            emergencyText.setText("");
+        }
+        else{
+            emergencyText.setText(emergency);
+        }
+        int feelSize = feelings.size();
+        if(feelings.size() == 0){
+            feelText1.setText("N/A");
+        }
+        else{
+            for(int i = 0; i<feelSize; i++){
+                if(i == 0){
+                    feelText1.setText(feelings.get(i));
+                    feelDoText1.setText(feelToDo.get(i));
+                }
+                else if(i == 1){
+                    feelText2.setText(feelings.get(i));
+                    feelDoText2.setText(feelToDo.get(i));
+                }
+                else if(i == 2){
+                    feelText3.setText(feelings.get(i));
+                    feelDoText3.setText(feelToDo.get(i));
+                }
+                else if(i == 3){
+                    feelText4.setText(feelings.get(i));
+                    feelDoText4.setText(feelToDo.get(i));
+                }
+            }
+        }
+    }
+
+    void setRoutineSection(ArrayList<String> activityRoutines, ArrayList<String> introRoutines){
+        //routine section is empty
+        if(activityRoutines.size() == 0 && introRoutines.size() == 0){
+            routineActivityText1.setText("N/A");
+        }
+        else{
+            int routineSize = activityRoutines.size();
+            for(int i = 0; i<routineSize; i++){
+                if(i == 0){
+                    routineActivityText1.setText(activityRoutines.get(i));
+                    routineInstructionText1.setText(introRoutines.get(i));
+                }
+                else if(i == 1){
+                    routineActivityText2.setText(activityRoutines.get(i));
+                    routineInstructionText2.setText(introRoutines.get(i));
+                }
+                else if(i == 2){
+                    routineActivityText3.setText(activityRoutines.get(i));
+                    routineInstructionText3.setText(introRoutines.get(i));
+                }
+                else if(i == 3){
+                    routineActivityText4.setText(activityRoutines.get(i));
+                    routineInstructionText4.setText(introRoutines.get(i));
+                }
+            }
+        }
     }
 
 }
