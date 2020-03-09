@@ -23,6 +23,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:text="This is what we got! If it is not accurate, you could edit it"
+        android:textAlignment="textStart"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,9 +32,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
-        android:layout_width="396dp"
-        android:layout_height="460dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="470dp"
         android:fillViewport="true"
         android:padding="10dp"
         android:paddingBottom="100dp"
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.141">
+        app:layout_constraintVertical_bias="0.06999999">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -1116,6 +1116,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="123dp"
+        android:onClick="onClick_cancelResult"
         android:text="CANCEL"
         app:layout_constraintBottom_toTopOf="@+id/keywordList"
         app:layout_constraintStart_toStartOf="parent"
@@ -1128,6 +1129,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="123dp"
+        android:onClick="onClick_submitResult"
         android:text="SUBMIT"
         app:layout_constraintBottom_toTopOf="@+id/keywordList"
         app:layout_constraintEnd_toEndOf="parent"
