@@ -268,8 +268,11 @@ public class ManualConfirm extends AppCompatActivity {
         LayoutInflater inflater = ManualConfirm.this.getLayoutInflater();
         View view_edit_info = inflater.inflate(R.layout.dialog_edit_info, null);
         date_came_ed_re = view_edit_info.findViewById(R.id.date_came_ed);
+        date_came_ed_re.setText(doctor_note_data.get("came_date").toString());
         date_left_ed_re = view_edit_info.findViewById(R.id.date_left_ed);
+        date_left_ed_re.setText(doctor_note_data.get("left_date").toString());
         reason_ed_re = view_edit_info.findViewById(R.id.reason_ed);
+        reason_ed_re.setText(doctor_note_data.get("reason_for_hospital").toString());
         builder.setView(view_edit_info);
         builder.setTitle("Edit information");
 
@@ -347,11 +350,17 @@ public class ManualConfirm extends AppCompatActivity {
         LayoutInflater inflater = ManualConfirm.this.getLayoutInflater();
         View view_edit = inflater.inflate(R.layout.dialog_edit_appointment, null);
         doctor_name = view_edit.findViewById(R.id.doctor_name);
+        doctor_name.setText(appointment.get("doctor").toString());
         appointment_date = view_edit.findViewById(R.id.appointment_date);
+        appointment_date.setText(appointment.get("date").toString());
         appointment_time = view_edit.findViewById(R.id.appointment_time);
+        appointment_time.setText(appointment.get("time").toString());
         reason_ed = view_edit.findViewById(R.id.reason_ed);
+        reason_ed.setText(appointment.get("reason").toString());
         where = view_edit.findViewById(R.id.where);
+        where.setText(appointment.get("location").toString());
         phone_ed = view_edit.findViewById(R.id.phone);
+        phone_ed.setText(appointment.get("phone").toString());
         builder.setView(view_edit);
         builder.setTitle("Edit appointment information");
 
@@ -446,6 +455,7 @@ public class ManualConfirm extends AppCompatActivity {
         LayoutInflater inflater = ManualConfirm.this.getLayoutInflater();
         View view_edit_notes = inflater.inflate(R.layout.dialog_edit_notes, null);
         editNotes = view_edit_notes.findViewById(R.id.edit_notes);
+        editNotes.setText(doctor_note_data.get("notes").toString());
         builder.setView(view_edit_notes);
         builder.setTitle("Edit notes");
 
@@ -469,6 +479,7 @@ public class ManualConfirm extends AppCompatActivity {
         LayoutInflater inflater = ManualConfirm.this.getLayoutInflater();
         View my_view = inflater.inflate(R.layout.dialog_edit_emergency, null);
         emergency = my_view.findViewById(R.id.emergency);
+        emergency.setText(doctor_note_data.get("go_to_emergency_if").toString());
         builder.setView(my_view);
         builder.setTitle("Edit information");
 
