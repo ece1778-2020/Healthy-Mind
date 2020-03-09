@@ -56,47 +56,47 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
 
         keywordList = new ArrayList<String>();
 
-        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-        keywordListView.setLayoutManager(gridLayoutManager);
-
-        //use real photo
-        Intent intent = getIntent();
-        String photoPath = intent.getStringExtra("photoPath");
-        File f = new File(photoPath);
-        Uri uri = Uri.fromFile(f);
-
-        FirebaseVisionImage cuimage = null;
-        try {
-            cuimage = FirebaseVisionImage.fromFilePath(this, uri);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //start analysis
-        FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
-
-        final Task<FirebaseVisionText> result = detector.processImage(cuimage)
-                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-                    @Override
-                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                        //text recognition is done, start analysis
-                        for (FirebaseVisionText.TextBlock block: firebaseVisionText.getTextBlocks()) {
-                            String blockText = block.getText();
-                            blockText = blockText.substring(0, blockText.length() - 1);
-                            Log.d("Photo Confirm Activity", "This POD is: "+blockText);
-                            keywordList.add(blockText);
-                        }
-                        //analyze result
-                        analyzeResult(keywordList);
-                        PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
-                        keywordListView.setAdapter(newAdapter);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("Photo Confirm Activity", "The result of PODs text recognition is fail: "+e);
-                    }
-                });
+//        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
+//        keywordListView.setLayoutManager(gridLayoutManager);
+//
+//        //use real photo
+//        Intent intent = getIntent();
+//        String photoPath = intent.getStringExtra("photoPath");
+//        File f = new File(photoPath);
+//        Uri uri = Uri.fromFile(f);
+//
+//        FirebaseVisionImage cuimage = null;
+//        try {
+//            cuimage = FirebaseVisionImage.fromFilePath(this, uri);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        //start analysis
+//        FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getCloudTextRecognizer();
+//
+//        final Task<FirebaseVisionText> result = detector.processImage(cuimage)
+//                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+//                    @Override
+//                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
+//                        //text recognition is done, start analysis
+//                        for (FirebaseVisionText.TextBlock block: firebaseVisionText.getTextBlocks()) {
+//                            String blockText = block.getText();
+//                            blockText = blockText.substring(0, blockText.length() - 1);
+//                            Log.d("Photo Confirm Activity", "This POD is: "+blockText);
+//                            keywordList.add(blockText);
+//                        }
+//                        //analyze result
+//                        analyzeResult(keywordList);
+//                        PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
+//                        keywordListView.setAdapter(newAdapter);
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.d("Photo Confirm Activity", "The result of PODs text recognition is fail: "+e);
+//                    }
+//                });
     }
 
     void analyzeResult(ArrayList<String> keywordList){
