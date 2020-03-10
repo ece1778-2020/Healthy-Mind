@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -81,12 +83,49 @@ public class DataAdapterFeel extends RecyclerView.Adapter<DataAdapterFeel.ViewHo
             // get the position of the medication clicked.
             final int position = getLayoutPosition();
 
+            // Edit button.
             if (v.getId() == R.id.edit0) {
-                Toast.makeText(context, "you click on the edit button for: " + position, Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                // Get the layout inflater
+                LayoutInflater inflater = LayoutInflater.from(context);
+                View my_view = inflater.inflate(R.layout.dialog_edit_feel, null);
+
+                final EditText feel = my_view.findViewById(R.id.feel);
+                feel.setText(feelingList.get(position).get("feeling").toString());
+
+                final EditText todo = my_view.findViewById(R.id.todo);
+                todo.setText(feelingList.get(position).get("instruction").toString());
+
+                builder.setView(my_view);
+                builder.setTitle("Edit information");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        HashMap<String, Object> new_feel_instruction = new HashMap<>();
+                        new_feel_instruction.put("feeling", feel.getText().toString());
+                        new_feel_instruction.put("instruction", todo.getText().toString());
+
+                        // replace the medication at index position.
+                        feelingList.set(position, new_feel_instruction);
+
+                        Toast.makeText(context, "Edited Successfully!", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(context, ManualConfirm.class);
+                        // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("curr_doctor_note_data", doctor_note_data);
+                        intent.putExtra("medicationList", medicationMapList);
+                        intent.putExtra("appointment", appointment);
+                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, null);
+                builder.show();
 
             }
 
-            // delete button
+            // Delete button
             if (v.getId() == R.id.del0) {
 
                 // Dialog to make user confirm.
@@ -139,9 +178,9 @@ public class DataAdapterFeel extends RecyclerView.Adapter<DataAdapterFeel.ViewHo
         ArrayList<HashMap<String, Object>> feelingList = (ArrayList<HashMap<String, Object>>) this.doctor_note_data.get("feelings_and_instructions");
         String display_text =
                 "I might feel: " +
-                    feelingList.get(i).get("feeling").toString() +
-                    ". What to do: " +
-                    feelingList.get(i).get("instruction").toString() + ".";
+                        feelingList.get(i).get("feeling").toString() +
+                        ". What to do: " +
+                        feelingList.get(i).get("instruction").toString() + ".";
 
         // NOTE: the medication here is refer to feeling.
         viewHolder.medication.setText(display_text);

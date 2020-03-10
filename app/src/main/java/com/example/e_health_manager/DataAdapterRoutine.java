@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,9 +65,45 @@ public class DataAdapterRoutine extends RecyclerView.Adapter<DataAdapterRoutine.
             // get the position of the medication clicked.
             final int position = getLayoutPosition();
 
+            // Edit button.
             if (v.getId() == R.id.edit0) {
-                Toast.makeText(context, "you click on the edit button for: " + position, Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                // Get the layout inflater
+                LayoutInflater inflater = LayoutInflater.from(context);
+                View my_view = inflater.inflate(R.layout.dialog_edit_routine, null);
 
+                final EditText activity = my_view.findViewById(R.id.activity);
+                activity.setText(routine_changes.get(position).get("activity").toString());
+
+                final EditText instruction = my_view.findViewById(R.id.instruction);
+                instruction.setText(routine_changes.get(position).get("instruction").toString());
+
+                builder.setView(my_view);
+                builder.setTitle("Edit information");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        HashMap<String, Object> routine_instruction = new HashMap<>();
+                        routine_instruction.put("activity", activity.getText().toString());
+                        routine_instruction.put("instruction", instruction.getText().toString());
+
+                        // replace the medication at index position.
+                        routine_changes.set(position, routine_instruction);
+
+                        Toast.makeText(context, "Edited Successfully!", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(context, ManualConfirm.class);
+                        // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("curr_doctor_note_data", doctor_note_data);
+                        intent.putExtra("medicationList", medicationMapList);
+                        intent.putExtra("appointment", appointment);
+                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, null);
+                builder.show();
             }
 
 

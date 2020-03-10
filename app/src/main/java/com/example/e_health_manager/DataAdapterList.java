@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHolder> {
@@ -56,6 +59,8 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
         public TextView medication;
         public Button editBtn, delBtn;
 
+        ArrayList<Integer> selectedTimes;
+
         public ViewHolder(View view) {
             super(view);
             // id.my_text_view is in list_layout.
@@ -78,12 +83,90 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
             // get the position of the medication clicked.
             final int position = getLayoutPosition();
 
+            // Edit button.
             if (v.getId() == R.id.edit0) {
-                Toast.makeText(context, "you click on the edit button for: " + position, Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                // Get the layout inflater
+                LayoutInflater inflater = LayoutInflater.from(context);
+                View my_view = inflater.inflate(R.layout.dialog_edit_medications, null);
+                final EditText medication_name = my_view.findViewById(R.id.medication_name);
+                medication_name.setText(medicationMapList.get(position).get("name").toString());
+
+                final EditText dose = my_view.findViewById(R.id.dose);
+                dose.setText(medicationMapList.get(position).get("dose").toString());
+
+                final EditText medication_reason = my_view.findViewById(R.id.medication_reason);
+                medication_reason.setText(medicationMapList.get(position).get("reason").toString());
+
+                builder.setView(my_view);
+                builder.setTitle("Edit medications");
+
+                selectedTimes = new ArrayList<Integer>();
+
+                builder.setMultiChoiceItems(R.array.time_array, null,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked) {
+                                    // If the user checked the item, add it to the selected items
+                                    selectedTimes.add(which);
+                                } else if (selectedTimes.contains(which)) {
+                                    // Else, if the item is already in the array, remove it
+                                    selectedTimes.remove(Integer.valueOf(which));
+                                }
+                            }
+                        });
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        HashMap<String, Object> new_medication = new HashMap<>();
+                        new_medication.put("name", medication_name.getText().toString());
+
+                        new_medication.put("reason", dose.getText().toString());
+
+                        new_medication.put("dose", medication_reason.getText().toString());
+
+                        ArrayList<String> timeList = new ArrayList<>();
+                        if (selectedTimes.contains(0)) {
+                            timeList.add("morning");
+                        }
+                        if (selectedTimes.contains(1)) {
+                            timeList.add("noon");
+                        }
+                        if (selectedTimes.contains(2)) {
+                            timeList.add("afternoon");
+                        }
+                        if (selectedTimes.contains(3)) {
+                            timeList.add("night");
+                        }
+
+                        new_medication.put("time", timeList);
+                        new_medication.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                        // replace the medication at index position.
+                        medicationMapList.set(position, new_medication);
+
+                        Toast.makeText(context, "Edited Successfully!", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(context, ManualConfirm.class);
+                        // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("curr_doctor_note_data", doctor_note_data);
+                        intent.putExtra("medicationList", medicationMapList);
+                        intent.putExtra("appointment", appointment);
+                        intent.putExtra("PARENT_ACTIVITY_REF", "DataAdapterList");
+                        context.startActivity(intent);
+
+                    }
+                });
+                builder.setNegativeButton(android.R.string.no, null);
+                builder.show();
 
             }
 
-            // delete button
+            // delete button.
             if (v.getId() == R.id.del0) {
                 // Dialog to make user confirm.
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
