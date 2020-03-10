@@ -34,8 +34,8 @@ import java.util.regex.Pattern;
 
 public class PhotoAnalysisResultActivity extends AppCompatActivity {
 
-    private RecyclerView keywordListView;
-    GridLayoutManager gridLayoutManager;
+    //private RecyclerView keywordListView;
+    //GridLayoutManager gridLayoutManager;
     private ArrayList keywordList;
 
     private FirebaseAuth mAuth;
@@ -137,7 +137,7 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_analysis_result);
 
-        keywordListView = findViewById(R.id.keywordList);
+        //keywordListView = findViewById(R.id.keywordList);
         initializeForm();
 
         mAuth = FirebaseAuth.getInstance();
@@ -146,8 +146,8 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         storageRef = storage.getReference();
 
         keywordList = new ArrayList<String>();
-        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-        keywordListView.setLayoutManager(gridLayoutManager);
+        //gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
+        //keywordListView.setLayoutManager(gridLayoutManager);
         //use real photo
         Intent intent = getIntent();
         String photoPath = intent.getStringExtra("photoPath");
@@ -176,8 +176,8 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                         }
                         //analyze result
                         analyzeResult(keywordList);
-                        PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
-                        keywordListView.setAdapter(newAdapter);
+                        //PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
+                        //keywordListView.setAdapter(newAdapter);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -201,6 +201,7 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         Log.d("analyzeResult", "The start position of appointment section on POD is: "+appointmentPos);
         Log.d("analyzeResult", "The start position of more info section on POD is: "+moreInfoPos);
         Log.d("analyzeResult", "The end position of POD is: "+endPos);
+
 
         //get name
         String name = keywordList.get(0).split("'")[0];
@@ -276,15 +277,15 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
 
 
         //Find medication
-        int numMedication = (feelPos-mediPos-4)/3;
+        int numMedication = (feelPos-mediPos-5)/4;
         ArrayList mediNames = new ArrayList<String>();
         ArrayList mediFors = new ArrayList<String>();
         ArrayList mediIntros = new ArrayList<String>();
         Log.d("testing", "analyzeResult: the number of medication is: "+numMedication);
         for(int i = 0; i<numMedication; i++){
-            mediNames.add(keywordList.get(mediPos+4+i*3));
-            mediFors.add(keywordList.get(mediPos+5+i*3));
-            mediIntros.add(keywordList.get(mediPos+6+i*3));
+            mediNames.add(keywordList.get(mediPos+5+i*4));
+            mediFors.add(keywordList.get(mediPos+6+i*4));
+            mediIntros.add(keywordList.get(mediPos+7+i*4));
         }
         for(int i = 0; i<mediNames.size(); i++){
             Log.d("analyzeResult", "The name of medication of this POD is: "+mediNames.get(i));

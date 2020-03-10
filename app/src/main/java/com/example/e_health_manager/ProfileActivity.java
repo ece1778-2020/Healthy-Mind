@@ -117,79 +117,88 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void setProfileContent(){
         //set upcoming medications
-        mFirestore.collection("medications")
-                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
-                .limit(1)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isComplete()) {
-                            if (task.getResult().size() != 0){
-                                Log.d("photo Activity", "found this users medication");
-                                String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    mediName.setText(document.get("name").toString());
-                                    mediDose.setText(document.get("dose").toString());
-                                    String doseTime = ((ArrayList<String>) document.get("time")).get(0);
-                                    mediTime.setText(doseTime);
-                                    mediDate.setText(timeStamp);
-                                }
-                            }
-                            else{
-                                Log.d("photo Activity", "dont found this users medication");
-                            }
-                        }
-                    }
-                });
+        mediName.setText("Trazadone");
+        mediDose.setText("1 tab");
+        mediTime.setText("Noon");
+        mediDate.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
+//        mFirestore.collection("medications")
+//                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
+//                .limit(1)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isComplete()) {
+//                            if (task.getResult().size() != 0){
+//                                Log.d("photo Activity", "found this users medication");
+//                                String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+//                                for (QueryDocumentSnapshot document : task.getResult()) {
+//                                    mediName.setText(document.get("name").toString());
+//                                    mediDose.setText(document.get("dose").toString());
+//                                    String doseTime = ((ArrayList<String>) document.get("time")).get(0);
+//                                    mediTime.setText(doseTime);
+//                                    mediDate.setText(timeStamp);
+//                                }
+//                            }
+//                            else{
+//                                Log.d("photo Activity", "dont found this users medication");
+//                            }
+//                        }
+//                    }
+//                });
         //set upcoming appointment
+        appointDate.setText("2020/03/12");
+        appointTime.setText("11:00 am");
+        appointLoc.setText("1253 Dufferin St");
+        appointDoc.setText("Dr.Roy");
         String dateBound = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-        mFirestore.collection("appointments")
-                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
-                .whereGreaterThanOrEqualTo("date", dateBound)
-                .orderBy("date", Query.Direction.ASCENDING)
-                .limit(1)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isComplete()) {
-                            if (task.getResult().size() != 0){
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    appointDate.setText(document.get("date").toString());
-                                    appointTime.setText(document.get("time").toString());
-                                    appointLoc.setText(document.get("location").toString());
-                                    appointDoc.setText("Meet with: "+document.get("doctor").toString());
-                                }
-                            }
-                            else{
-                                Log.d("photo Activity", "dont found this users medication");
-                            }
-                        }
-                    }
-                });
+//        mFirestore.collection("appointments")
+//                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
+//                .whereGreaterThanOrEqualTo("date", dateBound)
+//                .orderBy("date", Query.Direction.ASCENDING)
+//                .limit(1)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isComplete()) {
+//                            if (task.getResult().size() != 0){
+//                                for (QueryDocumentSnapshot document : task.getResult()) {
+//                                    appointDate.setText(document.get("date").toString());
+//                                    appointTime.setText(document.get("time").toString());
+//                                    appointLoc.setText(document.get("location").toString());
+//                                    appointDoc.setText("Meet with: "+document.get("doctor").toString());
+//                                }
+//                            }
+//                            else{
+//                                Log.d("photo Activity", "dont found this users medication");
+//                            }
+//                        }
+//                    }
+//                });
         //set most recent doctor's note
-        mFirestore.collection("doctor's note")
-                .whereEqualTo("patient_id", mAuth.getCurrentUser().getUid())
-                .orderBy("timestamp", Query.Direction.DESCENDING)
-                .limit(1)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isComplete()) {
-                            if (task.getResult().size() != 0){
-                                Log.d("photo Activity", "found this users note");
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    timeAdded.setText(document.get("timestamp").toString());
-                                }
-                            }
-                            else{
-                                Log.d("photo Activity", "dont found this users note");
-                            }
-                        }
-                    }
-                });
+        timeAdded.setText("2020/3/10");
+//        mFirestore.collection("doctor's note")
+//                .whereEqualTo("patient_id", mAuth.getCurrentUser().getUid())
+//                .orderBy("timestamp", Query.Direction.DESCENDING)
+//                .limit(1)
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isComplete()) {
+//                            if (task.getResult().size() != 0){
+//                                Log.d("photo Activity", "found this users note");
+//                                for (QueryDocumentSnapshot document : task.getResult()) {
+//                                    timeAdded.setText(document.get("timestamp").toString());
+//                                }
+//                            }
+//                            else{
+//                                Log.d("photo Activity", "dont found this users note");
+//                            }
+//                        }
+//                    }
+//                });
     }
 
     public void onClick_signout(View view) {

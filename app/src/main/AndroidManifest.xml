@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ManualOwnNotes"></activity>
-        <activity android:name=".PhotoAnalysisResultActivity" />
+        <activity android:name=".PhotoAnalysisResultActivity"
+                  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".AudioConfirmActivity" />
         <activity android:name=".AudioResultActivity" />
         <activity

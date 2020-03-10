@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".PhotoAnalysisResultActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/keywordList"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView12"
         android:layout_width="0dp"
@@ -33,16 +24,14 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
-        android:layout_height="470dp"
+        android:layout_height="550dp"
         android:fillViewport="true"
         android:padding="10dp"
         android:paddingBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/keywordList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.06999999">
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -88,7 +77,6 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="30dp"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1091,7 +1079,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine|textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/textView34"
                 app:layout_constraintTop_toBottomOf="@+id/emergencyText" />
@@ -1114,11 +1102,9 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="123dp"
+        android:layout_marginTop="40dp"
         android:onClick="onClick_cancelResult"
         android:text="CANCEL"
-        app:layout_constraintBottom_toTopOf="@+id/keywordList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
@@ -1126,12 +1112,10 @@
         android:id="@+id/button11"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="123dp"
         android:onClick="onClick_submitResult"
         android:text="SUBMIT"
-        app:layout_constraintBottom_toTopOf="@+id/keywordList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
