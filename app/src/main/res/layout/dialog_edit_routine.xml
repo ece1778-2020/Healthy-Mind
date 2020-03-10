@@ -4,7 +4,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/edit_notes"
+        android:id="@+id/activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -12,7 +12,19 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
         android:gravity="start|top"
-        android:hint="Add additional notes here."
+        android:hint="Activity (i.e. dietary, physical)"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="start|top"
+        android:hint="Instruction"
         android:inputType="textMultiLine" />
 
 </LinearLayout>
