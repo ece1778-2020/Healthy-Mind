@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
@@ -29,14 +30,12 @@ import com.google.firebase.storage.StorageReference;
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PhotoAnalysisResultActivity extends AppCompatActivity {
-
-    //private RecyclerView keywordListView;
-    //GridLayoutManager gridLayoutManager;
-    private ArrayList keywordList;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
@@ -64,6 +63,11 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
     private EditText routineInstructionText1, routineInstructionText2, routineInstructionText3, routineInstructionText4;
     //for appointment section
     private EditText appointSeeText, appointReasonText, appointDateText, appointTimeText, appointLocationText, appointPhoneText;
+
+    //for photo analysis
+    private ArrayList keywordList;
+    String appointID;
+    ArrayList medicationIDs = new ArrayList<String>();
 
     void initializeForm(){
         //for personal information
@@ -137,23 +141,19 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_analysis_result);
 
-        //keywordListView = findViewById(R.id.keywordList);
         initializeForm();
+        keywordList = new ArrayList<String>();
 
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        keywordList = new ArrayList<String>();
-        //gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-        //keywordListView.setLayoutManager(gridLayoutManager);
         //use real photo
         Intent intent = getIntent();
         String photoPath = intent.getStringExtra("photoPath");
         File f = new File(photoPath);
         Uri uri = Uri.fromFile(f);
-
         FirebaseVisionImage cuimage = null;
         try {
             cuimage = FirebaseVisionImage.fromFilePath(this, uri);
@@ -176,8 +176,6 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                         }
                         //analyze result
                         analyzeResult(keywordList);
-                        //PhotoKeywordAdapter newAdapter = new PhotoKeywordAdapter(getApplicationContext(), keywordList);
-                        //keywordListView.setAdapter(newAdapter);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -203,20 +201,21 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         Log.d("analyzeResult", "The end position of POD is: "+endPos);
 
 
+        String patientName, comeDate, leaveDate, reasonToHospital;
         //get name
-        String name = keywordList.get(0).split("'")[0];
-        Log.d("analyzeResult", "The owner of POD is: "+name);
+        patientName = keywordList.get(0).split("'")[0];
+        Log.d("analyzeResult", "The owner of POD is: "+patientName);
         //get come date and leave date
         String[] elements = keywordList.get(1).split(" ");
-        String comeDate = keywordList.get(1).split(" ")[5];
-        String leaveDate = elements[elements.length-1];
+        comeDate = keywordList.get(1).split(" ")[5];
+        leaveDate = elements[elements.length-1];
         Log.d("analyzeResult", "The come date of POD is: "+comeDate);
         Log.d("analyzeResult", "The leave date of POD is: "+leaveDate);
         //get why come to hospital
-        String reasonToHospital = keywordList.get(3).substring(keywordList.get(3).lastIndexOf("have") + 5);
+        reasonToHospital = keywordList.get(3).substring(keywordList.get(3).lastIndexOf("have") + 5);
         Log.d("analyzeResult", "The reason to hospital on POD is: "+reasonToHospital);
         //set personal information
-        nameText.setText(name);
+        nameText.setText(patientName);
         reasonHosText.setText(reasonToHospital);
         cameDateText.setText(comeDate);
         leaveDateText.setText(leaveDate);
@@ -278,10 +277,10 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
 
 
         //Find medication
-        int numMedication = (feelPos-mediPos-5)/4;
         ArrayList mediNames = new ArrayList<String>();
         ArrayList mediFors = new ArrayList<String>();
         ArrayList mediIntros = new ArrayList<String>();
+        int numMedication = (feelPos-mediPos-5)/4;
         Log.d("testing", "analyzeResult: the number of medication is: "+numMedication);
         for(int i = 0; i<numMedication; i++){
             mediNames.add(keywordList.get(mediPos+5+i*4));
@@ -456,7 +455,31 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
     }
 
     public void onClick_submitResult(View view){
-        //store this doctor's note into Firestore
+        //get resukt from edited confirmation form and store this doctor's note into Firestore
+        //store appointment
+        Map<String, Object> appointment = new HashMap<>();
+        appointment.put("user_id", mAuth.getCurrentUser().getUid());
+        appointment.put("date", appointDateText.getText());
+        appointment.put("doctor", appointSeeText.getText());
+        appointment.put("location", appointLocationText.getText());
+        appointment.put("phone", appointPhoneText.getText());
+        appointment.put("reason", appointReasonText.getText());
+        appointment.put("time", appointTimeText.getText());
+        mFirestore.collection("appointments").add(appointment)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        appointID = documentReference.getId();
+                        Log.d("photo analysis", "New appointment has been stored to the firestore with id: "+appointID);
+                    }
+                });
+
+        //store medications
+
+
+        //store doctor note
+        Map<String, Object> doctorNote = new HashMap<>();
+
     }
 
     public String formatAppointDate(String appointDate){
