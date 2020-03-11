@@ -207,8 +207,9 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         String name = keywordList.get(0).split("'")[0];
         Log.d("analyzeResult", "The owner of POD is: "+name);
         //get come date and leave date
+        String[] elements = keywordList.get(1).split(" ");
         String comeDate = keywordList.get(1).split(" ")[5];
-        String leaveDate = keywordList.get(1).split(" ")[9];
+        String leaveDate = elements[elements.length-1];
         Log.d("analyzeResult", "The come date of POD is: "+comeDate);
         Log.d("analyzeResult", "The leave date of POD is: "+leaveDate);
         //get why come to hospital
@@ -336,6 +337,8 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                 appointLoc = keywordList.get(appointmentPos + i).substring(keywordList.get(appointmentPos + i).lastIndexOf(":") + 2);
             }
         }
+        //convert appointment date to required format
+        appointDate = formatAppointDate(appointDate);
         appointPhone = keywordList.get(appointmentPos+5);
         Log.d("analyzeResult", "The doctor of appointment of this POD is: "+appointDoc);
         Log.d("analyzeResult", "The reason of appointment of this POD is: "+appointReason);
@@ -456,4 +459,24 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
         //store this doctor's note into Firestore
     }
 
+    public String formatAppointDate(String appointDate){
+        String formatedDate = null;
+        if(appointDate == null || appointDate.indexOf("/") == -1){
+            return formatedDate;
+        }
+        else{
+            String appoint1 = null, appoint2 = null, appoint3 = null;
+            appoint1 = appointDate.split("/")[0];
+            appoint2 = appointDate.split("/")[1];
+            appoint3 = appointDate.split("/")[2];
+            if(appoint1.length() >= 4){
+                formatedDate = appoint1 + "/" + appoint2 + "/" + appoint3;
+            }
+            else if(appoint3.length() >= 4){
+                formatedDate = appoint3 + "/" + appoint2 + "/" + appoint1;
+            }
+            formatedDate.replace(" ", "");
+            return formatedDate;
+        }
+    }
 }
