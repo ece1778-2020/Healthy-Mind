@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/my_text_view"
-        android:layout_width="365dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="2dp"
         android:background="@drawable/comment_textview_border"
         android:layout_gravity="center"
         android:text="medications info medications info medications info medications info"
