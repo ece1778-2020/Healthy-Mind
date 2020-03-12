@@ -14,12 +14,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
@@ -29,7 +33,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -455,31 +461,301 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
     }
 
     public void onClick_submitResult(View view){
-        //get resukt from edited confirmation form and store this doctor's note into Firestore
+        final String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        //store doctor note
+        Map<String, Object> doctorNote = new HashMap<>();
+        doctorNote.put("appointment_id", appointID);
+        doctorNote.put("came_date", cameDateText.getText().toString());
+        doctorNote.put("go_to_emergency_if", emergencyText.getText().toString());
+        doctorNote.put("hasAudio", false);
+        doctorNote.put("left_date", leaveDateText.getText().toString());
+        doctorNote.put("medication_ids", medicationIDs);
+        doctorNote.put("notes", "");
+        doctorNote.put("reason_for_hospital", reasonHosText.getText().toString());
+        doctorNote.put("timestamp", timestamp);
+        doctorNote.put("user_id", mAuth.getCurrentUser().getUid());
+        //get feelings
+        ArrayList<Map<String, Object>> feelings = new ArrayList<>();
+        if(feelText1.getText().toString().length() > 1){
+            Map<String, Object> feeling = new HashMap<>();
+            feeling.put("feeling", feelText1.getText().toString());
+            feeling.put("instruction", feelDoText1.getText().toString());
+            feelings.add(feeling);
+        }
+        if(feelText2.getText().toString().length() > 1){
+            Map<String, Object> feeling = new HashMap<>();
+            feeling.put("feeling", feelText2.getText().toString());
+            feeling.put("instruction", feelDoText2.getText().toString());
+            feelings.add(feeling);
+        }
+        if(feelText3.getText().toString().length() > 1){
+            Map<String, Object> feeling = new HashMap<>();
+            feeling.put("feeling", feelText3.getText().toString());
+            feeling.put("instruction", feelDoText3.getText().toString());
+            feelings.add(feeling);
+        }
+        if(feelText4.getText().toString().length() > 1){
+            Map<String, Object> feeling = new HashMap<>();
+            feeling.put("feeling", feelText4.getText().toString());
+            feeling.put("instruction", feelDoText4.getText().toString());
+            feelings.add(feeling);
+        }
+        doctorNote.put("feelings_and_instructions", feelings);
+        //get more info
+        ArrayList<Map<String, Object>> moreInfo = new ArrayList<>();
+        doctorNote.put("more_info", moreInfo);
+        //get routines
+        ArrayList<Map<String, Object>> routines = new ArrayList<>();
+        if(routineActivityText1.getText().toString().length() > 1 && routineInstructionText1.getText().toString().length() > 1){
+            Map<String, Object> routine = new HashMap<>();
+            routine.put("activity", routineActivityText1.getText().toString());
+            routine.put("instruction", routineInstructionText1.getText().toString());
+            routines.add(routine);
+        }
+        if(routineActivityText2.getText().toString().length() > 1 && routineInstructionText2.getText().toString().length() > 1){
+            Map<String, Object> routine = new HashMap<>();
+            routine.put("activity", routineActivityText2.getText().toString());
+            routine.put("instruction", routineInstructionText2.getText().toString());
+            routines.add(routine);
+        }
+        if(routineActivityText3.getText().toString().length() > 1 && routineInstructionText3.getText().toString().length() > 1){
+            Map<String, Object> routine = new HashMap<>();
+            routine.put("activity", routineActivityText3.getText().toString());
+            routine.put("instruction", routineInstructionText3.getText().toString());
+            routines.add(routine);
+        }
+        if(routineActivityText4.getText().toString().length() > 1 && routineInstructionText4.getText().toString().length() > 1){
+            Map<String, Object> routine = new HashMap<>();
+            routine.put("activity", routineActivityText4.getText().toString());
+            routine.put("instruction", routineInstructionText4.getText().toString());
+            routines.add(routine);
+        }
+        doctorNote.put("routine_changes", routines);
+        mFirestore.collection("doctor's note").add(doctorNote)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("photo analysis", "saving: New doctor note has been stored to the firestore");
+                    }
+                });
+
+
+
         //store appointment
         Map<String, Object> appointment = new HashMap<>();
         appointment.put("user_id", mAuth.getCurrentUser().getUid());
-        appointment.put("date", appointDateText.getText());
-        appointment.put("doctor", appointSeeText.getText());
-        appointment.put("location", appointLocationText.getText());
-        appointment.put("phone", appointPhoneText.getText());
-        appointment.put("reason", appointReasonText.getText());
-        appointment.put("time", appointTimeText.getText());
+        appointment.put("date", appointDateText.getText().toString());
+        appointment.put("doctor", appointSeeText.getText().toString());
+        appointment.put("location", appointLocationText.getText().toString());
+        appointment.put("phone", appointPhoneText.getText().toString());
+        appointment.put("reason", appointReasonText.getText().toString());
+        appointment.put("time", appointTimeText.getText().toString());
         mFirestore.collection("appointments").add(appointment)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         appointID = documentReference.getId();
-                        Log.d("photo analysis", "New appointment has been stored to the firestore with id: "+appointID);
+                        mFirestore.collection("doctor's note")
+                                .whereEqualTo("timestamp", timestamp)
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isComplete()) {
+                                            if (task.getResult().size() != 0){
+                                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    document.getReference().update("appointment_id", appointID);
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
                     }
                 });
 
+
+
         //store medications
+        if(mediNameText1.getText().toString().length() > 2){
+            Map<String, Object> medication = new HashMap<>();
+            medication.put("dose", mediDoseText1.getText().toString());
+            medication.put("name", mediNameText1.getText().toString());
+            medication.put("reason", mediForText1.getText().toString());
+            medication.put("user_id", mAuth.getCurrentUser().getUid());
+            //get time
+            ArrayList<String> medicationTimes = new ArrayList<>();
+            if(mediMornSwitch1.isChecked()){
+                medicationTimes.add("MORNING");
+            }
+            if(mediNoonSwitch1.isChecked()){
+                medicationTimes.add("NOON");
+            }
+            if(mediAftSwitch1.isChecked()){
+                medicationTimes.add("AFTERNOON");
+            }
+            if(mediNightSwitch1.isChecked()){
+                medicationTimes.add("NIGHT");
+            }
+            medication.put("time", medicationTimes);
+            Task mediTask = mFirestore.collection("medications").add(medication)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            final String mediID = documentReference.getId();
+                            mFirestore.collection("doctor's note")
+                                    .whereEqualTo("timestamp", timestamp)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isComplete()) {
+                                                if (task.getResult().size() != 0){
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        document.getReference().update("medication_ids", FieldValue.arrayUnion(mediID));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+        }
+        if(mediNameText2.getText().toString().length() > 2){
+            Map<String, Object> medication = new HashMap<>();
+            medication.put("dose", mediDoseText2.getText().toString());
+            medication.put("name", mediNameText2.getText().toString());
+            medication.put("reason", mediForText2.getText().toString());
+            medication.put("user_id", mAuth.getCurrentUser().getUid());
+            //get time
+            ArrayList<String> medicationTimes = new ArrayList<>();
+            if(mediMornSwitch2.isChecked()){
+                medicationTimes.add("MORNING");
+            }
+            if(mediNoonSwitch2.isChecked()){
+                medicationTimes.add("NOON");
+            }
+            if(mediAftSwitch2.isChecked()){
+                medicationTimes.add("AFTERNOON");
+            }
+            if(mediNightSwitch2.isChecked()){
+                medicationTimes.add("NIGHT");
+            }
+            medication.put("time", medicationTimes);
+            Task mediTask = mFirestore.collection("medications").add(medication)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            final String mediID = documentReference.getId();
+                            mFirestore.collection("doctor's note")
+                                    .whereEqualTo("timestamp", timestamp)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isComplete()) {
+                                                if (task.getResult().size() != 0){
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        document.getReference().update("medication_ids", FieldValue.arrayUnion(mediID));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+        }
+        if(mediNameText3.getText().toString().length() > 2){
+            Map<String, Object> medication = new HashMap<>();
+            medication.put("dose", mediDoseText3.getText().toString());
+            medication.put("name", mediNameText3.getText().toString());
+            medication.put("reason", mediForText3.getText().toString());
+            medication.put("user_id", mAuth.getCurrentUser().getUid());
+            //get time
+            ArrayList<String> medicationTimes = new ArrayList<>();
+            if(mediMornSwitch3.isChecked()){
+                medicationTimes.add("MORNING");
+            }
+            if(mediNoonSwitch3.isChecked()){
+                medicationTimes.add("NOON");
+            }
+            if(mediAftSwitch3.isChecked()){
+                medicationTimes.add("AFTERNOON");
+            }
+            if(mediNightSwitch3.isChecked()){
+                medicationTimes.add("NIGHT");
+            }
+            medication.put("time", medicationTimes);
+            Task mediTask = mFirestore.collection("medications").add(medication)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            final String mediID = documentReference.getId();
+                            mFirestore.collection("doctor's note")
+                                    .whereEqualTo("timestamp", timestamp)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isComplete()) {
+                                                if (task.getResult().size() != 0){
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        document.getReference().update("medication_ids", FieldValue.arrayUnion(mediID));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+        }
+        if(mediNameText4.getText().toString().length() > 2){
+            Map<String, Object> medication = new HashMap<>();
+            medication.put("dose", mediDoseText4.getText().toString());
+            medication.put("name", mediNameText4.getText().toString());
+            medication.put("reason", mediForText4.getText().toString());
+            medication.put("user_id", mAuth.getCurrentUser().getUid());
+            //get time
+            ArrayList<String> medicationTimes = new ArrayList<>();
+            if(mediMornSwitch4.isChecked()){
+                medicationTimes.add("MORNING");
+            }
+            if(mediNoonSwitch4.isChecked()){
+                medicationTimes.add("NOON");
+            }
+            if(mediAftSwitch4.isChecked()){
+                medicationTimes.add("AFTERNOON");
+            }
+            if(mediNightSwitch4.isChecked()){
+                medicationTimes.add("NIGHT");
+            }
+            medication.put("time", medicationTimes);
+            Task mediTask = mFirestore.collection("medications").add(medication)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            final String mediID = documentReference.getId();
+                            mFirestore.collection("doctor's note")
+                                    .whereEqualTo("timestamp", timestamp)
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isComplete()) {
+                                                if (task.getResult().size() != 0){
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        document.getReference().update("medication_ids", FieldValue.arrayUnion(mediID));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+        }
 
 
-        //store doctor note
-        Map<String, Object> doctorNote = new HashMap<>();
-
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     public String formatAppointDate(String appointDate){
