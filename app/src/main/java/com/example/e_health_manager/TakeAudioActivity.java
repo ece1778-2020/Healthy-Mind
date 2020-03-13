@@ -60,6 +60,7 @@ public class TakeAudioActivity extends AppCompatActivity {
         mediaRecorder = null;
         Toast toast = Toast.makeText(this, "Recording has finished", Toast.LENGTH_SHORT );
         toast.show();
+
         //go to confirm page
         Intent intent = new Intent(this, AudioConfirmActivity.class);
         intent.putExtra("audioLoc", audioLoc);

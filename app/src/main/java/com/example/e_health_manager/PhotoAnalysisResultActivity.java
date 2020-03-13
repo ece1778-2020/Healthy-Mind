@@ -772,7 +772,7 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                 formatedDate = appoint1 + "/" + appoint2 + "/" + appoint3;
             }
             else if(appoint3.length() >= 4){
-                formatedDate = appoint3 + "/" + appoint2 + "/" + appoint1;
+                formatedDate = appoint3 + "/" + appoint1 + "/" + appoint2;
             }
             formatedDate.replace(" ", "");
             return formatedDate;

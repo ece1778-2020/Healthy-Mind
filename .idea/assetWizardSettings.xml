@@ -203,7 +203,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_format_list_bulleted_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_local_hospital_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -213,8 +213,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="018577" />
-                            <entry key="outputName" value="ic_recent_note" />
+                            <entry key="color" value="c32821" />
+                            <entry key="outputName" value="ic_local_hospital" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
                         </option>
