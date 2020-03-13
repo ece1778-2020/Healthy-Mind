@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DoctorNoteDetailActivity"></activity>
+        <activity android:name=".SpeechToTextActivity"></activity>
         <activity android:name=".ManualOwnNotes" />
         <activity
             android:name=".PhotoAnalysisResultActivity"
