@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class SpeechToTextActivity extends AppCompatActivity {
 
-    private TextView audioText;
+    private TextView audioText, indicator;
     private ImageView recordBtn;
 
     private SpeechRecognizer mSpeechRecognizer;
@@ -38,6 +38,7 @@ public class SpeechToTextActivity extends AppCompatActivity {
 
         audioText = findViewById(R.id.text1);
         recordBtn = findViewById(R.id.recordBtn);
+        indicator = findViewById(R.id.indicator);
 
         mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
 
@@ -109,8 +110,11 @@ public class SpeechToTextActivity extends AppCompatActivity {
     public void onClick_startSpeechToText(View view) {
 
         if (isRecording) {
+            // end recording.
             mSpeechRecognizer.stopListening();
+            Toast.makeText(getApplicationContext(), "Speech to text transfer end.", Toast.LENGTH_SHORT).show();
             recordBtn.setImageResource(R.mipmap.ic_mic_off_round);
+            indicator.setText("Not Recording");
             isRecording = false;
         } else {
             Intent mSpeechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -118,8 +122,13 @@ public class SpeechToTextActivity extends AppCompatActivity {
                     RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
                     Locale.getDefault());
+            mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 2100000000);
+            mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 2100000000);
+            mSpeechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 2100000000);
             mSpeechRecognizer.startListening(mSpeechRecognizerIntent);
 
+            Toast.makeText(getApplicationContext(), "Speech to text transfer start.", Toast.LENGTH_SHORT).show();
+            indicator.setText("Recording...");
             recordBtn.setImageResource(R.mipmap.ic_mic_on_round);
             isRecording = true;
         }
