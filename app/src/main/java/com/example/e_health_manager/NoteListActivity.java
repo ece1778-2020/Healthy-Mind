@@ -71,6 +71,11 @@ public class NoteListActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), AddNoteActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+
+                    case R.id.reminder:
+                        startActivity(new Intent(getApplicationContext(), AddAppointmentActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }

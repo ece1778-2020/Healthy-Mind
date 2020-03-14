@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DoctorNoteDetailActivity"></activity>
-        <activity android:name=".SpeechToTextActivity"></activity>
+        <activity android:name=".AddAppointmentActivity"></activity>
+        <activity android:name=".DoctorNoteDetailActivity" />
+        <activity android:name=".SpeechToTextActivity" />
         <activity android:name=".ManualOwnNotes" />
         <activity
             android:name=".PhotoAnalysisResultActivity"
