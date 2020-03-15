@@ -46,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SpeechTranscriptActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -60,6 +61,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <service android:name=".SpeechService" />
     </application>
 
 </manifest>

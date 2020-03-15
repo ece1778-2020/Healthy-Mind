@@ -32,10 +32,9 @@
         android:id="@+id/imageView3"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         android:onClick="onClick_chooseAudio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:srcCompat="@drawable/ic_addbtn" />
@@ -44,10 +43,9 @@
         android:id="@+id/imageView4"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="15dp"
         android:onClick="onClick_chooseManually"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:srcCompat="@drawable/ic_addbtn" />
@@ -62,7 +60,6 @@
         app:itemTextColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
 
@@ -79,7 +76,6 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -118,12 +114,14 @@
     <Button
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:onClick="onClick_transcriptAudio"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Transcript the Audio"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textStyle="bold"
+        android:textSize="17dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
