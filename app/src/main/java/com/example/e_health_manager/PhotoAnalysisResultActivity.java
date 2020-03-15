@@ -540,7 +540,6 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                 });
 
 
-
         //store appointment
         Map<String, Object> appointment = new HashMap<>();
         appointment.put("user_id", mAuth.getCurrentUser().getUid());
@@ -572,7 +571,6 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
                                 });
                     }
                 });
-
 
 
         //store medications

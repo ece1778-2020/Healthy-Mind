@@ -19,6 +19,4 @@
         android:id="@+id/reminder"
         android:icon="@drawable/ic_add_alert"
         android:title="Add" />
-
-
 </menu>
