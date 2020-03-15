@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddAppointmentActivity"></activity>
+        <activity android:name=".AppointmentDetailActivity"></activity>
+        <activity android:name=".AddAppointmentActivity" />
         <activity android:name=".DoctorNoteDetailActivity" />
         <activity android:name=".SpeechToTextActivity" />
         <activity android:name=".ManualOwnNotes" />
@@ -48,7 +49,7 @@
         </activity>
         <activity android:name=".SpeechTranscriptActivity" />
 
-        <receiver android:name=".ReminderBroadcast"/>
+        <receiver android:name=".ReminderBroadcast" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -63,6 +64,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <service android:name=".SpeechService" />
     </application>
 

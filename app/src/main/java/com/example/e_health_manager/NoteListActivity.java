@@ -93,6 +93,12 @@ public class NoteListActivity extends AppCompatActivity {
                     intent.putExtra("noteID", noteID);
                     startActivity(intent);
                 }
+                if(groupPosition == 2){
+                    String appointID = ((HashMap)noteListAdapter.getChild(groupPosition, childPosition)).get("appointID").toString();
+                    Intent intent = new Intent(NoteListActivity.this, AppointmentDetailActivity.class);
+                    intent.putExtra("appointID", appointID);
+                    startActivity(intent);
+                }
                 return true;
             }
         });
@@ -203,6 +209,7 @@ public class NoteListActivity extends AppCompatActivity {
                                     itemHashMap.put("date",document.get("date"));
                                     itemHashMap.put("time",document.get("time"));
                                     itemHashMap.put("location",document.get("location"));
+                                    itemHashMap.put("appointID", document.getId());
                                     appointChildren.add(itemHashMap);
                                 }
                                 listHashMap.put(listDataHeader.get(2), appointChildren);

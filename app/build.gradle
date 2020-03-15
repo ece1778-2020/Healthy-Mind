@@ -94,6 +94,7 @@ dependencies {
     implementation('com.google.auth:google-auth-library-oauth2-http:0.8.0') {
         exclude module: 'httpclient'
     }
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }
 
 task copySecretKey(type: Copy) {
@@ -104,4 +105,3 @@ task copySecretKey(type: Copy) {
     rename secretKey.getName(), "credential.json"
 }
 preBuild.dependsOn(copySecretKey)
-
