@@ -143,7 +143,8 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public void onClick_transcriptAudio(View view) {
-        Intent intent = new Intent(this, SpeechToTextActivity.class);
+        // Intent intent = new Intent(this, SpeechToTextActivity.class);
+        Intent intent = new Intent(this, SpeechTranscriptActivity.class);
         startActivity(intent);
     }
 
