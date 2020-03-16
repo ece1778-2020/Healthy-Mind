@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".transcriptConfirm"></activity>
         <activity android:name=".AppointmentDetailActivity"></activity>
         <activity android:name=".AddAppointmentActivity" />
         <activity android:name=".DoctorNoteDetailActivity" />

@@ -10,8 +10,8 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/grey" >
+        android:background="@color/grey"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/status"
@@ -35,15 +35,14 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
-<!--    <TextView-->
-<!--        android:id="@+id/t1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        android:text="Here"-->
-<!--        android:textSize="25sp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/app_bar" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/t1"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="Here"-->
+    <!--        android:textSize="25sp"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/app_bar" />-->
 
 
     <!--    <TextView-->
@@ -69,22 +68,37 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="560dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/exit"
         app:layout_constraintTop_toBottomOf="@+id/app_bar" />
 
 
     <Button
         android:id="@+id/exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="2dp"
         android:text="exit"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/complete"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/complete"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="2dp"
+        android:text="complete"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/exit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

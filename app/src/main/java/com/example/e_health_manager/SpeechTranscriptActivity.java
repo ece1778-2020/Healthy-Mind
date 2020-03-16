@@ -92,8 +92,10 @@ public class SpeechTranscriptActivity extends AppCompatActivity
     private ResultAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    private TextView t1;
     private Button mExit;
+    private Button mComplete;
+
+    private ArrayList<String> transcriptList = new ArrayList<>();
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -132,8 +134,8 @@ public class SpeechTranscriptActivity extends AppCompatActivity
         mAdapter = new ResultAdapter(results);
         mRecyclerView.setAdapter(mAdapter);
 
-        // t1 = findViewById(R.id.t1);
         mExit = findViewById(R.id.exit);
+        mComplete = findViewById(R.id.complete);
 
         mExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +147,22 @@ public class SpeechTranscriptActivity extends AppCompatActivity
                     mSpeechService = null;
                 }
                 Intent intent = new Intent(getApplicationContext(), AddNoteActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        mComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Stop Cloud Speech API
+                if (mSpeechService != null) {
+                    mSpeechService.removeListener(mSpeechServiceListener);
+                    unbindService(mServiceConnection);
+                    mSpeechService = null;
+                }
+                Intent intent = new Intent(getApplicationContext(), transcriptConfirm.class);
+                intent.putExtra("transcriptList", transcriptList);
                 startActivity(intent);
             }
         });
@@ -163,7 +181,7 @@ public class SpeechTranscriptActivity extends AppCompatActivity
             startVoiceRecorder();
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.RECORD_AUDIO)) {
-            // showPermissionMessageDialog();
+             showPermissionMessageDialog();
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
                     REQUEST_RECORD_AUDIO_PERMISSION);
@@ -205,7 +223,7 @@ public class SpeechTranscriptActivity extends AppCompatActivity
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startVoiceRecorder();
             } else {
-                // showPermissionMessageDialog();
+                 showPermissionMessageDialog();
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -244,11 +262,11 @@ public class SpeechTranscriptActivity extends AppCompatActivity
         }
     }
 
-//    private void showPermissionMessageDialog() {
-//        MessageDialogFragment
-//                .newInstance(getString(R.string.permission_message))
-//                .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
-//    }
+    private void showPermissionMessageDialog() {
+        MessageDialogFragment
+                .newInstance(getString(R.string.permission_message))
+                .show(getSupportFragmentManager(), FRAGMENT_MESSAGE_DIALOG);
+    }
 
     private void showStatus(final boolean hearingVoice) {
         runOnUiThread(new Runnable() {
@@ -257,6 +275,7 @@ public class SpeechTranscriptActivity extends AppCompatActivity
                 mStatus.setTextColor(hearingVoice ? mColorHearing : mColorNotHearing);
                 // disable Exit button.
                 mExit.setEnabled(!hearingVoice);
+                mComplete.setEnabled(!hearingVoice);
             }
         });
     }
@@ -279,12 +298,14 @@ public class SpeechTranscriptActivity extends AppCompatActivity
                             @Override
                             public void run() {
                                 if (isFinal) {
+                                    // Finish one sentence.
                                     mText.setText(null);
+                                    // add to the transcription List only when a sentence is finished.
+                                    transcriptList.add(text);
                                     mAdapter.addResult(text);
                                     mRecyclerView.smoothScrollToPosition(0);
                                 } else {
                                     mText.setText(text);
-                                    // t1.setText(text);
                                 }
                             }
                         });
