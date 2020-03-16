@@ -195,6 +195,7 @@ public class AudioConfirmActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         StorageReference filepath = storageRef.child(user.getUid()).child(timeStamp);
+        Log.d("filepath", filepath.toString());
         Uri uri = Uri.fromFile(fileToPlay);
         StorageTask uploadTask = filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -211,10 +212,13 @@ public class AudioConfirmActivity extends AppCompatActivity {
             // wait until the uploading is complete.
             if (uploadTask.isComplete()) {
                 // Intent intent = new Intent(AudioConfirmActivity.this, ProfileActivity.class);
-                Intent intent = new Intent(AudioConfirmActivity.this, transcriptConfirm.class);
-                intent.putExtra("transcriptList", transcriptList);
 
-                // intent.setData(uri);
+                final Intent intent = new Intent(AudioConfirmActivity.this, transcriptConfirm.class);
+                intent.putExtra("transcriptList", transcriptList);
+                // firebase storage location.
+                intent.putExtra("storageUri", filepath.toString());
+                Log.d("uri", filepath.toString());
+
                 startActivity(intent);
                 break;
             }

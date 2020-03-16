@@ -142,15 +142,46 @@ public class TakeAudioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_audio);
 
+        final ArrayList<String> results = savedInstanceState == null ? null :
+                savedInstanceState.getStringArrayList(STATE_RESULTS);
+
+        if (results != null) {
+            transcriptList.addAll(results);
+        }
+
         recordBtn = findViewById(R.id.recordBtn);
         record_timer = findViewById(R.id.record_timer);
         progressBar = findViewById(R.id.progress_circular);
+        progressBar.setVisibility(View.INVISIBLE);
         hearing = findViewById(R.id.hearingVoice);
+    }
+
+
+    @Override
+    public void onPause() {
+        // When Activity is paused by service, show the progress bar.
+        super.onPause();
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (transcriptList != null) {
+            outState.putStringArrayList(STATE_RESULTS, transcriptList);
+        }
     }
 
     public void onclick_takeAudio(View view) {
 
+        if (hasVoice) {
+            // if there is still voice, cannot click this button.
+            return;
+        }
+
         if (isRecording) {
+            progressBar.setVisibility(View.VISIBLE);
             // Wait until there is no voice (current sentence is finished).
 //            while (true) {
 //                if (mVoiceRecorder) {
@@ -160,8 +191,13 @@ public class TakeAudioActivity extends AppCompatActivity {
 //                }
 //            }
 
-            // it might take some time to stop the voice recorder.
-            progressBar.setVisibility(View.VISIBLE);
+            // Stop the audio recorder.
+            stopRecording();
+            recordBtn.setImageResource(R.mipmap.ic_mic_off_round);
+            recordBtn.setEnabled(false);
+            isRecording = false;
+
+            // it might take some time to stop the voice recorder (i.e. the transcription process).
             // Stop listening to voice
             stopVoiceRecorder();
 
@@ -171,10 +207,8 @@ public class TakeAudioActivity extends AppCompatActivity {
                 unbindService(mServiceConnection);
                 mSpeechService = null;
             }
-            // Stop the audio recorder.
-            stopRecording();
-            recordBtn.setImageResource(R.mipmap.ic_mic_off_round);
-            isRecording = false;
+
+
         } else {
             progressBar.setVisibility(View.INVISIBLE);
 
@@ -217,7 +251,6 @@ public class TakeAudioActivity extends AppCompatActivity {
     }
 
     public void stopRecording() {
-        progressBar.setVisibility(View.VISIBLE);
         record_timer.stop();
 
         mediaRecorder.stop();
@@ -270,12 +303,14 @@ public class TakeAudioActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                // mStatus.setTextColor(hearingVoice ? mColorHearing : mColorNotHearing);
-                // disable Exit button.
-                // mExit.setEnabled(!hearingVoice);
-                // mComplete.setEnabled(!hearingVoice);
                 // Show progress_circular
                 hearing.setVisibility(hearingVoice ? View.VISIBLE : View.INVISIBLE);
+                if (hearingVoice) {
+                    recordBtn.setImageResource(R.mipmap.ic_mic_on_round_disable);
+                } else {
+                    recordBtn.setImageResource(R.mipmap.ic_mic_on_round);
+                }
+
                 hasVoice = hearingVoice;
             }
         });

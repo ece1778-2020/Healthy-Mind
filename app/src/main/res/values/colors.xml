@@ -9,4 +9,5 @@
     <color name="red">#EA5555</color>
     <color name="grey">#ECECEC</color>
     <color name="light_green">#ABF4B1</color>
+    <color name="ic_mic_background_disable">#7D857F</color>
 </resources>
