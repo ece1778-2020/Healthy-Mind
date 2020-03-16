@@ -126,6 +126,9 @@ public class TakeAudioActivity extends AppCompatActivity {
 
                                     // mAdapter.addResult(text);
                                     // mRecyclerView.smoothScrollToPosition(0);
+                                } else if (mVoiceRecorder == null) {
+                                    // didn't finish sentence.
+                                    transcriptList.add(text);
                                 }
                             }
                         });
@@ -214,6 +217,7 @@ public class TakeAudioActivity extends AppCompatActivity {
     }
 
     public void stopRecording() {
+        progressBar.setVisibility(View.VISIBLE);
         record_timer.stop();
 
         mediaRecorder.stop();
