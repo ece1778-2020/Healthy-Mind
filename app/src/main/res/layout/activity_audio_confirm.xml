@@ -73,7 +73,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:onClick="onClick_analyzeAudio"
-        android:text="ANALYZE IT!"
+        android:text="See the transcript"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button6" />

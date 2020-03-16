@@ -30,11 +30,11 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class AudioConfirmActivity extends AppCompatActivity {
 
-    String currentAudioLoc;
     private boolean isPlaying = false;
     private boolean isPaused = false;
     private String currentSeek;
@@ -53,6 +53,9 @@ public class AudioConfirmActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private StorageReference storageRef;
 
+    private String currentAudioLoc;
+    private ArrayList<String> transcriptList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +69,12 @@ public class AudioConfirmActivity extends AppCompatActivity {
         replayBtn = findViewById(R.id.replayBtn);
         seekBar = findViewById(R.id.seekBar);
 
-        Intent intent = getIntent();
-        currentAudioLoc = intent.getStringExtra("audioLoc");
-        Log.d("Audio Confirm Activity", "The location of audio is: "+currentAudioLoc);
+        Intent callingActivityIntent = getIntent();
+        currentAudioLoc = callingActivityIntent.getStringExtra("audioLoc");
+        transcriptList = callingActivityIntent.getStringArrayListExtra("transcriptList");
+        Log.d("Audio Confirm Activity", "The location of audio is: " + currentAudioLoc);
 
-        //allow user to replay the audio
+        // allow user to replay the audio
         fileToPlay = new File(currentAudioLoc);
 
         mediaPlayer = null;
@@ -79,15 +83,14 @@ public class AudioConfirmActivity extends AppCompatActivity {
     public void onClick_replay(View view) {
 
         //isPlaying = true
-        if(isPlaying){
+        if (isPlaying) {
             pauseAudio();
         }
         //isPlaying = false
-        else{
-            if(isPaused){
+        else {
+            if (isPaused) {
                 resumeAudio();
-            }
-            else{
+            } else {
                 startAudio(fileToPlay);
             }
         }
@@ -101,7 +104,7 @@ public class AudioConfirmActivity extends AppCompatActivity {
         seekBarHandler.removeCallbacks(updateSeekBar);
     }
 
-    private void startAudio(File fileToPlay){
+    private void startAudio(File fileToPlay) {
         isPlaying = true;
         isPaused = false;
         replayBtn.setImageResource(R.drawable.ic_pause_circle_outline);
@@ -111,8 +114,9 @@ public class AudioConfirmActivity extends AppCompatActivity {
             mediaPlayer.setDataSource(fileToPlay.getAbsolutePath());
             mediaPlayer.prepare();
             mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (IOException e) { e.printStackTrace(); }
 
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -131,7 +135,7 @@ public class AudioConfirmActivity extends AppCompatActivity {
                 seekBarHandler.postDelayed(this, 100);
             }
         };
-        seekBarHandler.postDelayed(updateSeekBar,0);
+        seekBarHandler.postDelayed(updateSeekBar, 0);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -173,13 +177,13 @@ public class AudioConfirmActivity extends AppCompatActivity {
                 seekBarHandler.postDelayed(this, 100);
             }
         };
-        seekBarHandler.postDelayed(updateSeekBar,0);
+        seekBarHandler.postDelayed(updateSeekBar, 0);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(isPlaying){
+        if (isPlaying) {
             stopAudio();
         }
     }
@@ -203,8 +207,15 @@ public class AudioConfirmActivity extends AppCompatActivity {
                 Log.d("upload picture", "*************it has been completed*****************");
             }
         });
-        while(true){
-            if(uploadTask.isComplete() == true){
+        while (true) {
+            // wait until the uploading is complete.
+            if (uploadTask.isComplete()) {
+                // Intent intent = new Intent(AudioConfirmActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(AudioConfirmActivity.this, transcriptConfirm.class);
+                intent.putExtra("transcriptList", transcriptList);
+
+                // intent.setData(uri);
+                startActivity(intent);
                 break;
             }
         }
@@ -220,7 +231,8 @@ public class AudioConfirmActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Intent intent = new Intent(ctx, TakeAudioActivity.class);
                         startActivity(intent);
-                    }})
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null)
                 .show();
     }

@@ -314,6 +314,30 @@ public class SpeechService extends Service {
         }
     }
 
+
+    /**
+     *  Perform speech recognition directly on an audio file located in Google Cloud Storage.
+     *
+     */
+    public void recognizeInputStreamFromUri(String storageUri) {
+        try {
+            mApi.recognize(
+                    RecognizeRequest.newBuilder()
+                            .setConfig(RecognitionConfig.newBuilder()
+                                    .setEncoding(RecognitionConfig.AudioEncoding.AMR_WB)
+                                    .setLanguageCode("en-US")
+                                    .setSampleRateHertz(16000)
+                                    .build())
+                            .setAudio(RecognitionAudio.newBuilder()
+                                    .setUri(storageUri)
+                                    .build())
+                            .build(),
+                    mFileResponseObserver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private class SpeechBinder extends Binder {
 
         SpeechService getService() {

@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".TakeAudioActivity">
 
+
+    <ImageView
+        android:id="@+id/hearingVoice"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/account_voice"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <Chronometer
         android:id="@+id/record_timer"
         android:layout_width="wrap_content"
@@ -22,7 +35,7 @@
         android:id="@+id/recordBtn"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="105dp"
         android:background="@mipmap/ic_mic_off_round"
         android:onClick="onclick_takeAudio"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,5 +43,13 @@
         app:layout_constraintTop_toBottomOf="@+id/record_timer"
         app:srcCompat="@mipmap/ic_mic_off_round"
         tools:src="@mipmap/ic_mic_off_round" />
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/recordBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

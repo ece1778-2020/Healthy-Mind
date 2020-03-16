@@ -128,6 +128,7 @@ public class VoiceRecorder {
      * Dismisses the currently ongoing utterance.
      */
     public void dismiss() {
+        // mLastVoiceHeardMillis is The timestamp of the last time that voice is heard.
         if (mLastVoiceHeardMillis != Long.MAX_VALUE) {
             mLastVoiceHeardMillis = Long.MAX_VALUE;
             mCallback.onVoiceEnd();
