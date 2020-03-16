@@ -766,6 +766,9 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
             appoint1 = appointDate.split("/")[0];
             appoint2 = appointDate.split("/")[1];
             appoint3 = appointDate.split("/")[2];
+            appoint1 = appoint1.replace(" ", "");
+            appoint2 = appoint2.replace(" ", "");
+            appoint3 = appoint3.replace(" ", "");
             if(appoint1.length() >= 4){
                 formatedDate = appoint1 + "/" + appoint2 + "/" + appoint3;
             }

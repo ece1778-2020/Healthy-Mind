@@ -6,25 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".AppointmentDetailActivity">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView61" />
-
     <TextView
         android:id="@+id/textView56"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="monospace"
         android:text="Go see: "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,9 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="For: "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView56" />
 
@@ -46,9 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="Date: "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
@@ -58,9 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="Time: "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
@@ -70,9 +64,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="Location: "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
@@ -82,9 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="Phone: "
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
@@ -93,8 +89,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:fontFamily="monospace"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView56"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,8 +100,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView57"
         app:layout_constraintTop_toBottomOf="@+id/appointDetailDoc" />
 
@@ -113,8 +111,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView58"
         app:layout_constraintTop_toBottomOf="@+id/appointDetailReason" />
 
@@ -123,8 +122,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView59"
         app:layout_constraintTop_toBottomOf="@+id/appointDetailDate" />
 
@@ -133,8 +133,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView60"
         app:layout_constraintTop_toBottomOf="@+id/appointDetailTime" />
 
@@ -143,8 +144,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
         android:text="TextView"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView61"
         app:layout_constraintTop_toBottomOf="@+id/appointDetailLoc" />
+
+    <fragment
+        android:id="@+id/google_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="369dp"
+        android:layout_height="341dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appointDetailPhone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

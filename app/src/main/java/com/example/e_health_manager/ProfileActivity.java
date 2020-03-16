@@ -55,6 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView appointDoc;
     private TextView timeAdded;
 
+    private String upcomingAppointID = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,35 +154,35 @@ public class ProfileActivity extends AppCompatActivity {
 //                    }
 //                });
         //set upcoming appointment
-        appointDate.setText("2020/03/12");
-        appointTime.setText("11:00 am");
-        appointLoc.setText("1253 Dufferin St");
-        appointDoc.setText("Dr.Roy");
         String dateBound = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-//        mFirestore.collection("appointments")
-//                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
-//                .whereGreaterThanOrEqualTo("date", dateBound)
-//                .orderBy("date", Query.Direction.ASCENDING)
-//                .limit(1)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isComplete()) {
-//                            if (task.getResult().size() != 0){
-//                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                    appointDate.setText(document.get("date").toString());
-//                                    appointTime.setText(document.get("time").toString());
-//                                    appointLoc.setText(document.get("location").toString());
-//                                    appointDoc.setText("Meet with: "+document.get("doctor").toString());
-//                                }
-//                            }
-//                            else{
-//                                Log.d("photo Activity", "dont found this users medication");
-//                            }
-//                        }
-//                    }
-//                });
+        mFirestore.collection("appointments")
+                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
+                .whereGreaterThanOrEqualTo("date", dateBound)
+                .orderBy("date", Query.Direction.ASCENDING)
+                .limit(1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isComplete()) {
+                            if (task.getResult().size() != 0){
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    appointDate.setText(document.get("date").toString());
+                                    appointTime.setText(document.get("time").toString());
+                                    appointLoc.setText(document.get("location").toString());
+                                    appointDoc.setText("Meet with: "+document.get("doctor").toString());
+                                    upcomingAppointID = document.getId();
+                                }
+                            }
+                            else{
+                                appointDate.setText("2020/03/12");
+                                appointTime.setText("11:00 am");
+                                appointLoc.setText("1253 Dufferin St");
+                                appointDoc.setText("Dr.Roy");
+                            }
+                        }
+                    }
+                });
         //set most recent doctor's note
         timeAdded.setText("2020/3/10");
 //        mFirestore.collection("doctor's note")
@@ -211,6 +213,12 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth.signOut();
         //back to main activity
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClick_appointDetail(View view){
+        Intent intent = new Intent(ProfileActivity.this, AppointmentDetailActivity.class);
+        intent.putExtra("appointID", upcomingAppointID);
         startActivity(intent);
     }
 }
