@@ -17,10 +17,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/clickNoteDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:onClick="onClick_NoteDetail"
         android:text="Click to view detail"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -67,7 +68,7 @@
         android:text="time"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/appointDate"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/clickAppointDetail" />
 
     <TextView
         android:id="@+id/appointDate"
@@ -77,10 +78,10 @@
         android:text="date"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+        app:layout_constraintTop_toBottomOf="@+id/clickAppointDetail" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/clickAppointDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

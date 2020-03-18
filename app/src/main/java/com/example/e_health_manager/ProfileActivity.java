@@ -54,8 +54,11 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView appointLoc;
     private TextView appointDoc;
     private TextView timeAdded;
+    private TextView clickNoteDetail;
+    private TextView clickAppointDetail;
 
     private String upcomingAppointID = "";
+    private String recentNoteID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,8 @@ public class ProfileActivity extends AppCompatActivity {
         appointLoc = findViewById(R.id.appointLoc);
         appointDoc = findViewById(R.id.appointDoc);
         timeAdded = findViewById(R.id.timeAdded);
+        clickNoteDetail = findViewById(R.id.clickNoteDetail);
+        clickAppointDetail = findViewById(R.id.clickAppointDetail);
 
         //set profile picture
         StorageReference filepath = storageRef.child("assets").child("profilePic.png");
@@ -175,37 +180,46 @@ public class ProfileActivity extends AppCompatActivity {
                                 }
                             }
                             else{
-                                appointDate.setText("2020/03/12");
-                                appointTime.setText("11:00 am");
-                                appointLoc.setText("1253 Dufferin St");
-                                appointDoc.setText("Dr.Roy");
+                                appointDate.setText("You don't have any appointment yet!");
+                                appointTime.setText("");
+                                appointLoc.setText("");
+                                appointDoc.setText("");
+                                clickAppointDetail.setClickable(false);
+
                             }
                         }
                     }
                 });
         //set most recent doctor's note
-        timeAdded.setText("2020/3/10");
-//        mFirestore.collection("doctor's note")
-//                .whereEqualTo("patient_id", mAuth.getCurrentUser().getUid())
-//                .orderBy("timestamp", Query.Direction.DESCENDING)
-//                .limit(1)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isComplete()) {
-//                            if (task.getResult().size() != 0){
-//                                Log.d("photo Activity", "found this users note");
-//                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                    timeAdded.setText(document.get("timestamp").toString());
-//                                }
-//                            }
-//                            else{
-//                                Log.d("photo Activity", "dont found this users note");
-//                            }
-//                        }
-//                    }
-//                });
+        mFirestore.collection("doctor's note")
+                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isComplete()) {
+                            if (task.getResult().size() != 0){
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String timeStamp = document.get("timestamp").toString();
+                                    recentNoteID = document.getId();
+                                    String date = timeStamp.split("_")[0];
+                                    String time = timeStamp.split("_")[1];
+                                    date = date.substring(0,4)+"/"+date.substring(4,6)+"/"+date.substring(6,8);
+                                    time = time.substring(0,2)+":"+time.substring(2,4);
+                                    timeStamp = date + "  " + time;
+                                    timeAdded.setText(timeStamp);
+                                }
+                            }
+                            else{
+                                timeAdded.setText("You don't have any doctor's note yet!");
+                                clickNoteDetail.setText("");
+                                clickNoteDetail.setClickable(false);
+                            }
+                        }
+                    }
+                });
     }
 
     public void onClick_signout(View view) {
@@ -219,6 +233,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void onClick_appointDetail(View view){
         Intent intent = new Intent(ProfileActivity.this, AppointmentDetailActivity.class);
         intent.putExtra("appointID", upcomingAppointID);
+        startActivity(intent);
+    }
+
+    public void onClick_NoteDetail(View view){
+        Intent intent = new Intent(ProfileActivity.this, DoctorNoteDetailActivity.class);
+        intent.putExtra("noteID", recentNoteID);
         startActivity(intent);
     }
 }
