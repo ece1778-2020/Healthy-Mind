@@ -193,8 +193,8 @@ public class AudioConfirmActivity extends AppCompatActivity {
 
         //store audio into firebase storage
         FirebaseUser user = mAuth.getCurrentUser();
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        StorageReference filepath = storageRef.child(user.getUid()).child(timeStamp);
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        StorageReference filepath = storageRef.child(user.getUid()).child(timestamp);
         Log.d("filepath", filepath.toString());
         Uri uri = Uri.fromFile(fileToPlay);
         StorageTask uploadTask = filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

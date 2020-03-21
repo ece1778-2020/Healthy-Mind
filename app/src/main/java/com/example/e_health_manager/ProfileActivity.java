@@ -143,13 +143,13 @@ public class ProfileActivity extends AppCompatActivity {
 //                        if (task.isComplete()) {
 //                            if (task.getResult().size() != 0){
 //                                Log.d("photo Activity", "found this users medication");
-//                                String timeStamp = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+//                                String timestamp = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
 //                                for (QueryDocumentSnapshot document : task.getResult()) {
 //                                    mediName.setText(document.get("name").toString());
 //                                    mediDose.setText(document.get("dose").toString());
 //                                    String doseTime = ((ArrayList<String>) document.get("time")).get(0);
 //                                    mediTime.setText(doseTime);
-//                                    mediDate.setText(timeStamp);
+//                                    mediDate.setText(timestamp);
 //                                }
 //                            }
 //                            else{
@@ -202,14 +202,14 @@ public class ProfileActivity extends AppCompatActivity {
                         if (task.isComplete()) {
                             if (task.getResult().size() != 0){
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    String timeStamp = document.get("timestamp").toString();
+                                    String timestamp = document.get("timestamp").toString();
                                     recentNoteID = document.getId();
-                                    String date = timeStamp.split("_")[0];
-                                    String time = timeStamp.split("_")[1];
+                                    String date = timestamp.split("_")[0];
+                                    String time = timestamp.split("_")[1];
                                     date = date.substring(0,4)+"/"+date.substring(4,6)+"/"+date.substring(6,8);
                                     time = time.substring(0,2)+":"+time.substring(2,4);
-                                    timeStamp = date + "  " + time;
-                                    timeAdded.setText(timeStamp);
+                                    timestamp = date + "  " + time;
+                                    timeAdded.setText(timestamp);
                                 }
                             }
                             else{

@@ -228,8 +228,8 @@ public class ManualConfirm extends AppCompatActivity {
         doctor_note_data.put("hasAudio", false);
         doctor_note_data.put("appointment_id", appointment_id);
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        doctor_note_data.put("timeStamp", timeStamp);
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        doctor_note_data.put("timestamp", timestamp);
 
         db.collection("doctor's note")
                 .add(doctor_note_data)

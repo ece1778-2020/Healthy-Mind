@@ -68,10 +68,10 @@ public class PhotoConfirmActivity extends AppCompatActivity {
     }
 
     public File createImageFile() throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                timeStamp,  /* prefix */
+                timestamp,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );

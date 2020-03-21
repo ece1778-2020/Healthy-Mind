@@ -92,10 +92,10 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public File createImageFile() throws IOException {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                timeStamp,  /* prefix */
+                timestamp,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
@@ -143,6 +143,7 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public void onClick_transcriptAudio(View view) {
+        // transcript the audio directly, for testing purpose.
         // Intent intent = new Intent(this, SpeechToTextActivity.class);
         Intent intent = new Intent(this, SpeechTranscriptActivity.class);
         startActivity(intent);
