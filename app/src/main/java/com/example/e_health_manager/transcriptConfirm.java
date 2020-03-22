@@ -101,7 +101,8 @@ public class transcriptConfirm extends AppCompatActivity {
         Intent callingActivityIntent = getIntent();
         // the following line is from the audio transcript at the same time. (from AudioConfirmActivity).
         transcriptList = callingActivityIntent.getStringArrayListExtra("transcriptList");
-        firebaseStorageUri = callingActivityIntent.getStringExtra("storageUri");
+        // firebaseStorageUri = callingActivityIntent.getStringExtra("storageUri");
+        firebaseStorageUri = callingActivityIntent.getData().toString();
 
 //        // firebase storage uri.
 //        String storageUri = callingActivityIntent.getStringExtra("storageUri");
@@ -313,7 +314,7 @@ public class transcriptConfirm extends AppCompatActivity {
                     doctorNotesIDSelected.remove(dID);
                     selected.setChecked(false);
                 } else if (doctorNotesIDSelected.size() > 0) {
-                    Toast.makeText(getApplicationContext(), "Cannot attach the audio and transcript to more than one doctor's note.",  Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Cannot attach the audio and transcript to more than one doctor's note.", Toast.LENGTH_SHORT).show();
                     selected.setChecked(false);
                 }
 
@@ -332,7 +333,7 @@ public class transcriptConfirm extends AppCompatActivity {
             HashMap<String, Object> itemHashMap = doctorNoteList.get(i);
             String timestamp = itemHashMap.get("timestamp").toString();
             timestamp = timestamp.split("_")[0];
-            timestamp = timestamp.substring(0,4)+"/"+timestamp.substring(4,6)+"/"+timestamp.substring(6,8);
+            timestamp = timestamp.substring(0, 4) + "/" + timestamp.substring(4, 6) + "/" + timestamp.substring(6, 8);
 
             String displayText = "Added at: "
                     + timestamp
@@ -359,22 +360,23 @@ public class transcriptConfirm extends AppCompatActivity {
 
     public void onClick_exit(View view) {
 
+        // change hasAudio field to true.
         mFirestore.collection("doctor's note")
                 .document(doctorNotesIDSelected.get(0))
                 .update("hasAudio", true);
 
-        // add one field.
+        // add a new or override any existing transcript.
         mFirestore.collection("doctor's note")
                 .document(doctorNotesIDSelected.get(0))
                 .update("transcript_text", transcriptList);
 
-        // add one field.
+        // add a new or override any existing audio path.
         mFirestore.collection("doctor's note")
                 .document(doctorNotesIDSelected.get(0))
                 .update("audio_path", firebaseStorageUri);
 
 
-        Toast.makeText(getApplicationContext(), doctorNotesIDSelected.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), doctorNotesIDSelected.toString(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }

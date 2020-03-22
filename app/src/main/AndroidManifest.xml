@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,8 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".transcriptConfirm"></activity>
-        <activity android:name=".AppointmentDetailActivity"></activity>
+        <activity android:name=".AudioReplay"></activity>
+        <activity android:name=".transcriptConfirm" />
+        <activity android:name=".AppointmentDetailActivity" />
         <activity android:name=".AddAppointmentActivity" />
         <activity android:name=".DoctorNoteDetailActivity" />
         <activity android:name=".SpeechToTextActivity" />
@@ -68,9 +68,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_API_key"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_API_key" />
 
         <service android:name=".SpeechService" />
     </application>

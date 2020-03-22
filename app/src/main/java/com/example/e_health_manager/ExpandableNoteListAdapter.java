@@ -85,7 +85,7 @@ public class ExpandableNoteListAdapter extends BaseExpandableListAdapter {
 
         if(groupPosition == 0){
             if(listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("timestamp").toString() ==
-                    "You don't have any doctor's notes"){
+                    "You don't have any doctor's notes."){
                 child1Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("timestamp").toString();
                 child2Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("comeDate").toString();
                 child3Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("leaveDate").toString();
@@ -105,7 +105,7 @@ public class ExpandableNoteListAdapter extends BaseExpandableListAdapter {
         }
         else if(groupPosition == 1){
             if(listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("name").toString() ==
-                    "You don't have any medications"){
+                    "You don't have any medications."){
                 child1Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("name").toString();
                 child2Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("for").toString();
                 child3Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("dose").toString();
@@ -122,7 +122,7 @@ public class ExpandableNoteListAdapter extends BaseExpandableListAdapter {
         }
         else if(groupPosition == 2){
             if(listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("see").toString() ==
-                    "You don't have any appointments"){
+                    "You don't have any appointments."){
                 child1Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("see").toString();
                 child2Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("date").toString();
                 child3Text = listHashMap.get(listDataHeader.get(groupPosition)).get(childPosition).get("time").toString();

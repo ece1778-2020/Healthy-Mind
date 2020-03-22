@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -37,6 +40,7 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
+    private String audioLoc;
 
     int count;
     int count2;
@@ -51,11 +55,63 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         noteID = intent.getStringExtra("noteID");
+        audioLoc = intent.getStringExtra("audioLoc");
         Log.d("testing", "onCreate: the id of this doctor note is: " + noteID);
 
         noteDetailListView = findViewById(R.id.noteDetailListView);
 
         showSelectedNote();
+
+        noteDetailListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                // Appointments section.
+//                if (groupPosition == 4) {
+//
+//                    String see = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("see").toString();
+//                    if (!see.equals("You don't have any appointments.")) {
+//                        // if there is at least one appointment.
+//                        String appointID = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("appointID").toString();
+//                        Intent intent = new Intent(DoctorNoteDetailActivity.this, AppointmentDetailActivity.class);
+//                        intent.putExtra("appointID", appointID);
+//                        startActivity(intent);
+//                    }
+//
+//                }
+
+                // Replay audio recording.
+                if (groupPosition == 6) {
+
+                    String temp = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("transcriptList").toString();
+                    if (!temp.equals("You didn't record any audio.")) {
+
+
+                        // intent.putExtra("noteID", noteID);
+
+                        mFirestore.collection("doctor's note").document(noteID)
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        Intent intent = new Intent(DoctorNoteDetailActivity.this, AudioReplay.class);
+                                        intent.putExtra("audioLoc", documentSnapshot.get("audio_path").toString());
+                                        startActivity(intent);
+                                    }
+                                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(DoctorNoteDetailActivity.class.toString(), e.toString());
+                            }
+                        });
+
+                    }
+                }
+
+                return true;
+            }
+        });
     }
 
     private void showSelectedNote() {
@@ -67,7 +123,7 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
         detailDataHeader.add("Changes to my routine");
         detailDataHeader.add("Appointment");
         detailDataHeader.add("Additional notes");
-        detailDataHeader.add("Doctor's audio recording");
+        detailDataHeader.add("Doctor's audio transcript and recording");
 
         mFirestore.collection("doctor's note").document(noteID)
                 .get()
@@ -127,17 +183,25 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
 
                             //set audio text.
                             ArrayList<String> transcriptList = (ArrayList<String>) document.get("transcript_text");
+
+                            String display_text = "";
+                            for (String s : transcriptList) {
+                                display_text = display_text.concat(s);
+                                display_text = display_text + ". ";
+                            }
+
                             boolean hasAudio = (boolean) document.get("hasAudio");
 
                             HashMap<String, Object> transcripHashMap = new HashMap<>();
-                            List<HashMap> tL = new ArrayList<>();
+                            List<HashMap> lst1 = new ArrayList<>();
                             if (hasAudio) {
-                                transcripHashMap.put("transcriptList", transcriptList.toString());
+                                transcripHashMap.put("transcriptList", display_text);
                             } else {
                                 transcripHashMap.put("transcriptList", "You didn't record any audio.");
                             }
-                            tL.add(transcripHashMap);
-                            detailHashMap.put(detailDataHeader.get(6), tL);
+                            lst1.add(transcripHashMap);
+
+                            detailHashMap.put(detailDataHeader.get(6), lst1);
 
                             //set medications and appointment
                             List<String> medicationIDs = (List<String>) document.get("medication_ids");
@@ -211,7 +275,7 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
 
                         Log.d("testing", "doctor note: the complete detailHashMap is: " + detailHashMap.toString());
 
-                        //initialize expandable list view
+                        // initialize expandable list view
                         noteDetailAdapter = new ExpandableNoteDetailAdapter(DoctorNoteDetailActivity.this, detailDataHeader, detailHashMap);
                         noteDetailListView.setAdapter(noteDetailAdapter);
                     }

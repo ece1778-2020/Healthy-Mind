@@ -92,7 +92,7 @@ public class NoteListActivity extends AppCompatActivity {
                 if (groupPosition == 0) {
 
                     String timestamp = ((HashMap) noteListAdapter.getChild(groupPosition, childPosition)).get("timestamp").toString();
-                    if (!timestamp.equals("You don't have any doctor's notes")) {
+                    if (!timestamp.equals("You don't have any doctor's notes.")) {
                         // if there is at least one doctor's note.
                         String noteID = ((HashMap) noteListAdapter.getChild(groupPosition, childPosition)).get("noteID").toString();
                         Intent intent = new Intent(NoteListActivity.this, DoctorNoteDetailActivity.class);
@@ -105,7 +105,7 @@ public class NoteListActivity extends AppCompatActivity {
                 if (groupPosition == 2) {
 
                     String see = ((HashMap) noteListAdapter.getChild(groupPosition, childPosition)).get("see").toString();
-                    if (!see.equals("You don't have any appointments")) {
+                    if (!see.equals("You don't have any appointments.")) {
                         // if there is at least one appointment.
                         String appointID = ((HashMap) noteListAdapter.getChild(groupPosition, childPosition)).get("appointID").toString();
                         Intent intent = new Intent(NoteListActivity.this, AppointmentDetailActivity.class);
@@ -150,7 +150,7 @@ public class NoteListActivity extends AppCompatActivity {
                                 initializeMedication();
                             } else {
                                 HashMap<String, Object> itemHashMap = new HashMap<>();
-                                itemHashMap.put("timestamp", "You don't have any doctor's notes");
+                                itemHashMap.put("timestamp", "You don't have any doctor's notes.");
                                 itemHashMap.put("comeDate", "");
                                 itemHashMap.put("leaveDate", "");
                                 itemHashMap.put("reason", "");
@@ -194,7 +194,7 @@ public class NoteListActivity extends AppCompatActivity {
                                 initializeAppointment();
                             } else {
                                 HashMap<String, Object> itemHashMap = new HashMap<>();
-                                itemHashMap.put("name", "You don't have any medications");
+                                itemHashMap.put("name", "You don't have any medications.");
                                 itemHashMap.put("for", "");
                                 itemHashMap.put("dose", "");
                                 itemHashMap.put("time", "");
@@ -230,7 +230,7 @@ public class NoteListActivity extends AppCompatActivity {
                                 noteList.setAdapter(noteListAdapter);
                             } else {
                                 HashMap<String, Object> itemHashMap = new HashMap<>();
-                                itemHashMap.put("see", "You don't have any appointments");
+                                itemHashMap.put("see", "You don't have any appointments.");
                                 itemHashMap.put("date", "");
                                 itemHashMap.put("time", "");
                                 itemHashMap.put("location", "");

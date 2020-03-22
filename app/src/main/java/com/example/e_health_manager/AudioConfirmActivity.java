@@ -223,13 +223,14 @@ public class AudioConfirmActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri audioUri) {
                         intent.setData(audioUri);
+                        startActivity(intent);
                     }
                 });
 
                 // There are three kinds of path to the audio file, figure out which one to use.
-                intent.putExtra("externalStoragePath", currentAudioLoc);
+                // intent.putExtra("externalStoragePath", currentAudioLoc);
 
-                startActivity(intent);
+
                 break;
             }
         }
