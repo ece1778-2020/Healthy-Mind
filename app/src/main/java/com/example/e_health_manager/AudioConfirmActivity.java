@@ -217,7 +217,17 @@ public class AudioConfirmActivity extends AppCompatActivity {
                 intent.putExtra("transcriptList", transcriptList);
                 // firebase storage location.
                 intent.putExtra("storageUri", filepath.toString());
-                Log.d("uri", filepath.toString());
+
+                // firebase DownloadUrl load Uri
+                filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri audioUri) {
+                        intent.setData(audioUri);
+                    }
+                });
+
+                // There are three kinds of path to the audio file, figure out which one to use.
+                intent.putExtra("externalStoragePath", currentAudioLoc);
 
                 startActivity(intent);
                 break;

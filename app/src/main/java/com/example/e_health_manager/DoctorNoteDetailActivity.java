@@ -29,11 +29,11 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
     private List<String> detailDataHeader;
     private HashMap<String, List<HashMap>> detailHashMap;
 
-    List<HashMap>generalChildren = new ArrayList<>();
-    List<HashMap>mediChildren = new ArrayList<>();
-    List<HashMap>feelingChildren = new ArrayList<>();
-    List<HashMap>routineChildren = new ArrayList<>();
-    List<HashMap>appointChildren = new ArrayList<>();
+    List<HashMap> generalChildren = new ArrayList<>();
+    List<HashMap> mediChildren = new ArrayList<>();
+    List<HashMap> feelingChildren = new ArrayList<>();
+    List<HashMap> routineChildren = new ArrayList<>();
+    List<HashMap> appointChildren = new ArrayList<>();
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
@@ -51,14 +51,14 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         noteID = intent.getStringExtra("noteID");
-        Log.d("testing", "onCreate: the id of this doctor note is: "+noteID);
+        Log.d("testing", "onCreate: the id of this doctor note is: " + noteID);
 
         noteDetailListView = findViewById(R.id.noteDetailListView);
 
         showSelectedNote();
     }
 
-    private void showSelectedNote(){
+    private void showSelectedNote() {
         detailDataHeader = new ArrayList<>();
         detailHashMap = new HashMap<>();
         detailDataHeader.add("General Information");
@@ -66,6 +66,8 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
         detailDataHeader.add("Feelings and What to do");
         detailDataHeader.add("Changes to my routine");
         detailDataHeader.add("Appointment");
+        detailDataHeader.add("Additional notes");
+        detailDataHeader.add("Doctor's audio recording");
 
         mFirestore.collection("doctor's note").document(noteID)
                 .get()
@@ -76,40 +78,66 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
                             //set general information
                             HashMap<String, Object> itemHashMap = new HashMap<>();
-                            itemHashMap.put("timestamp",document.get("timestamp"));
-                            itemHashMap.put("comeDate",document.get("came_date"));
-                            itemHashMap.put("leaveDate",document.get("left_date"));
-                            itemHashMap.put("reason",document.get("reason_for_hospital"));
+                            itemHashMap.put("timestamp", document.get("timestamp"));
+                            itemHashMap.put("comeDate", document.get("came_date"));
+                            itemHashMap.put("leaveDate", document.get("left_date"));
+                            itemHashMap.put("reason", document.get("reason_for_hospital"));
                             generalChildren.add(itemHashMap);
                             detailHashMap.put(detailDataHeader.get(0), generalChildren);
                             //set emergency
                             HashMap<String, Object> emerHashMap = new HashMap<>();
-                            emerHashMap.put("emergency",document.get("go_to_emergency_if"));
+                            emerHashMap.put("emergency", document.get("go_to_emergency_if"));
                             feelingChildren.add(emerHashMap);
                             //set feelings
-                            for(HashMap<String, Object> element : (List<HashMap<String, Object>>)document.get("feelings_and_instructions")){
+                            for (HashMap<String, Object> element : (List<HashMap<String, Object>>) document.get("feelings_and_instructions")) {
                                 HashMap<String, Object> feelingHashMap = new HashMap<>();
-                                feelingHashMap.put("feeling",element.get("feeling"));
-                                feelingHashMap.put("instruction",element.get("instruction"));
+                                feelingHashMap.put("feeling", element.get("feeling"));
+                                feelingHashMap.put("instruction", element.get("instruction"));
                                 feelingChildren.add(feelingHashMap);
                             }
                             detailHashMap.put(detailDataHeader.get(2), feelingChildren);
                             //set routines
-                            if(((List<HashMap<String, Object>>)document.get("routine_changes")).size() != 0){
-                                for(HashMap<String, Object> element : (List<HashMap<String, Object>>)document.get("routine_changes")){
+                            if (((List<HashMap<String, Object>>) document.get("routine_changes")).size() != 0) {
+                                for (HashMap<String, Object> element : (List<HashMap<String, Object>>) document.get("routine_changes")) {
                                     HashMap<String, Object> routineHashMap = new HashMap<>();
-                                    routineHashMap.put("activity",element.get("activity"));
-                                    routineHashMap.put("instruction",element.get("instruction"));
+                                    routineHashMap.put("activity", element.get("activity"));
+                                    routineHashMap.put("instruction", element.get("instruction"));
                                     routineChildren.add(routineHashMap);
                                 }
                                 detailHashMap.put(detailDataHeader.get(3), routineChildren);
-                            }
-                            else{
+                            } else {
                                 HashMap<String, Object> routineHashMap = new HashMap<>();
                                 routineHashMap.put("activity", "You don't have to change your routine");
                                 routineChildren.add(routineHashMap);
                                 detailHashMap.put(detailDataHeader.get(3), routineChildren);
                             }
+
+                            //set own notes
+                            String own_notes = document.get("notes").toString();
+                            HashMap<String, Object> ownNotesHashMap = new HashMap<>();
+                            List<HashMap> ownNotes = new ArrayList<>();
+                            if (!own_notes.isEmpty()) {
+                                ownNotesHashMap.put("ownNotes", own_notes);
+                            } else {
+                                ownNotesHashMap.put("ownNotes", "You don't have additional notes.");
+                            }
+                            ownNotes.add(ownNotesHashMap);
+                            detailHashMap.put(detailDataHeader.get(5), ownNotes);
+
+
+                            //set audio text.
+                            ArrayList<String> transcriptList = (ArrayList<String>) document.get("transcript_text");
+                            boolean hasAudio = (boolean) document.get("hasAudio");
+
+                            HashMap<String, Object> transcripHashMap = new HashMap<>();
+                            List<HashMap> tL = new ArrayList<>();
+                            if (hasAudio) {
+                                transcripHashMap.put("transcriptList", transcriptList.toString());
+                            } else {
+                                transcripHashMap.put("transcriptList", "You didn't record any audio.");
+                            }
+                            tL.add(transcripHashMap);
+                            detailHashMap.put(detailDataHeader.get(6), tL);
 
                             //set medications and appointment
                             List<String> medicationIDs = (List<String>) document.get("medication_ids");
@@ -120,13 +148,13 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                 });
     }
 
-    private void fetchMedications(final List<String> medicationIDs, final String appointID){
+    private void fetchMedications(final List<String> medicationIDs, final String appointID) {
 
         count2 = 0;
 
-        for(count = 0; count<medicationIDs.size(); count++){
+        for (count = 0; count < medicationIDs.size(); count++) {
             String mediid = medicationIDs.get(count);
-            Log.d("testing", "onCreate: the id of this doctor note medication is: "+mediid);
+            Log.d("testing", "onCreate: the id of this doctor note medication is: " + mediid);
             mFirestore.collection("medications").document(mediid)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -134,26 +162,25 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             DocumentSnapshot document = task.getResult();
                             HashMap<String, Object> mediHashMap = new HashMap<>();
-                            mediHashMap.put("name",document.get("name"));
-                            mediHashMap.put("dose",document.get("dose"));
-                            mediHashMap.put("reason",document.get("reason"));
-                            if(((ArrayList<String>)document.get("time")).size() != 0){
+                            mediHashMap.put("name", document.get("name"));
+                            mediHashMap.put("dose", document.get("dose"));
+                            mediHashMap.put("reason", document.get("reason"));
+                            if (((ArrayList<String>) document.get("time")).size() != 0) {
                                 String dosetime = "";
-                                for(String element : (ArrayList<String>)document.get("time")){
+                                for (String element : (ArrayList<String>) document.get("time")) {
                                     element = element.toLowerCase();
-                                    element = element.substring(0,1).toUpperCase() + element.substring(1);
+                                    element = element.substring(0, 1).toUpperCase() + element.substring(1);
                                     dosetime = dosetime + element + ", ";
                                 }
-                                dosetime = dosetime.substring(0,dosetime.length()-2);
-                                mediHashMap.put("time",dosetime);
-                            }
-                            else{
-                                mediHashMap.put("time","Take it as needed");
+                                dosetime = dosetime.substring(0, dosetime.length() - 2);
+                                mediHashMap.put("time", dosetime);
+                            } else {
+                                mediHashMap.put("time", "Take it as needed");
                             }
                             mediChildren.add(mediHashMap);
                             //last medication has been fetched
                             count2 = count2 + 1;
-                            if(count2 == medicationIDs.size()){
+                            if (count2 == medicationIDs.size()) {
                                 Log.d("testing", "doctor note: start fetch appointment");
                                 detailHashMap.put(detailDataHeader.get(1), mediChildren);
                                 //set appointment
@@ -164,8 +191,8 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void fetchAppointment(String appointID){
-        Log.d("testing", "doctor note: the appointID is: "+appointID);
+    private void fetchAppointment(String appointID) {
+        Log.d("testing", "doctor note: the appointID is: " + appointID);
         mFirestore.collection("appointments").document(appointID)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -173,16 +200,16 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot document = task.getResult();
                         HashMap<String, Object> appointHashMap = new HashMap<>();
-                        appointHashMap.put("date",document.get("date"));
-                        appointHashMap.put("doctor",document.get("doctor"));
-                        appointHashMap.put("location",document.get("location"));
-                        appointHashMap.put("phone",document.get("phone"));
-                        appointHashMap.put("reason",document.get("reason"));
-                        appointHashMap.put("time",document.get("time"));
+                        appointHashMap.put("date", document.get("date"));
+                        appointHashMap.put("doctor", document.get("doctor"));
+                        appointHashMap.put("location", document.get("location"));
+                        appointHashMap.put("phone", document.get("phone"));
+                        appointHashMap.put("reason", document.get("reason"));
+                        appointHashMap.put("time", document.get("time"));
                         appointChildren.add(appointHashMap);
                         detailHashMap.put(detailDataHeader.get(4), appointChildren);
 
-                        Log.d("testing", "doctor note: the complete detailHashMap is: "+detailHashMap.toString());
+                        Log.d("testing", "doctor note: the complete detailHashMap is: " + detailHashMap.toString());
 
                         //initialize expandable list view
                         noteDetailAdapter = new ExpandableNoteDetailAdapter(DoctorNoteDetailActivity.this, detailDataHeader, detailHashMap);

@@ -4,19 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="1dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="2dp"
         android:background="@color/grey"
-        android:text="You text."
-        android:textSize="20sp" />
+        android:text="Your transcript text."
+        android:textSize="19sp" />
+
+    <Button
+        android:id="@+id/edit0"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/playlist_edit" />
+
+    <Button
+        android:id="@+id/del0"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/trash_can"/>
 
 </LinearLayout>
 

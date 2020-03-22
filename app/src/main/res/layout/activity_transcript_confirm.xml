@@ -11,22 +11,63 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="1dp"
+        android:layout_marginEnd="5dp"
         android:gravity="center"
         android:text="Transcript"
-        android:textSize="25dp"
+        android:textSize="23sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:gravity="center_vertical"
+        android:text="Please review the transcript, you can edit or delete any item in the following list."
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="610dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toTopOf="@id/title3"
+        app:layout_constraintTop_toBottomOf="@id/title2" />
+
+
+
+
+    <TextView
+        android:id="@+id/title3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="3dp"
+        android:gravity="center_vertical"
+        android:text="Attach the audio recording and transcript to a doctor note."
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView_doctor_notes"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_doctor_notes"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@id/exit"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title3" />
 
 
     <Button
@@ -34,8 +75,8 @@
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_marginBottom="2dp"
-        android:text="exit"
         android:onClick="onClick_exit"
+        android:text="submit"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

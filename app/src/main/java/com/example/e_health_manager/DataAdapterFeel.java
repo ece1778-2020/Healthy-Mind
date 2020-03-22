@@ -130,7 +130,7 @@ public class DataAdapterFeel extends RecyclerView.Adapter<DataAdapterFeel.ViewHo
 
                 // Dialog to make user confirm.
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Are you sure you want to delete the medication?");
+                builder.setMessage("Are you sure you want to delete this item?");
                 builder.setTitle("Alert");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
