@@ -21,9 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:background="@color/grey"
         android:onClick="onClick_NoteDetail"
         android:text="Click to view detail"
-        android:background="@color/grey"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:text="MOST RECENT DR NOTE"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
@@ -47,7 +47,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appointDoc"
         app:srcCompat="@drawable/ic_recent_note" />
@@ -110,7 +110,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="12dp"
         android:onClick="onClick_signout"
         android:text="SIGN OUT"
@@ -252,11 +252,38 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="75dp"
-        android:visibility="invisible"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/playlist_music_green"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20"
-        android:background="@drawable/music_note"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+
+    <TextView
+        android:id="@+id/audio_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:text="AUDIO RECORDING AND TRANSCRIPT"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+
+    <TextView
+        android:id="@+id/clickAudioDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/grey"
+        android:text="Click to view detail"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/audio_title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

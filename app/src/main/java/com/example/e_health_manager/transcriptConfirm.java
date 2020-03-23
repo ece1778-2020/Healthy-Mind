@@ -360,21 +360,27 @@ public class transcriptConfirm extends AppCompatActivity {
 
     public void onClick_exit(View view) {
 
-        // change hasAudio field to true.
-        mFirestore.collection("doctor's note")
-                .document(doctorNotesIDSelected.get(0))
-                .update("hasAudio", true);
+        if (doctorNotesIDSelected.size() == 0) {
+            // if there is no existing doctor notes.
+            // store to some extra database.
 
-        // add a new or override any existing transcript.
-        mFirestore.collection("doctor's note")
-                .document(doctorNotesIDSelected.get(0))
-                .update("transcript_text", transcriptList);
+        } else if (doctorNotesIDSelected.size() == 1) {
+            // change hasAudio field to true.
+            mFirestore.collection("doctor's note")
+                    .document(doctorNotesIDSelected.get(0))
+                    .update("hasAudio", true);
 
-        // add a new or override any existing audio path.
-        mFirestore.collection("doctor's note")
-                .document(doctorNotesIDSelected.get(0))
-                .update("audio_path", firebaseStorageUri);
+            // add a new or override any existing transcript.
+            mFirestore.collection("doctor's note")
+                    .document(doctorNotesIDSelected.get(0))
+                    .update("transcript_text", transcriptList);
 
+            // add a new or override any existing audio path.
+            mFirestore.collection("doctor's note")
+                    .document(doctorNotesIDSelected.get(0))
+                    .update("audio_path", firebaseStorageUri);
+
+        }
 
         //Toast.makeText(getApplicationContext(), doctorNotesIDSelected.toString(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ProfileActivity.class);
