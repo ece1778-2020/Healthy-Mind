@@ -222,7 +222,8 @@ public class AudioConfirmActivity extends AppCompatActivity {
                 filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri audioUri) {
-                        intent.setData(audioUri);
+                        intent.putExtra("storageUri", audioUri.toString());
+                        // intent.setData(audioUri);
                         startActivity(intent);
                     }
                 });

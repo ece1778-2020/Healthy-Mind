@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,8 +102,8 @@ public class transcriptConfirm extends AppCompatActivity {
         Intent callingActivityIntent = getIntent();
         // the following line is from the audio transcript at the same time. (from AudioConfirmActivity).
         transcriptList = callingActivityIntent.getStringArrayListExtra("transcriptList");
-        // firebaseStorageUri = callingActivityIntent.getStringExtra("storageUri");
-        firebaseStorageUri = callingActivityIntent.getData().toString();
+        firebaseStorageUri = callingActivityIntent.getStringExtra("storageUri");
+        // firebaseStorageUri = callingActivityIntent.getData().toString();
 
 //        // firebase storage uri.
 //        String storageUri = callingActivityIntent.getStringExtra("storageUri");
@@ -209,6 +210,8 @@ public class transcriptConfirm extends AppCompatActivity {
                 // delete button.
                 if (v.getId() == R.id.del0) {
 
+                    final boolean is_deleted = false;
+
                     // Dialog to make user confirm.
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("Are you sure you want to delete this item?");
@@ -220,14 +223,15 @@ public class transcriptConfirm extends AppCompatActivity {
 
                             // update doctor_note_data and send it back.
                             transcriptList.remove(position);
-
                             Intent intent = new Intent(context, transcriptConfirm.class);
+                            intent.putExtra("storageUri", firebaseStorageUri);
                             intent.putExtra("transcriptList", transcriptList);
                             context.startActivity(intent);
                         }
                     });
                     builder.setNegativeButton(android.R.string.no, null);
                     builder.show();
+
 
                 }
 
