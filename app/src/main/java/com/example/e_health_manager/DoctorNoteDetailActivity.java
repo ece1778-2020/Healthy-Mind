@@ -87,14 +87,13 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                     if (!temp.equals("You didn't record any audio.")) {
 
 
-                        // intent.putExtra("noteID", noteID);
-
                         mFirestore.collection("doctor's note").document(noteID)
                                 .get()
                                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Intent intent = new Intent(DoctorNoteDetailActivity.this, AudioReplay.class);
+                                        intent.putExtra("noteID", noteID);
                                         intent.putExtra("audioLoc", documentSnapshot.get("audio_path").toString());
                                         startActivity(intent);
                                     }
