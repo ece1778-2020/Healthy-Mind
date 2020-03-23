@@ -180,20 +180,20 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                             detailHashMap.put(detailDataHeader.get(5), ownNotes);
 
 
-                            //set audio text.
-                            ArrayList<String> transcriptList = (ArrayList<String>) document.get("transcript_text");
-
-                            String display_text = "";
-                            for (String s : transcriptList) {
-                                display_text = display_text.concat(s);
-                                display_text = display_text + ". ";
-                            }
-
                             boolean hasAudio = (boolean) document.get("hasAudio");
 
                             HashMap<String, Object> transcripHashMap = new HashMap<>();
                             List<HashMap> lst1 = new ArrayList<>();
                             if (hasAudio) {
+                                // set audio text.
+                                ArrayList<String> transcriptList = (ArrayList<String>) document.get("transcript_text");
+
+                                String display_text = "";
+                                for (String s : transcriptList) {
+                                    display_text = display_text.concat(s);
+                                    display_text = display_text + ".";
+                                    display_text = display_text + System.lineSeparator();
+                                }
                                 transcripHashMap.put("transcriptList", display_text);
                             } else {
                                 transcripHashMap.put("transcriptList", "You didn't record any audio.");

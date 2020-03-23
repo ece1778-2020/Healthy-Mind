@@ -241,4 +241,9 @@ public class ProfileActivity extends AppCompatActivity {
         intent.putExtra("noteID", recentNoteID);
         startActivity(intent);
     }
+
+    public void onClick_AudioDetail(View view) {
+        Intent intent = new Intent(ProfileActivity.this, AudioList.class);
+        startActivity(intent);
+    }
 }

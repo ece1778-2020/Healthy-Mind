@@ -360,11 +360,9 @@ public class transcriptConfirm extends AppCompatActivity {
 
     public void onClick_exit(View view) {
 
-        if (doctorNotesIDSelected.size() == 0) {
-            // if there is no existing doctor notes.
-            // store to some extra database.
-
-        } else if (doctorNotesIDSelected.size() == 1) {
+        // if there is no existing doctor notes.
+        // don't attach to any doctor, store it to audio collection.
+        if (doctorNotesIDSelected.size() == 1) {
             // change hasAudio field to true.
             mFirestore.collection("doctor's note")
                     .document(doctorNotesIDSelected.get(0))
@@ -381,6 +379,13 @@ public class transcriptConfirm extends AppCompatActivity {
                     .update("audio_path", firebaseStorageUri);
 
         }
+
+        HashMap<String, Object> audio_data = new HashMap<>();
+        audio_data.put("audio_path", firebaseStorageUri);
+        audio_data.put("transcript_text", transcriptList);
+        audio_data.put("user_id", mAuth.getCurrentUser().getUid());
+
+        mFirestore.collection("audio").add(audio_data);
 
         //Toast.makeText(getApplicationContext(), doctorNotesIDSelected.toString(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ProfileActivity.class);
