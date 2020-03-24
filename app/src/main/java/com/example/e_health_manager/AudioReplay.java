@@ -55,7 +55,9 @@ public class AudioReplay extends AppCompatActivity {
     }
 
     public void onClick_exit(View view) {
-        stopAudio();
+        if (mediaPlayer != null) {
+            stopAudio();
+        }
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
