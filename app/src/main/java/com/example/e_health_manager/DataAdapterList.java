@@ -163,7 +163,6 @@ public class DataAdapterList extends RecyclerView.Adapter<DataAdapterList.ViewHo
                 });
                 builder.setNegativeButton(android.R.string.no, null);
                 builder.show();
-
             }
 
             // delete button.

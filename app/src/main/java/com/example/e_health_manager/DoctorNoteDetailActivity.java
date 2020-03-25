@@ -255,6 +255,26 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
     }
 
     private void fetchAppointment(String appointID) {
+
+        if (appointID.isEmpty()) {
+            HashMap<String, Object> appointHashMap = new HashMap<>();
+            appointHashMap.put("date", "");
+            appointHashMap.put("doctor", "");
+            appointHashMap.put("location", "");
+            appointHashMap.put("phone", "");
+            appointHashMap.put("reason", "");
+            appointHashMap.put("time", "");
+            appointChildren.add(appointHashMap);
+            detailHashMap.put(detailDataHeader.get(4), appointChildren);
+
+            Log.d("testing", "doctor note: the complete detailHashMap is: " + detailHashMap.toString());
+
+            // initialize expandable list view
+            noteDetailAdapter = new ExpandableNoteDetailAdapter(DoctorNoteDetailActivity.this, detailDataHeader, detailHashMap);
+            noteDetailListView.setAdapter(noteDetailAdapter);
+            return;
+        }
+
         Log.d("testing", "doctor note: the appointID is: " + appointID);
         mFirestore.collection("appointments").document(appointID)
                 .get()

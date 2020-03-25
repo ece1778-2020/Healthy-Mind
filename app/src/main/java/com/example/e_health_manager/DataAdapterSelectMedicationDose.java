@@ -70,9 +70,16 @@ public class DataAdapterSelectMedicationDose extends RecyclerView.Adapter<DataAd
                                 .update("dose", transcript_view_holder.getText().toString());
 
                         transcript.setText(transcript_view_holder.getText().toString());
+                        transcript.setTextColor(context.getColor(android.R.color.holo_red_dark));
                     }
                 });
-                builder.setNegativeButton("No relevant info", null);
+                builder.setNegativeButton("No relevant info", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        transcript.setText("");
+                        transcript.setBackgroundColor(context.getColor(android.R.color.transparent));
+                    }
+                });
                 builder.show();
             }
 
