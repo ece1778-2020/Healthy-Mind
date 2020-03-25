@@ -31,8 +31,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -389,10 +391,20 @@ public class transcriptConfirm extends AppCompatActivity {
         audio_data.put("transcript_text", transcriptList);
         audio_data.put("user_id", mAuth.getCurrentUser().getUid());
 
-        mFirestore.collection("audio").add(audio_data);
+        mFirestore.collection("audio").add(audio_data)
+        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Intent intent = new Intent(transcriptConfirm.this, SelectMedication.class);
+                intent.putExtra("audio_id", documentReference.getId());
+                intent.putExtra("transcriptList", transcriptList);
+                startActivity(intent);
+            }
+        });
 
         //Toast.makeText(getApplicationContext(), doctorNotesIDSelected.toString(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
+        // to profile page
+        // Intent intent = new Intent(this, ProfileActivity.class);
+        // startActivity(intent);
     }
 }

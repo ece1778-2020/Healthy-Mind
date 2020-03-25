@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AudioList"></activity>
+        <activity android:name=".SelectMedication"></activity>
+        <activity android:name=".AudioList" />
         <activity android:name=".AudioReplay" />
         <activity android:name=".transcriptConfirm" />
         <activity android:name=".AppointmentDetailActivity" />
