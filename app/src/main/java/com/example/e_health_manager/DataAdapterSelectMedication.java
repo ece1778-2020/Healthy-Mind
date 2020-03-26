@@ -58,7 +58,23 @@ public class DataAdapterSelectMedication extends RecyclerView.Adapter<DataAdapte
                 View my_view = inflater.inflate(R.layout.dialog_select_medication, null);
 
                 final EditText transcript_view_holder = my_view.findViewById(R.id.med1);
-                transcript_view_holder.setText(transcript.getText());
+
+                String display_text = transcript.getText().toString();
+
+                String[] med_array = {"ativan", "cipralex", "citalopram", "zoloft", "celexa", "edronax",
+                        "escitalopram", "trazadone", "lorazepam", "fluoxetine", "lexapro", "cipramil",
+                        "paxil", "luvox", "elavil", "prozac", "sertraline", "paroxetine", "pexeva",
+                        "seroxat", "ibuprofen", "silenor", "ambien", "lunesta", "sonata", "silenor",
+                        "rozerem", "belsomra", "restoril", "benadryl"};
+
+                for (String t : med_array) {
+                    if (display_text.toLowerCase().contains(t)) {
+                        display_text = t.substring(0, 1).toUpperCase() + t.substring(1).toLowerCase();
+                        break;
+                    }
+                }
+
+                transcript_view_holder.setText(display_text);
 
                 builder.setView(my_view);
                 builder.setTitle("Please only keep the medication name and delete any irrelevant words");
