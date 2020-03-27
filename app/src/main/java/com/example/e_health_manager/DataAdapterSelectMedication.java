@@ -61,11 +61,11 @@ public class DataAdapterSelectMedication extends RecyclerView.Adapter<DataAdapte
 
                 String display_text = transcript.getText().toString();
 
-                String[] med_array = {"ativan", "cipralex", "citalopram", "zoloft", "celexa", "edronax",
+                String[] med_array = {"ativan", "cipralex", "citalopram", "zoloft", "celexa", "edronax", "lithium",
                         "escitalopram", "trazadone", "trazodone", "lorazepam", "fluoxetine", "lexapro", "cipramil",
                         "paxil", "luvox", "elavil", "prozac", "sertraline", "paroxetine", "pexeva",
                         "seroxat", "ibuprofen", "silenor", "ambien", "lunesta", "sonata", "silenor",
-                        "rozerem", "belsomra", "restoril", "benadryl"};
+                        "rozerem", "belsomra", "restoril", "benadryl", "quetiapine", "diazepam"};
 
                 for (String t : med_array) {
                     if (display_text.toLowerCase().contains(t)) {

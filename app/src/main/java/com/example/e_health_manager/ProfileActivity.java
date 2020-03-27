@@ -129,35 +129,49 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void setProfileContent(){
         //set upcoming medications
-        mediName.setText("Trazadone");
-        mediDose.setText("1 tab");
-        mediTime.setText("Noon");
-        mediDate.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
-//        mFirestore.collection("medications")
-//                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
-//                .limit(1)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isComplete()) {
-//                            if (task.getResult().size() != 0){
-//                                Log.d("photo Activity", "found this users medication");
-//                                String timestamp = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-//                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                    mediName.setText(document.get("name").toString());
-//                                    mediDose.setText(document.get("dose").toString());
-//                                    String doseTime = ((ArrayList<String>) document.get("time")).get(0);
-//                                    mediTime.setText(doseTime);
-//                                    mediDate.setText(timestamp);
-//                                }
-//                            }
-//                            else{
-//                                Log.d("photo Activity", "dont found this users medication");
-//                            }
-//                        }
-//                    }
-//                });
+//        mediName.setText("Trazadone");
+//        mediDose.setText("1 tab");
+//        mediTime.setText("Noon");
+//        mediDate.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
+        mFirestore.collection("medications")
+                .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
+                .limit(1)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isComplete()) {
+                            if (task.getResult().size() != 0){
+                                Log.d("photo Activity", "found this users medication");
+                                String timestamp = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    mediName.setText(document.get("name").toString());
+
+                                    if (document.get("dose").toString().isEmpty()) {
+                                        mediDose.setText("Take as needed");
+                                    } else {
+                                        mediDose.setText(document.get("dose").toString());
+                                    }
+
+                                    String doseTime = "";
+                                    ArrayList<String> timeList = (ArrayList<String>) document.get("time");
+
+                                    if (timeList.size() != 0) {
+                                        for (String t : timeList) {
+                                            doseTime += t;
+                                            doseTime += "/";
+                                        }
+                                    }
+                                    mediTime.setText(doseTime);
+                                    mediDate.setText(timestamp);
+                                }
+                            }
+                            else{
+                                Log.d("photo Activity", "dont found this users medication");
+                            }
+                        }
+                    }
+                });
         //set upcoming appointment
         String dateBound = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
         mFirestore.collection("appointments")
