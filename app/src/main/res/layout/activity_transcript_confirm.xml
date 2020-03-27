@@ -43,8 +43,6 @@
         app:layout_constraintTop_toBottomOf="@id/title2" />
 
 
-
-
     <TextView
         android:id="@+id/title3"
         android:layout_width="match_parent"
@@ -57,7 +55,6 @@
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_doctor_notes"
         app:layout_constraintTop_toBottomOf="@id/recyclerView" />
-
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -81,5 +78,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

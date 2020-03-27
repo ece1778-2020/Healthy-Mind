@@ -583,16 +583,16 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
             //get time
             ArrayList<String> medicationTimes = new ArrayList<>();
             if(mediMornSwitch1.isChecked()){
-                medicationTimes.add("MORNING");
+                medicationTimes.add("Morning");
             }
             if(mediNoonSwitch1.isChecked()){
-                medicationTimes.add("NOON");
+                medicationTimes.add("Noon");
             }
             if(mediAftSwitch1.isChecked()){
-                medicationTimes.add("AFTERNOON");
+                medicationTimes.add("Afternoon");
             }
             if(mediNightSwitch1.isChecked()){
-                medicationTimes.add("NIGHT");
+                medicationTimes.add("Night");
             }
             medication.put("time", medicationTimes);
             Task mediTask = mFirestore.collection("medications").add(medication)
@@ -627,16 +627,16 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
             //get time
             ArrayList<String> medicationTimes = new ArrayList<>();
             if(mediMornSwitch2.isChecked()){
-                medicationTimes.add("MORNING");
+                medicationTimes.add("Morning");
             }
             if(mediNoonSwitch2.isChecked()){
-                medicationTimes.add("NOON");
+                medicationTimes.add("Noon");
             }
             if(mediAftSwitch2.isChecked()){
-                medicationTimes.add("AFTERNOON");
+                medicationTimes.add("Afternoon");
             }
             if(mediNightSwitch2.isChecked()){
-                medicationTimes.add("NIGHT");
+                medicationTimes.add("Night");
             }
             medication.put("time", medicationTimes);
             Task mediTask = mFirestore.collection("medications").add(medication)
@@ -671,16 +671,16 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
             //get time
             ArrayList<String> medicationTimes = new ArrayList<>();
             if(mediMornSwitch3.isChecked()){
-                medicationTimes.add("MORNING");
+                medicationTimes.add("Morning");
             }
             if(mediNoonSwitch3.isChecked()){
-                medicationTimes.add("NOON");
+                medicationTimes.add("Noon");
             }
             if(mediAftSwitch3.isChecked()){
-                medicationTimes.add("AFTERNOON");
+                medicationTimes.add("Afternoon");
             }
             if(mediNightSwitch3.isChecked()){
-                medicationTimes.add("NIGHT");
+                medicationTimes.add("Night");
             }
             medication.put("time", medicationTimes);
             Task mediTask = mFirestore.collection("medications").add(medication)
@@ -715,16 +715,16 @@ public class PhotoAnalysisResultActivity extends AppCompatActivity {
             //get time
             ArrayList<String> medicationTimes = new ArrayList<>();
             if(mediMornSwitch4.isChecked()){
-                medicationTimes.add("MORNING");
+                medicationTimes.add("Morning");
             }
             if(mediNoonSwitch4.isChecked()){
-                medicationTimes.add("NOON");
+                medicationTimes.add("Noon");
             }
             if(mediAftSwitch4.isChecked()){
-                medicationTimes.add("AFTERNOON");
+                medicationTimes.add("Afternoon");
             }
             if(mediNightSwitch4.isChecked()){
-                medicationTimes.add("NIGHT");
+                medicationTimes.add("Night");
             }
             medication.put("time", medicationTimes);
             Task mediTask = mFirestore.collection("medications").add(medication)

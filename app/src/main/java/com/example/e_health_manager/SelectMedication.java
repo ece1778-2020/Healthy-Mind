@@ -145,7 +145,6 @@ public class SelectMedication extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
 
-
                                 Map<String, Object> medication = new HashMap<>();
 
                                 if (m_dose.getText().toString().isEmpty()) {
@@ -227,9 +226,9 @@ public class SelectMedication extends AppCompatActivity {
 
     }
 
-    public void onClick_submitAudio(View view) {
-        // to profile page, only submitting the audio and transcript.
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-    }
+//    public void onClick_submitAudio(View view) {
+//        // to profile page, only submitting the audio and transcript.
+//        Intent intent = new Intent(this, ProfileActivity.class);
+//        startActivity(intent);
+//    }
 }

@@ -197,7 +197,7 @@ public class transcriptConfirm extends AppCompatActivity {
                             // replace the transcript text at the given position.
                             transcriptList.set(position, transcript_view_holder.getText().toString());
 
-                            Toast.makeText(context, "Edited Successfully!", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, "Edited Successfully!", Toast.LENGTH_SHORT).show();
                             paragraph.setText(transcript_view_holder.getText());
 
                             //Intent intent = new Intent(context, transcriptConfirm.class);
@@ -386,25 +386,55 @@ public class transcriptConfirm extends AppCompatActivity {
 
         }
 
-        HashMap<String, Object> audio_data = new HashMap<>();
-        audio_data.put("audio_path", firebaseStorageUri);
-        audio_data.put("transcript_text", transcriptList);
-        audio_data.put("user_id", mAuth.getCurrentUser().getUid());
 
-        mFirestore.collection("audio").add(audio_data)
-        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(transcriptConfirm.this);
+        builder.setMessage("Do you want to create a new doctor's note based on this audio or only create an audio note?");
+        // The space shown below is for UI. Please don't remove it.
+        builder.setPositiveButton("Create a new doctor's note                  ", new DialogInterface.OnClickListener() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Intent intent = new Intent(transcriptConfirm.this, SelectMedication.class);
-                intent.putExtra("audio_id", documentReference.getId());
-                intent.putExtra("transcriptList", transcriptList);
-                startActivity(intent);
+            public void onClick(DialogInterface dialog, int id) {
+
+                HashMap<String, Object> audio_data = new HashMap<>();
+                audio_data.put("audio_path", firebaseStorageUri);
+                audio_data.put("transcript_text", transcriptList);
+                audio_data.put("user_id", mAuth.getCurrentUser().getUid());
+
+                mFirestore.collection("audio").add(audio_data)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Intent intent = new Intent(transcriptConfirm.this, SelectMedication.class);
+                                intent.putExtra("audio_id", documentReference.getId());
+                                intent.putExtra("transcriptList", transcriptList);
+                                startActivity(intent);
+                            }
+                        });
             }
         });
+        builder.setNegativeButton("Only create an audio and transcript note   ", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                HashMap<String, Object> audio_data = new HashMap<>();
+                audio_data.put("audio_path", firebaseStorageUri);
+                audio_data.put("transcript_text", transcriptList);
+                audio_data.put("user_id", mAuth.getCurrentUser().getUid());
 
-        //Toast.makeText(getApplicationContext(), doctorNotesIDSelected.toString(), Toast.LENGTH_SHORT).show();
-        // to profile page
-        // Intent intent = new Intent(this, ProfileActivity.class);
-        // startActivity(intent);
+                mFirestore.collection("audio").add(audio_data)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                //Intent intent = new Intent(transcriptConfirm.this, SelectMedication.class);
+                                //intent.putExtra("audio_id", documentReference.getId());
+                                //intent.putExtra("transcriptList", transcriptList);
+                                //startActivity(intent);
+
+                                // to profile page, only submitting the audio and transcript.
+                                Intent intent = new Intent(transcriptConfirm.this, ProfileActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+            }
+        });
+        builder.show();
     }
 }
