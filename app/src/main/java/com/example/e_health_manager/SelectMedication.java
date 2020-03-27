@@ -159,16 +159,16 @@ public class SelectMedication extends AppCompatActivity {
                                 //get time
                                 ArrayList<String> timeList = new ArrayList<>();
                                 if (selectedTimes.contains(0)) {
-                                    timeList.add("morning");
+                                    timeList.add("Morning");
                                 }
                                 if (selectedTimes.contains(1)) {
-                                    timeList.add("noon");
+                                    timeList.add("Noon");
                                 }
                                 if (selectedTimes.contains(2)) {
-                                    timeList.add("afternoon");
+                                    timeList.add("Afternoon");
                                 }
                                 if (selectedTimes.contains(3)) {
-                                    timeList.add("night");
+                                    timeList.add("Night");
                                 }
 
                                 medication.put("time", timeList);

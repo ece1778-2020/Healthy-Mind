@@ -57,7 +57,26 @@ public class DataAdapterSelectMedicationDose extends RecyclerView.Adapter<DataAd
                 View my_view = inflater.inflate(R.layout.dialog_select_medication, null);
 
                 final EditText transcript_view_holder = my_view.findViewById(R.id.med1);
-                transcript_view_holder.setText(transcript.getText());
+
+                String display_text = transcript.getText().toString();
+
+                String[] keywords = {"tabs", "tab", "tablets", "tablet", "mg"};
+
+                for (int i = 0; i < keywords.length; i++) {
+                    String t = keywords[i];
+                    if (display_text.toLowerCase().contains(t)) {
+                        if (t.equals("tab") || t.equals("tablet")) {
+                            display_text = "1 " + t;
+                        } else if (t.equals("tabs") || t.equals("tablets")) {
+                            display_text = "2 " + t;
+                        } else if (t.equals("mg")) {
+                            display_text = "10 " + t;
+                        }
+                        break;
+                    }
+                }
+
+                transcript_view_holder.setText(display_text);
 
                 builder.setView(my_view);
                 builder.setTitle("Please only keep the medication dose and delete any irrelevant words");
