@@ -7,12 +7,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,6 +35,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,12 +46,18 @@ public class SelectMedication extends AppCompatActivity {
     private ArrayList<String> transcriptList = new ArrayList<>();
     ArrayList<Integer> selectedTimes;
     private String audio_id;
+    private String appointment_id = "";
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
 
     private GridLayoutManager gridLayoutManager;
     private RecyclerView recyclerView, recyclerView2, recyclerView3;
+
+    EditText doctor_name, appointment_date, appointment_time, reason_ed, where, phone_ed;
+
+    Calendar calendar;
+    int year, month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +66,11 @@ public class SelectMedication extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView2 = findViewById(R.id.recyclerView2);
@@ -69,13 +90,12 @@ public class SelectMedication extends AppCompatActivity {
         recyclerView2.setAdapter(dataAdapter2);
         recyclerView2.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        DataAdapterSelectAppointment dataAdapter3 = new DataAdapterSelectAppointment(SelectMedication.this, transcriptList, audio_id);
-        recyclerView3.setAdapter(dataAdapter3);
-        recyclerView3.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//        DataAdapterSelectAppointment dataAdapter3 = new DataAdapterSelectAppointment(SelectMedication.this, transcriptList, audio_id);
+//        recyclerView3.setAdapter(dataAdapter3);
+//        recyclerView3.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     public void onClick_exit(View view) {
-
 
         mFirestore.collection("audio").document(audio_id).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -181,10 +201,12 @@ public class SelectMedication extends AppCompatActivity {
 
                                 // store doctor note
                                 Map<String, Object> doctorNote = new HashMap<>();
-                                doctorNote.put("appointment_id", "");
+
+                                Toast.makeText(getApplicationContext(), appointment_id, Toast.LENGTH_SHORT).show();
+
+                                doctorNote.put("appointment_id", appointment_id);
                                 doctorNote.put("came_date", "");
                                 doctorNote.put("go_to_emergency_if", "");
-
 
                                 doctorNote.put("hasAudio", true);
                                 doctorNote.put("audio_path", audio_path);
@@ -223,6 +245,155 @@ public class SelectMedication extends AppCompatActivity {
 
                     }
                 });
+
+    }
+
+    public void onClick_setAppointment(View view) {
+        String date_keyword = "";
+        String doctor_keyword = "";
+        String location_keyword = "";
+        String phone_keyword = "";
+        String time_keyword = "";
+
+        String[] month_array = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+        for (String sentence : transcriptList) {
+            String[] words = sentence.split("\\s+");
+            int count = 0;
+            for (String w : words) {
+                if (TextUtils.isDigitsOnly(w) && w.length() > 5) {
+                    phone_keyword = phone_keyword + " " + w;
+                }
+
+                if (Arrays.asList(month_array).contains(w)) {
+                    if (words.length > (count + 1)) {
+                        date_keyword = date_keyword + w + " " + words[count + 1] + " (Please click here to reformat the date).";
+                    }
+                }
+
+                if (w.toLowerCase().equals("am") || w.toLowerCase().equals("pm") || w.toLowerCase().equals("a.m.") || w.toLowerCase().equals("p.m.")) {
+                    if (count - 1 >= 0) {
+                        time_keyword = time_keyword + words[count - 1] + w + " (Please click here to reformat the time).";
+                    }
+                }
+
+                if (w.toLowerCase().equals("street") || w.toLowerCase().equals("avenue")) {
+                    if (count - 2 >= 0) {
+                        location_keyword = location_keyword + words[count - 2] + " " + words[count - 1] + " " + w;
+                    } else if (count - 1 >= 0) {
+                        location_keyword = location_keyword + words[count - 1] + " " + w;
+                    }
+                }
+
+                if (w.toLowerCase().equals("dr") || w.toLowerCase().equals("doctor") || w.toLowerCase().equals("dr.")) {
+                    if (words.length > (count + 1)) {
+                        if (!words[count + 1].toLowerCase().equals("ok")) {
+                            doctor_keyword = doctor_keyword + words[count + 1];
+                        }
+                    }
+                }
+                count += 1;
+            }
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(SelectMedication.this);
+        // Get the layout inflater
+        LayoutInflater inflater = SelectMedication.this.getLayoutInflater();
+        View view_edit = inflater.inflate(R.layout.dialog_edit_appointment, null);
+        doctor_name = view_edit.findViewById(R.id.doctor_name);
+        doctor_name.setText(doctor_keyword);
+        appointment_date = view_edit.findViewById(R.id.appointment_date);
+        appointment_date.setText(date_keyword);
+        appointment_time = view_edit.findViewById(R.id.appointment_time);
+        appointment_time.setText(time_keyword);
+        reason_ed = view_edit.findViewById(R.id.reason_ed);
+
+        where = view_edit.findViewById(R.id.where);
+        where.setText(location_keyword);
+        phone_ed = view_edit.findViewById(R.id.phone);
+        phone_ed.setText(phone_keyword);
+        builder.setView(view_edit);
+        builder.setTitle("Edit appointment information");
+
+        appointment_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SelectMedication.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        //sets date in EditText
+                        String curr_date;
+                        if (month + 1 < 10) {
+                            curr_date = year + "/" + "0" + (month + 1) + "/" + dayOfMonth;
+                        } else {
+                            curr_date = year + "/" + (month + 1) + "/" + dayOfMonth;
+                        }
+
+                        appointment_date.setText(curr_date);
+                        // make it bold.
+                        appointment_date.setTypeface(appointment_date.getTypeface(), Typeface.BOLD);
+                    }
+                }, year, month, day);
+                //shows DatePickerDialog
+                datePickerDialog.show();
+            }
+        });
+
+
+        // set time picker
+        appointment_time.setShowSoftInputOnFocus(false);
+        appointment_time.setInputType(InputType.TYPE_NULL);
+        appointment_time.setFocusable(false);
+        appointment_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(SelectMedication.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        if(selectedMinute<10){
+                            appointment_time.setText( selectedHour + ":0" + selectedMinute);
+                        }
+                        else{
+                            appointment_time.setText( selectedHour + ":" + selectedMinute);
+                        }
+                    }
+                }, hour, minute, true);// Yes 24 hour time
+                mTimePicker.setTitle("Select Time(24-hour Clock)");
+                mTimePicker.show();
+            }
+        });
+
+
+        builder.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                Map<String, Object> appointment_data = new HashMap<>();
+
+                appointment_data.put("date", appointment_date.getText().toString());
+                appointment_data.put("doctor", doctor_name.getText().toString());
+                appointment_data.put("location", where.getText().toString());
+                appointment_data.put("phone", phone_ed.getText().toString());
+
+                if (reason_ed.getText().toString().isEmpty()) {
+                    appointment_data.put("reason", "");
+                } else {
+                    appointment_data.put("reason", reason_ed.getText().toString());
+                }
+
+                appointment_data.put("time", appointment_time.getText().toString());
+                appointment_data.put("user_id", mAuth.getCurrentUser().getUid());
+
+                DocumentReference appointmentRef = mFirestore.collection("appointments").document();
+                appointmentRef.set(appointment_data);
+                appointment_id = appointmentRef.getId();
+            }
+        });
+        builder.setNegativeButton(android.R.string.no, null);
+        builder.show();
 
     }
 

@@ -3,6 +3,7 @@ package com.example.e_health_manager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import io.opencensus.internal.StringUtils;
 
 public class DataAdapterSelectMedicationDose extends RecyclerView.Adapter<DataAdapterSelectMedicationDose.ViewHolder> {
     // Adapter class is used to render and handle the data collection and bind it to the view.
@@ -59,18 +65,42 @@ public class DataAdapterSelectMedicationDose extends RecyclerView.Adapter<DataAd
                 final EditText transcript_view_holder = my_view.findViewById(R.id.med1);
 
                 String display_text = transcript.getText().toString();
+                String[] split_words = display_text.split("\\s+");
+                String[] num_array = {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+                ArrayList<String> num_keywords = new ArrayList<>();
 
-                String[] keywords = {"tabs", "tab", "tablets", "tablet", "mg"};
+                for (int i = 0; i < split_words.length; i++) {
+                    if (TextUtils.isDigitsOnly(split_words[i])) {
+                        num_keywords.add(split_words[i]);
+                    } else if (Arrays.asList(num_array).contains(split_words[i])) {
+                        num_keywords.add(split_words[i]);
+                    }
+                }
+                num_keywords.remove("1");
+
+                String[] keywords = {"tabs", "tab", "tablets", "tablet", "mg", "milligrams"};
 
                 for (int i = 0; i < keywords.length; i++) {
                     String t = keywords[i];
                     if (display_text.toLowerCase().contains(t)) {
+
                         if (t.equals("tab") || t.equals("tablet")) {
                             display_text = "1 " + t;
                         } else if (t.equals("tabs") || t.equals("tablets")) {
-                            display_text = "2 " + t;
+
+                            if (num_keywords.isEmpty()) {
+                                display_text = "2 " + t;
+                            } else {
+                                display_text = num_keywords.get(0) + " " + t;
+                            }
+
                         } else if (t.equals("mg")) {
-                            display_text = "10 " + t;
+
+                            if (num_keywords.isEmpty()) {
+                                display_text = "10 " + t;
+                            } else {
+                                display_text = num_keywords.get(0) + " " + t;
+                            }
                         }
                         break;
                     }
