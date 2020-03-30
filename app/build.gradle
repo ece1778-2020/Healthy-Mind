@@ -96,6 +96,9 @@ dependencies {
     }
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    //for zoom image
+    //implementation 'com.devemorrissey.labs:subsampling-scale-image-view:3.10.0'
 }
 
 task copySecretKey(type: Copy) {

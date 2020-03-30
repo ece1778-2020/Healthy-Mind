@@ -16,7 +16,8 @@
         android:roundIcon="@drawable/new_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectMedication"></activity>
+        <activity android:name=".PODDescriptionActivity"></activity>
+        <activity android:name=".SelectMedication" />
         <activity android:name=".AudioList" />
         <activity android:name=".AudioReplay" />
         <activity android:name=".transcriptConfirm" />

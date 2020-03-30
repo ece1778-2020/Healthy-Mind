@@ -160,4 +160,8 @@ public class AddNoteActivity extends AppCompatActivity {
         intent.putExtra("curr_doctor_note_data", doctor_note_data);
         startActivity(intent);
     }
+    public void onClick_PODDescription(View view) {
+        Intent intent = new Intent(this, PODDescriptionActivity.class);
+        startActivity(intent);
+    }
 }
