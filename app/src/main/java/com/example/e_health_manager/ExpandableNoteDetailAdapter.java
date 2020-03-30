@@ -1,11 +1,14 @@
 package com.example.e_health_manager;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +69,30 @@ public class ExpandableNoteDetailAdapter extends BaseExpandableListAdapter {
         }
 
         TextView groupHeader = convertView.findViewById(R.id.expandableListTitle);
+//        if(groupPosition == 3){
+//            if(detailHashMap.get(detailDataHeader.get(3)).get(0).get("activity") == "You don't have to change your routine"){
+//                groupHeader.setBackgroundResource(R.color.ic_mic_background_disable);
+//                Log.d("adapter", "getGroupView: the color of background with id: "+groupPosition+" has been changed to grey");
+//            }
+//            groupHeader.setText(headerTitle);
+//        }
+//        else if(groupPosition == 4){
+//            if(detailHashMap.get(detailDataHeader.get(4)).get(0).get("date") == ""){
+//                groupHeader.setBackgroundResource(R.color.ic_mic_background_disable);
+//                Log.d("adapter", "getGroupView: the color of background with id: "+groupPosition+" has been changed to grey");
+//            }
+//            groupHeader.setText(headerTitle);
+//        }
+//        else if(groupPosition == 5){
+//            if(detailHashMap.get(detailDataHeader.get(5)).get(0).get("ownNotes") == "You don't have additional notes."){
+//                groupHeader.setBackgroundResource(R.color.ic_mic_background_disable);
+//                Log.d("adapter", "getGroupView: the color of background with id: "+groupPosition+" has been changed to grey");
+//            }
+//            groupHeader.setText(headerTitle);
+//        }
+//        else{
+//            groupHeader.setText(headerTitle);
+//        }
         groupHeader.setText(headerTitle);
         return convertView;
     }

@@ -10,8 +10,9 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MANUALLY"
+        android:text="FILL FORM"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="AUDIO RECORDING"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:srcCompat="@drawable/ic_addbtn" />
+        app:srcCompat="@drawable/ic_mic" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -48,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:srcCompat="@drawable/ic_addbtn" />
+        app:srcCompat="@drawable/ic_mode_edit" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -88,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/ic_addbtn" />
+        app:srcCompat="@drawable/ic_photo_camera" />
 
     <TextView
         android:id="@+id/textView5"
@@ -96,6 +98,7 @@
         android:layout_height="wrap_content"
         android:text="PHOTO"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

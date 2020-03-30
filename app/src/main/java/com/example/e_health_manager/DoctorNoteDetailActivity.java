@@ -67,18 +67,18 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 // Appointments section.
-//                if (groupPosition == 4) {
-//
-//                    String see = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("see").toString();
-//                    if (!see.equals("You don't have any appointments.")) {
-//                        // if there is at least one appointment.
-//                        String appointID = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("appointID").toString();
-//                        Intent intent = new Intent(DoctorNoteDetailActivity.this, AppointmentDetailActivity.class);
-//                        intent.putExtra("appointID", appointID);
-//                        startActivity(intent);
-//                    }
-//
-//                }
+                if (groupPosition == 4) {
+
+                    String see = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("doctor").toString();
+                    if (!see.equals("")) {
+                        // if there is at least one appointment.
+                        String appointID = ((HashMap) noteDetailAdapter.getChild(groupPosition, childPosition)).get("appointID").toString();
+                        Intent intent = new Intent(DoctorNoteDetailActivity.this, AppointmentDetailActivity.class);
+                        intent.putExtra("appointID", appointID);
+                        startActivity(intent);
+                    }
+
+                }
 
                 // Replay audio recording.
                 if (groupPosition == 6) {
@@ -254,7 +254,7 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void fetchAppointment(String appointID) {
+    private void fetchAppointment(final String appointID) {
 
         if (appointID.isEmpty()) {
             HashMap<String, Object> appointHashMap = new HashMap<>();
@@ -264,6 +264,7 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
             appointHashMap.put("phone", "");
             appointHashMap.put("reason", "");
             appointHashMap.put("time", "");
+            appointHashMap.put("appointID", "");
             appointChildren.add(appointHashMap);
             detailHashMap.put(detailDataHeader.get(4), appointChildren);
 
@@ -289,6 +290,7 @@ public class DoctorNoteDetailActivity extends AppCompatActivity {
                         appointHashMap.put("phone", document.get("phone"));
                         appointHashMap.put("reason", document.get("reason"));
                         appointHashMap.put("time", document.get("time"));
+                        appointHashMap.put("appointID", appointID);
                         appointChildren.add(appointHashMap);
                         detailHashMap.put(detailDataHeader.get(4), appointChildren);
 

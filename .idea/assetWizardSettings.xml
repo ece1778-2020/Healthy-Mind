@@ -203,7 +203,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_home_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_mode_edit_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -214,7 +214,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="018577" />
-                            <entry key="outputName" value="ic_home" />
+                            <entry key="outputName" value="ic_mode_edit" />
                             <entry key="sourceFile" value="$USER_HOME$" />
                           </map>
                         </option>
