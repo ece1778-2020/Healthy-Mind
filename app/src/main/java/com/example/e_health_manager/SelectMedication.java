@@ -202,7 +202,7 @@ public class SelectMedication extends AppCompatActivity {
                                 // store doctor note
                                 Map<String, Object> doctorNote = new HashMap<>();
 
-                                Toast.makeText(getApplicationContext(), appointment_id, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), appointment_id, Toast.LENGTH_SHORT).show();
 
                                 doctorNote.put("appointment_id", appointment_id);
                                 doctorNote.put("came_date", "");
@@ -251,13 +251,29 @@ public class SelectMedication extends AppCompatActivity {
     public void onClick_setAppointment(View view) {
         String date_keyword = "";
         String doctor_keyword = "";
+        String reason_keyword = "";
         String location_keyword = "";
         String phone_keyword = "";
         String time_keyword = "";
 
         String[] month_array = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        HashMap<String, Integer> month_map = new HashMap<>();
+        int counter = 1;
+        for (String m : month_array) {
+            month_map.put(m, counter);
+            counter++;
+        }
+
+        String[] reason_keywords = {"anxiety", "insomnia", "depression", "follow up", "prescription refill"};
 
         for (String sentence : transcriptList) {
+
+            for (String reason : reason_keywords) {
+                if (sentence.toLowerCase().contains(reason)) {
+                    reason_keyword = reason_keyword + " " + reason;
+                }
+            }
+
             String[] words = sentence.split("\\s+");
             int count = 0;
             for (String w : words) {
@@ -267,13 +283,56 @@ public class SelectMedication extends AppCompatActivity {
 
                 if (Arrays.asList(month_array).contains(w)) {
                     if (words.length > (count + 1)) {
-                        date_keyword = date_keyword + w + " " + words[count + 1] + " (Please click here to reformat the date).";
+
+                        String date = words[count + 1];
+
+                        if (month_map.get(w) != null) {
+                            month = month_map.get(w);
+
+                            if (date.length() - 2 > 0) {
+                                date = date.substring(0, date.length() - 2);
+                            }
+
+                            if (month < 10) {
+                                date_keyword = year + "/" + 0 + month + "/" + date;
+                            } else {
+                                date_keyword = year + "/" + month + "/" + date;
+                            }
+
+                        } else {
+                            date_keyword = date_keyword + w + " " + date;
+                        }
                     }
                 }
 
                 if (w.toLowerCase().equals("am") || w.toLowerCase().equals("pm") || w.toLowerCase().equals("a.m.") || w.toLowerCase().equals("p.m.")) {
                     if (count - 1 >= 0) {
-                        time_keyword = time_keyword + words[count - 1] + w + " (Please click here to reformat the time).";
+
+                        String time = words[count - 1];
+                        if (!time.contains(":")) {
+                            time = time + ":00";
+                        }
+
+                        if (w.toLowerCase().equals("pm") || w.toLowerCase().equals("p.m.")) {
+
+                            if (time.length() > 3) {
+                                int time24_int = 0;
+                                String time24 = time.substring(0, time.length() - 3);
+                                String leftover = time.substring(time.length() - 3);
+                                try {
+                                    time24_int = Integer.parseInt(time24) + 12;
+                                } catch (NumberFormatException e) {
+
+                                }
+                                time_keyword = time_keyword + time24_int + leftover;
+                            } else {
+                                time_keyword = time_keyword + time + " " + w + " (please reformat the time into 24-hour format).";
+                            }
+
+                        } else {
+                            // a.m. time
+                            time_keyword = time_keyword + time;
+                        }
                     }
                 }
 
@@ -306,12 +365,15 @@ public class SelectMedication extends AppCompatActivity {
         appointment_date.setText(date_keyword);
         appointment_time = view_edit.findViewById(R.id.appointment_time);
         appointment_time.setText(time_keyword);
+
         reason_ed = view_edit.findViewById(R.id.reason_ed);
+        reason_ed.setText(reason_keyword);
 
         where = view_edit.findViewById(R.id.where);
         where.setText(location_keyword);
         phone_ed = view_edit.findViewById(R.id.phone);
         phone_ed.setText(phone_keyword);
+
         builder.setView(view_edit);
         builder.setTitle("Edit appointment information");
 
@@ -354,11 +416,10 @@ public class SelectMedication extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(SelectMedication.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        if(selectedMinute<10){
-                            appointment_time.setText( selectedHour + ":0" + selectedMinute);
-                        }
-                        else{
-                            appointment_time.setText( selectedHour + ":" + selectedMinute);
+                        if (selectedMinute < 10) {
+                            appointment_time.setText(selectedHour + ":0" + selectedMinute);
+                        } else {
+                            appointment_time.setText(selectedHour + ":" + selectedMinute);
                         }
                     }
                 }, hour, minute, true);// Yes 24 hour time

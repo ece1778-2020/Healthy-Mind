@@ -30,7 +30,6 @@
             android:name=".PhotoAnalysisResultActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AudioConfirmActivity" />
-        <activity android:name=".AudioResultActivity" />
         <activity
             android:name=".TakeAudioActivity"
             android:parentActivityName=".AddNoteActivity" />
