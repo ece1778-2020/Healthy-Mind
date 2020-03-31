@@ -19,5 +19,6 @@
     </string-array>
 
     <string name="google_maps_API_key">AIzaSyBm3f_WTR8bxxmMjBExRsejbvddpPeaWec</string>
+    <string name="pod"><u>POD</u></string>
 
 </resources>
