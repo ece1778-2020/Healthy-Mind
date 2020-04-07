@@ -116,11 +116,15 @@ public class AddAppointmentActivity extends AppCompatActivity {
                         //sets date in EditText
                         String curr_date;
                         if (month + 1 < 10) {
-                            curr_date = year + "/" + "0" + (month + 1) + "/" + dayOfMonth;
+                            curr_date = year + "/" + "0" + (month + 1) + "/";
                         } else {
-                            curr_date = year + "/" + (month + 1) + "/" + dayOfMonth;
+                            curr_date = year + "/" + (month + 1) + "/";
                         }
-
+                        if (dayOfMonth < 10) {
+                            curr_date = curr_date + "0" + dayOfMonth;
+                        } else {
+                            curr_date = curr_date + dayOfMonth;
+                        }
                         dateText.setText(curr_date);
                         // make it bold.
                     }

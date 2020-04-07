@@ -129,10 +129,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void setProfileContent(){
         //set upcoming medications
-//        mediName.setText("Trazadone");
-//        mediDose.setText("1 tab");
-//        mediTime.setText("Noon");
-//        mediDate.setText(new SimpleDateFormat("yyyy/MM/dd").format(new Date()));
         mFirestore.collection("medications")
                 .whereEqualTo("user_id", mAuth.getCurrentUser().getUid())
                 .limit(1)
@@ -167,6 +163,10 @@ public class ProfileActivity extends AppCompatActivity {
                                 }
                             }
                             else{
+                                mediName.setText("You don't have any medication nned to take yet");
+                                mediDose.setText("");
+                                mediTime.setText("");
+                                mediDate.setText("");
                                 Log.d("photo Activity", "dont found this users medication");
                             }
                         }
