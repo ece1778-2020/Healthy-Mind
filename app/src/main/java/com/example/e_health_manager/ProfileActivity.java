@@ -163,11 +163,11 @@ public class ProfileActivity extends AppCompatActivity {
                                 }
                             }
                             else{
-                                mediName.setText("You don't have any medication nned to take yet");
+                                mediName.setText("");
                                 mediDose.setText("");
                                 mediTime.setText("");
-                                mediDate.setText("");
-                                Log.d("photo Activity", "dont found this users medication");
+                                mediDate.setText("No medication need to take yet.");
+                                Log.d("photo Activity", "can't found this users medication");
                             }
                         }
                     }
