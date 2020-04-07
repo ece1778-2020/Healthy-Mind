@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E-Health-Manager</string>
+    <string name="app_name">Healthy-Mind</string>
     <string name="title_activity_signup">SIGN UP</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
